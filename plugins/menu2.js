@@ -74,24 +74,26 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
 
         const messageID = sentMsg.key.id;
 
-        conn.ev.on("messages.upsert", async (msgData) => {
+        const messageHandler = async (msgData) => {
             const receivedMsg = msgData.messages[0];
-            if (!receivedMsg.message) return;
+            if (!receivedMsg || !receivedMsg.message) return;
 
             const receivedText = receivedMsg.message.conversation || receivedMsg.message.extendedTextMessage?.text;
             const senderID = receivedMsg.key.remoteJid;
             const isReplyToBot = receivedMsg.message.extendedTextMessage?.contextInfo?.stanzaId === messageID;
 
-            if (isReplyToBot) {
-                await conn.sendMessage(senderID, {
-                    react: { text: '⬇️', key: receivedMsg.key }
-                });
+            if (!isReplyToBot) return;
 
-                switch (receivedText) {
-                    case "1": // Quran Menu
-                        await conn.sendMessage(senderID, {
-                            image: { url: config.MENU_IMAGE_URL },
-                            caption: `*┏────〘 ǫᴜʀᴀɴ ᴍᴇɴᴜ〙───⊷*
+            // once handled, remove listener to avoid buildup
+            try { conn.ev.off("messages.upsert", messageHandler); } catch (e) {}
+
+            await conn.sendMessage(senderID, { react: { text: '⬇️', key: receivedMsg.key } });
+
+            switch (receivedText) {
+                case "1": // Quran Menu
+                    await conn.sendMessage(senderID, {
+                        image: { url: config.MENU_IMAGE_URL },
+                        caption: `*┏────〘 ǫᴜʀᴀɴ ᴍᴇɴᴜ〙───⊷*
 *┃ • surah <number>*
 *┃ • ayat <surah:verse>*
 *┃ • tafsir <surah>*
@@ -107,15 +109,15 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
 *┃ • hijridate*
 *┗──────────────⊷*
 > ${config.DESCRIPTION}`,
-                            contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
-                        }, { quoted: receivedMsg });
-                        break;
+                        contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
+                    }, { quoted: receivedMsg });
+                    break;
 
-                    case "2": // Setting Menu
-                        await conn.sendMessage(senderID, {
-                            image: { url: config.MENU_IMAGE_URL },
-                            caption: `*┏────〘 sᴇᴛᴛɪɴs ᴍᴇɴᴜ 〙───⊷*
-                            *┃**BOT CONFIGURATION* 
+                case "2": // Setting Menu
+                    await conn.sendMessage(senderID, {
+                        image: { url: config.MENU_IMAGE_URL },
+                        caption: `*┏────〘 sᴇᴛᴛɪɴs ᴍᴇɴᴜ 〙───⊷*
+*┃**BOT CONFIGURATION* 
 *┃* .prefix new prefix
 *┃* .botname new name
 *┃* .ownername new name
@@ -149,14 +151,14 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
 *┗──────────────⊷*
 > *Use ${config.PREFIX}command on/off*
 > ${config.DESCRIPTION}`,
-                            contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
-                        }, { quoted: receivedMsg });
-                        break;
+                        contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
+                    }, { quoted: receivedMsg });
+                    break;
 
-                    case "3": // AI Menu
-                        await conn.sendMessage(senderID, {
-                            image: { url: config.MENU_IMAGE_URL },
-                            caption: `*┏────〘 ᴀɪ ᴍᴇɴᴜ 〙───⊷*
+                case "3": // AI Menu
+                    await conn.sendMessage(senderID, {
+                        image: { url: config.MENU_IMAGE_URL },
+                        caption: `*┏────〘 ᴀɪ ᴍᴇɴᴜ 〙───⊷*
 *┃ • ai <query>*
 *┃ • gpt <query>*
 *┃ • gpt2 <query>*
@@ -174,14 +176,14 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
 *┃ • askimmu <query>*
 *┗──────────────⊷*
 > ${config.DESCRIPTION}`,
-                            contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
-                        }, { quoted: receivedMsg });
-                        break;
+                        contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
+                    }, { quoted: receivedMsg });
+                    break;
 
-                    case "4": // Anime Menu
-                        await conn.sendMessage(senderID, {
-                            image: { url: config.MENU_IMAGE_URL },
-                            caption: `a*┏────〘 ᴀɴɪᴍᴇ ᴍᴇɴᴜ〙───⊷*
+                case "4": // Anime Menu
+                    await conn.sendMessage(senderID, {
+                        image: { url: config.MENU_IMAGE_URL },
+                        caption: `a*┏────〘 ᴀɴɪᴍᴇ ᴍᴇɴᴜ〙───⊷*
 *┃ • waifu*
 *┃ • neko*
 *┃ • loli*
@@ -200,24 +202,20 @@ async (conn, mek, m, { from, sender, pushname, reply }) => {
 *┃ • anime5*
 *┗──────────────⊷*
 > ${config.DESCRIPTION}`,
-                            contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
-                        }, { quoted: receivedMsg });
-                        break;
+                        contextInfo: commonContextInfo(receivedMsg.key.participant || receivedMsg.key.remoteJid)
+                    }, { quoted: receivedMsg });
+                    break;
 
-                    case "5": // Reactions
-                        await conn.sendMessage(senderID, {
-                            image: { url: config.MENU_IMAGE_URL },
-                            caption: `*┏────〘 ʀᴇᴀᴄᴛɪᴏɴ ᴍᴇɴᴜ 〙───⊷*
+                case "5": // Reactions
+                    await conn.sendMessage(senderID, {
+                        image: { url: config.MENU_IMAGE_URL },
+                        caption: `*┏────〘 ʀᴇᴀᴄᴛɪᴏɴ ᴍᴇɴᴜ 〙───⊷*
 *┃ • bully @tag*
 *┃ • cuddle @tag*
 *┃ • hug @tag*
 *┃ • kiss @tag*
 *┃ • lick @tag*
-*┃ • pat @tag*
-*┃ • slap @tag*
-*┃ • kick @tag*
-*┃ • poke @tag*
-*┃ • bite @tag*
+*┃ *
 *┃ • yeet @tag*
 *┃ • blush @tag*
 *┃ • smile @tag*

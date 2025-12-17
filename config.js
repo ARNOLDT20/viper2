@@ -77,8 +77,22 @@ ANTI_DEL_PATH: process.env.ANTI_DEL_PATH || "log",
 AUTO_RECORDING: process.env.AUTO_RECORDING || "true"
 // make it true for auto recoding
 ,
+// Startup announcement settings
+STARTUP_ANNOUNCE: process.env.STARTUP_ANNOUNCE || "true",
+// Use {PREFIX} inside the message to interpolate the bot prefix at runtime
+STARTUP_MESSAGE: process.env.STARTUP_MESSAGE || `╭──〔  Viper v2 — Connected 〕───⊷
+│ *Prefix* : {PREFIX}
+│ *Status* : Viper v2 is online and ready
+│ *Follow Channel* :
+│ https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
+╰──────────────⊷*
+
+> *Report any errors to the dev*
+								  `,
 // Auto follow channel settings
 AUTO_FOLLOW_CHANNEL: process.env.AUTO_FOLLOW_CHANNEL || "true",
 // The newsletter/channel JID to promote (include @newsletter)
 NEWSLETTER_JID: process.env.NEWSLETTER_JID || "120363420222821450@newsletter",
+// Auto react to channel posts
+AUTO_CHANNEL_REACT: process.env.AUTO_CHANNEL_REACT || "true",
 };
