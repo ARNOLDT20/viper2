@@ -1,6 +1,6 @@
-name: popkid-md
+name: viper-v2-md
 services:
-  - name: popkid-md-service
+  - name: viper-v2-md-service
     type: web
     ports:
       - 5000

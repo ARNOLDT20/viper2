@@ -3,12 +3,12 @@ const { cmd } = require("../command");
 const { ytsearch } = require("@dark-yasiya/yt-dl.js");
 
 cmd({
-  pattern: "play",
+  pattern: "play_disabled",
   alias: ["ytplay", "song", "yta"],
   react: "🎵",
   desc: "Download YouTube audio using GiftedTech API",
   category: "download",
-  use: ".popkidplay <song name or YouTube URL>",
+  use: ".viperplay <song name or YouTube URL>",
   filename: __filename
 }, async (conn, mek, m, { from, reply, q }) => {
   try {
