@@ -133,12 +133,12 @@ conn.ev.on('connection.update', (update) => {
 │ *Prefix* : ${prefix}
 │ *Status* : Ready for use
 │ *Follow Channel* :
-│ https://tinyurl.com/464a84hp
+│ https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
 ╰──────────────⊷*
 
 > *Report any error to the dev*
 								  `;
-    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, caption: up })
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/nofkxe.png` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)

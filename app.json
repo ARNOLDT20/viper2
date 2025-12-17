@@ -1,7 +1,7 @@
 {
   "name": "Viper v2",
   "description": "WhatsApp bot made by Nima Md",
-  "logo": "https://files.catbox.moe/kiy0hl.jpg",
+  "logo": "https://files.catbox.moe/nofkxe.png",
   "keywords": ["Viper v2"],
   "success_url": "/",
 
@@ -132,7 +132,7 @@
     "MENU_IMAGE_URL": {
       "description": "add url for mention reply and menu if want.",
       "required": true,
-      "value": "https://files.catbox.moe/kiy0hl.jpg"
+      "value": "https://files.catbox.moe/nofkxe.png"
     },
     
      "DESCRIPTION": {

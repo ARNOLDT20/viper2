@@ -50,7 +50,7 @@ async (conn, mek, m, { from, sender, pushname, reply, isCreator }) => {
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363289379419860@newsletter',
+                        newsletterJid: '120363420222821450@newsletter',
                         newsletterName: 'Viper v2',
                         serverMessageId: 143
                     }

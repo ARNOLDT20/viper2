@@ -48,14 +48,14 @@ ${truncatedCode}
 
         // Send image with truncated source code
         await conn.sendMessage(from, { 
-            image: { url: `https://files.catbox.moe/kiy0hl.jpg` },
+            image: { url: `https://files.catbox.moe/nofkxe.png` },
             caption: formattedCode,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363289379419860@newsletter',
+                    newsletterJid: '120363420222821450@newsletter',
                     newsletterName: 'ᴘᴏᴘᴋɪᴅ xᴛʀ',
                     serverMessageId: 143
                 }

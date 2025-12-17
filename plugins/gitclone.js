@@ -55,7 +55,7 @@ cmd({
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363289379419860@newsletter',
+          newsletterJid: '120363420222821450@newsletter',
           newsletterName: 'Viper v2 xtr',
           serverMessageId: 143
         }

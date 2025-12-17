@@ -41,14 +41,14 @@ async (conn, mek, m, { from, reply }) => {
 
         // Send an image with the formatted info as a caption
         await conn.sendMessage(from, {
-            image: { url: `https://files.catbox.moe/kiy0hl.jpg` }, // Replace with your image URL
+            image: { url: `https://files.catbox.moe/nofkxe.png` }, // Replace with your image URL
             caption: formattedInfo,
             contextInfo: { 
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363289379419860@newsletter',
+                    forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363420222821450@newsletter',
                     newsletterName: 'Viper v2 xtr',
                     serverMessageId: 143
                 }

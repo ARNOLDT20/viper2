@@ -56,7 +56,7 @@ async (conn, mek, m, { from, reply }) => {
 
         await sleep(1000);
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+            image: { url: "https://files.catbox.moe/nofkxe.png" },
             caption: "- *Smoking kills... but looks cool* 🚬😎\n> _Smoking is injurious to health_\n> _This is just for fun_ 😂",
             mimetype: "image/jpeg"
         }, { quoted: mek });
@@ -130,7 +130,7 @@ async (conn, mek, m, { from, reply, isCreator }) => {
         // Send the famous meme image
         await sleep(1000);
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+            image: { url: "https://files.catbox.moe/nofkxe.png" },
             caption: "- *The Tea Was Fantastic* ☕\n> _(Remember 2019 😂💀🗿)_ \n - *2019 X 2025 🗿😎*",
             mimetype: "image/jpeg"
         }, { quoted: mek });

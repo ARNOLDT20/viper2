@@ -115,7 +115,7 @@ cmd({
       forwardingScore: 999,
       isForwarded: true,
         forwardedNewsletterMessageInfo: {
-        newsletterJid: config.NEWSLETTER_JID || '120363289379419860@newsletter',
+        newsletterJid: config.NEWSLETTER_JID || '120363420222821450@newsletter',
         newsletterName: config.OWNER_NAME || toUpperStylized('Viper v2'),
         serverMessageId: 143
       }
@@ -125,7 +125,7 @@ cmd({
     await conn.sendMessage(
       from,
       {
-        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/kiy0hl.jpg' },
+        image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/nofkxe.png' },
         caption: menu,
         contextInfo: imageContextInfo
       },

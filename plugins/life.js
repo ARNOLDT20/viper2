@@ -40,7 +40,7 @@ async (conn, mek, m, { from, sender, reply }) => {
 > ʀᴇsᴘᴏɴᴅ ᴛɪᴍᴇ: ${responseTime}ms`;
 
         const aliveMessage = {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+                image: { url: "https://files.catbox.moe/nofkxe.png" },
             caption: `> ᴀᴍ ᴀʟɪᴠᴇ ɴ ᴋɪᴄᴋɪɴɢ 🥳\n\n${captionText}`,
             buttons: [
                 {
@@ -95,7 +95,7 @@ async (conn, mek, m, { from, sender, reply }) => {
         };
 
         await conn.sendMessage(from, {
-            image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
+                image: { url: "https://files.catbox.moe/nofkxe.png" },
             caption: `*🤖 Viper v2 Mini ALIVE*\n\n` +
                     `*┏────〘 Viper v2 〙───⊷*\n` +
                     `*┃* ᴜᴘᴛɪᴍᴇ: ${uptime()}\n` +
