@@ -4,7 +4,7 @@ const { runtime } = require('../lib/functions');
 const config = require('../config');
 
 cmd({
-    pattern: "popkidstatus",
+    pattern: "viperstatus",
     alias: ["status", "live"],
     desc: "Check uptime and system status",
     category: "main",
@@ -24,11 +24,10 @@ async (conn, mek, m, { from, sender, reply }) => {
             return `${h}h ${m}m ${s}s`;
         };
 
-        const startTime = Date.now();
         const responseTime = Date.now() - mek.messageTimestamp * 1000;
 
         const captionText = `
-*┏────〘 ᴘᴏᴘᴋɪᴅ 〙───⊷*
+*┏────〘 Viper v2 〙───⊷*
 *┃* ʙᴏᴛ ᴜᴘᴛɪᴍᴇ: ${uptime()}
 *┃* ᴀᴄᴛɪᴠᴇ ᴜsᴇʀs: ${Object.keys(conn.chats).length}
 *┃* ʏᴏᴜʀ ɴᴜᴍʙᴇʀ: ${sender.split('@')[0]}
@@ -36,7 +35,7 @@ async (conn, mek, m, { from, sender, reply }) => {
 *┃* ᴍᴇᴍᴏʀʏ ᴜsᴀɢᴇ: ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB
 *┗──────────────⊷
 
-> *▫️ᴘᴏᴘᴋɪᴅ ᴍɪɴɪ ᴍᴀɪɴ*
+> *▫️ Viper v2 Mini*
 > sᴛᴀᴛᴜs: ONLINE ✅
 > ʀᴇsᴘᴏɴᴅ ᴛɪᴍᴇ: ${responseTime}ms`;
 
@@ -54,7 +53,7 @@ async (conn, mek, m, { from, sender, reply }) => {
                             title: 'ᴄʟɪᴄᴋ ʜᴇʀᴇ ❏',
                             sections: [
                                 {
-                                    title: `ᴘᴏᴘᴋɪᴅ ᴍɪɴɪ ʙᴏᴛ`,
+                                    title: `Viper v2 Bot`,
                                     highlight_label: 'Quick Actions',
                                     rows: [
                                         { title: '📋 ғᴜʟʟ ᴍᴇɴᴜ', description: 'ᴠɪᴇᴡ ᴀʟʟ ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴍᴅs', id: `${config.PREFIX}menu` },
@@ -97,8 +96,8 @@ async (conn, mek, m, { from, sender, reply }) => {
 
         await conn.sendMessage(from, {
             image: { url: "https://files.catbox.moe/kiy0hl.jpg" },
-            caption: `*🤖 ᴘᴏᴘᴋɪᴅ ᴍɪɴɪ ᴀʟɪᴠᴇ*\n\n` +
-                    `*┏────〘 ᴘᴏᴘᴋɪᴅ 〙───⊷*\n` +
+            caption: `*🤖 Viper v2 Mini ALIVE*\n\n` +
+                    `*┏────〘 Viper v2 〙───⊷*\n` +
                     `*┃* ᴜᴘᴛɪᴍᴇ: ${uptime()}\n` +
                     `*┃* sᴛᴀᴛᴜs: ᴏɴʟɪɴᴇ\n` +
                     `*┃* ɴᴜᴍʙᴇʀ: ${sender.split('@')[0]}\n` +

@@ -7,12 +7,12 @@ const path = require('path');
 const ffmpeg = require('fluent-ffmpeg');
 
 cmd({
-    pattern: "popkidplay",
+    pattern: "viperplay",
     alias: ["ytplay", "ytmp3", "song", "audio", "yta"],
     react: "🎵",
     desc: "Download YouTube audio with multiple API fallbacks",
     category: "download",
-    use: '.play <song name or YouTube URL>',
+    use: '.viperplay <song name or YouTube URL>',
     filename: __filename
 }, async (conn, mek, m, { from, reply, q }) => {
     try {

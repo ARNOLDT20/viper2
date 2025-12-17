@@ -1,8 +1,8 @@
 {
-  "name": "POPKID-XTR",
+  "name": "Viper v2",
   "description": "WhatsApp bot made by Nima Md",
   "logo": "https://files.catbox.moe/kiy0hl.jpg",
-  "keywords": ["POPKID-XTR"],
+  "keywords": ["Viper v2"],
   "success_url": "/",
 
     "stack": "container",
@@ -16,7 +16,7 @@
     "STICKER_NAME": {
       "description": "type your sticker pack name.",
       "required": true,
-      "value": "POPKID-XTR"
+      "value": "Viper v2"
     }, 
       
     "PREFIX": {
@@ -79,14 +79,14 @@
     "AUTO_STATUS_MSG": {
       "description": "Type custom message on status reply",
       "required": true,
-      "value": ".𝗦𝗘𝗘𝗡 𝗬𝗢𝗨𝗥 𝗦𝗧𝗔𝗧𝗨𝗦 𝗕𝗬 𝗣𝗢𝗣𝗞𝗜𝗗 𝗫𝗧𝗥🔄"
+      "value": ".𝗦𝗘𝗘𝗡 𝗬𝗢𝗨𝗥 𝗦𝗧𝗔𝗧𝗨𝗦 𝗕𝗬 𝗩𝗜𝗣𝗘𝗥 𝗩2🔄"
    
      }, 
     
     "OWNER_NAME": {
       "description": "Type Bot Owner Name.",
       "required": false,
-      "value": "POPKID-XTR"
+      "value": "Viper v2"
 }, 
 
     "OWNER_NUMBER": {
@@ -99,7 +99,7 @@
     "BOT_NAME": {
       "description": "Type here the bot name.",
       "required": true,
-      "value": "POPKID-XTR"
+      "value": "Viper v2"
 
       }, 
 
@@ -138,7 +138,7 @@
      "DESCRIPTION": {
       "description": "add caption for menu and other",
       "required": true,
-      "value": "*© popkid xtr bot*"
+      "value": "*© Viper v2 bot*"
     },
 
       "DELETE_LINKS": {
