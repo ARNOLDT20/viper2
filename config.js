@@ -34,9 +34,9 @@ CUSTOM_REACT_EMOJIS: process.env.CUSTOM_REACT_EMOJIS || "💝,💖,💗,❤️�
 // chose custom react emojis by yourself
 DELETE_LINKS: process.env.DELETE_LINKS || "false",
 // automatic delete links witho remove member
-OWNER_NUMBER: process.env.OWNER_NUMBER || "255627417402",
+OWNER_NUMBER: process.env.OWNER_NUMBER || "254732297194",
 // add your bot owner number
-OWNER_NAME: process.env.OWNER_NAME || "T20_STARBOY",
+OWNER_NAME: process.env.OWNER_NAME || "Viper v2",
 // add bot owner name
 DESCRIPTION: process.env.DESCRIPTION || "© Viper v2 xtr bot",
 // add bot owner name
@@ -68,7 +68,7 @@ AUTO_TYPING: process.env.AUTO_TYPING || "true",
 // true for automatic show typing
 READ_CMD: process.env.READ_CMD || "false",
 // true if want mark commands as read
-DEV: process.env.DEV || "255627417402",
+DEV: process.env.DEV || "254732297194",
 //replace with your whatsapp number
 ANTI_VV: process.env.ANTI_VV || "true",
 // true for anti once view
@@ -76,23 +76,4 @@ ANTI_DEL_PATH: process.env.ANTI_DEL_PATH || "log",
 // change it to 'same' if you want to resend deleted message in same chat
 AUTO_RECORDING: process.env.AUTO_RECORDING || "true"
 // make it true for auto recoding
-,
-// Startup announcement settings
-STARTUP_ANNOUNCE: process.env.STARTUP_ANNOUNCE || "true",
-// Use {PREFIX} inside the message to interpolate the bot prefix at runtime
-STARTUP_MESSAGE: process.env.STARTUP_MESSAGE || `╭──〔  Viper v2 — Connected 〕───⊷
-│ *Prefix* : {PREFIX}
-│ *Status* : Viper v2 is online and ready
-│ *Follow Channel* :
-│ https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
-╰──────────────⊷*
-
-> *Report any errors to the dev*
-								  `,
-// Auto follow channel settings
-AUTO_FOLLOW_CHANNEL: process.env.AUTO_FOLLOW_CHANNEL || "true",
-// The newsletter/channel JID to promote (include @newsletter)
-NEWSLETTER_JID: process.env.NEWSLETTER_JID || "120363420222821450@newsletter",
-// Auto react to channel posts
-AUTO_CHANNEL_REACT: process.env.AUTO_CHANNEL_REACT || "true",
 };

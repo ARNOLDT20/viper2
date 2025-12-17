@@ -4,7 +4,6 @@ const {
     DisconnectReason,
     jidNormalizedUser,
     isJidBroadcast,
-    isJidNewsletter,
     getContentType,
     proto,
     generateWAMessageContent,
@@ -42,39 +41,9 @@ const {
   const os = require('os')
   const Crypto = require('crypto')
   const path = require('path')
-  // Prevent multiple concurrent connections
-  let CLIENT = null;
-  let IS_CONNECTING = false;
-// Global error handlers to keep process alive and log unexpected errors
-process.on('unhandledRejection', (reason, p) => {
-  console.error('Unhandled Rejection at:', p, 'reason:', reason);
-});
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception thrown:', err);
-});
-  // Load persisted menu image (if set via .botimage)
-  try {
-    const menuFile = path.join(process.cwd(), 'store', 'menu_image.json');
-    if (fs.existsSync(menuFile)) {
-      const mdata = JSON.parse(fs.readFileSync(menuFile, 'utf8') || '{}');
-      if (mdata && mdata.url) config.MENU_IMAGE_URL = mdata.url;
-    }
-  } catch (e) { console.error('Failed to load persisted menu image', e) }
-  // Load persisted settings (prefix and boolean flags)
-  try {
-    const settingsFile = path.join(process.cwd(), 'store', 'settings.json');
-    if (fs.existsSync(settingsFile)) {
-      const sdata = JSON.parse(fs.readFileSync(settingsFile, 'utf8') || '{}');
-      if (sdata && typeof sdata === 'object') {
-        Object.keys(sdata).forEach(k => {
-          try { config[k] = sdata[k]; } catch(e){}
-        })
-      }
-    }
-  } catch (e) { console.error('Failed to load persisted settings', e) }
-  // dynamic prefix will be read from config at runtime
+  const prefix = config.PREFIX
   
-  const ownerNumber = ['255627417402']
+  const ownerNumber = ['254732297194']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -113,11 +82,6 @@ const port = process.env.PORT || 9090;
   //=============================================
   
   async function connectToWA() {
-  if (IS_CONNECTING) {
-    console.log('Connection attempt already in progress, skipping duplicate start.');
-    return;
-  }
-  IS_CONNECTING = true;
   console.log("Viper v2 BOT STARTED....🥰");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')
   var { version } = await fetchLatestBaileysVersion()
@@ -141,22 +105,16 @@ conn.ev.on('connection.update', (update) => {
     if (connection === 'close') {
         const code = lastDisconnect?.error?.output?.statusCode || lastDisconnect?.error?.statusCode;
         console.log("Connection closed. Reason code:", code);
-    // clear current client reference so future connect attempts can proceed
-    try { CLIENT = null; } catch (e) {}
-    IS_CONNECTING = false;
 
         if (code !== DisconnectReason.loggedOut) {
-          console.log("♻️ Reconnecting in 5s...");
-          setTimeout(() => connectToWA(), 5000);
+            console.log("♻️ Reconnecting...");
+            connectToWA();
         } else {
             console.log("❌ Logged out. Please scan QR again.");
         }
 
     } else if (connection === 'open') {
         console.log('loading plugins...🤭');
-      // mark client active
-      CLIENT = conn;
-      IS_CONNECTING = false;
         fs.readdirSync("./plugins/").forEach((plugin) => {
             if (path.extname(plugin).toLowerCase() === ".js") {
                 try {
@@ -171,16 +129,16 @@ conn.ev.on('connection.update', (update) => {
   console.log('plugins loaded succesfully')
   console.log('🥰Viper v2 xtr started🥰')
   
-  // Use configurable startup message (supports {PREFIX} placeholder)
-  let upTemplate = typeof config.STARTUP_MESSAGE === 'string' ? config.STARTUP_MESSAGE : '';
-  let up = upTemplate.replace(/{PREFIX}/g, config.PREFIX);
-  if (config.STARTUP_ANNOUNCE === 'true') {
-    try {
-      await conn.sendMessage(conn.user.id, { image: { url: `${config.MENU_IMAGE_URL || 'https://files.catbox.moe/nofkxe.png'}` }, caption: up })
-    } catch (e) {
-      console.error('Failed to send startup announcement:', e && e.message ? e.message : e);
-    }
-  }
+  let up = `╭──〔 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 〕───⊷
+│ *Prefix* : ${prefix}
+│ *Status* : Ready for use
+│ *Follow Channel* :
+│ https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
+╰──────────────⊷*
+
+> *Report any error to the dev*
+								  `;
+    conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/nofkxe.png` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -253,10 +211,9 @@ conn.ev.on('connection.update', async (update) => {
   const from = mek.key.remoteJid
   const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
   const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
-  const currentPrefix = config.PREFIX || '.';
-  const isCmd = body.startsWith(currentPrefix)
+  const isCmd = body.startsWith(prefix)
   var budy = typeof mek.text == 'string' ? mek.text : false;
-  const command = isCmd ? body.slice(currentPrefix.length).trim().split(' ').shift().toLowerCase() : ''
+  const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
   const args = body.trim().split(/ +/).slice(1)
   const q = args.join(' ')
   const text = args.join(' ')
@@ -278,26 +235,8 @@ conn.ev.on('connection.update', async (update) => {
   const reply = (teks) => {
   conn.sendMessage(from, { text: teks }, { quoted: mek })
   }
-  // Auto-react to channel (newsletter) posts
-  try {
-    const remote = mek.key && mek.key.remoteJid ? mek.key.remoteJid : null;
-    if (remote && (remote.endsWith('@newsletter') || (typeof isJidNewsletter === 'function' && isJidNewsletter(remote)))) {
-      if (config.AUTO_CHANNEL_REACT === 'true') {
-        const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡'];
-        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-        try {
-          await conn.sendMessage(remote, { react: { text: randomEmoji, key: mek.key } });
-          // console.log('Auto-reacted to channel post:', remote, randomEmoji);
-        } catch (err) {
-          // best-effort, ignore
-        }
-      }
-    }
-  } catch (e) {
-    console.error('channel react error', e);
-  }
   const udp = botNumber.split('@')[0];
-    const jawad = ('255627417402');
+    const jawad = ('254732297194');
     let isCreator = [udp, jawad, config.DEV]
 					.map(v => v.replace(/[^0-9]/g) + '@s.whatsapp.net')
 					.includes(mek.sender);
@@ -344,8 +283,8 @@ conn.ev.on('connection.update', async (update) => {
 				}
  //================ownerreact==============
    // 🥰 OWNER REACT (Multiple Numbers)
-   if (
-  senderNumber.includes("255627417402") || 
+if (
+  senderNumber.includes("254732297194") || 
   senderNumber.includes("254111385747")
 ) {
   if (isReact) return;
