@@ -22,10 +22,10 @@ async (conn, mek, m, { from, sender, reply }) => {
             return `${h}h ${m}m ${s}s`;
         };
 
-        const status = `*┏────〘 ᴘᴏᴘᴋɪᴅ 〙───⊷*
+        const status = `*┏────〘 VIPER MD 〙───⊷*
 *┃* *🌐 Platform:* Heroku
 *┃* *📦 Mode:* ${config.MODE || 'private'}
-*┃* *👑 Owner:* ${config.OWNER_NAME || 'ᴘᴏᴘᴋɪᴅ'}
+*┃* *👑 Owner:* ${config.OWNER_NAME || 'VIPER MD'}
 *┃* *🔹 Prefix:* ${config.PREFIX || '.'}
 *┃* *🧩 Version:* 1.0.0 Beta
 *┃* *📁 Total Commands:* ${totalCmds}

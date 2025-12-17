@@ -75,17 +75,20 @@ cmd({
       return `${h}h ${m}m ${s}s`;
     };
 
-    let menu = `
-  *┏────〘 Viper v2 〙───⊷*
-*┃ ᴜꜱᴇʀ : @${sender.split("@")[0]}*
-*┃ ʀᴜɴᴛɪᴍᴇ : ${uptime()}*
-*┃ ᴍᴏᴅᴇ : ${config.MODE}*
-*┃ ᴘʀᴇғɪx : 「 ${config.PREFIX}」* 
-*┃ ᴏᴡɴᴇʀ : ${config.OWNER_NAME}*
-*┃ ᴘʟᴜɢɪɴꜱ : 『 ${commands.length} 』*
-*┃ ᴅᴇᴠ : Viper v2*
-*┃ ᴠᴇʀꜱɪᴏɴ : 2.0.0*
-*┗──────────────⊷*`;
+    const userTag = `@${sender.split("@")[0]}`;
+    const botName = config.BOT_NAME || 'Viper v2';
+    const pluginsCount = commands.length || 0;
+
+    let menu = `╔════════════════════════════════╗
+║    ✨  ${botName} — Main Menu  ✨   ║
+╠════════════════════════════════╣
+║  👤 User: ${userTag}
+║  ⏱️ Uptime: ${uptime()}
+║  🕒 Time: ${time}  •  📅 ${date}
+║  ⚙️ Mode: ${config.MODE}    •   🔖 Prefix: ${config.PREFIX}
+║  👑 Owner: ${config.OWNER_NAME}
+║  📚 Plugins: ${pluginsCount}    •   🔁 Version: 2.0.0
+╚════════════════════════════════╝`;
 
     // Group commands by category (improved logic)
     const categories = {};
@@ -99,12 +102,14 @@ cmd({
 
     // Add sorted categories with stylized text
     for (const cat of Object.keys(categories).sort()) {
-      const emoji = emojiByCategory[cat] || '🧛‍♂️';
-      menu += `\n\n*┏─『 ${emoji} ${toUpperStylized(cat)} ${toUpperStylized('Menu')} 』──⊷*\n`;
+      const emoji = emojiByCategory[cat] || '🧩';
+      const header = `\n\n┏━ ${emoji} ${toUpperStylized(cat)} ━┓`;
+      menu += header;
       for (const cmd of categories[cat].sort()) {
-        menu += `*│ ${prefix}${cmd}*\n`;
+        // align commands nicely
+        menu += `\n┃  ${prefix}${cmd}`;
       }
-      menu += `*┗──────────────⊷*`;
+      menu += `\n┗${'━'.repeat(Math.max(10, header.length - 2))}┛`;
     }
 
     menu += `\n\n> ${config.DESCRIPTION || toUpperStylized('Explore the bot commands!')}`;

@@ -96,7 +96,7 @@ async (conn, mek, m, { from, sender, reply }) => {
 
         await conn.sendMessage(from, {
                 image: { url: "https://files.catbox.moe/nofkxe.png" },
-            caption: `*🤖 Viper v2 Mini ALIVE*\n\n` +
+            caption: `*🤖 Viper v2 IS ALIVE*\n\n` +
                     `*┏────〘 Viper v2 〙───⊷*\n` +
                     `*┃* ᴜᴘᴛɪᴍᴇ: ${uptime()}\n` +
                     `*┃* sᴛᴀᴛᴜs: ᴏɴʟɪɴᴇ\n` +
