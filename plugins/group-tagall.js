@@ -19,11 +19,7 @@ async (conn, mek, m, { from, participants, reply, isGroup, isAdmins, isCreator, 
             return reply("❌ This command can only be used in groups.");
         }
 
-        // ✅ Permission check (Admin OR Bot Owner)
-        if (!isAdmins && !isCreator) {
-            await conn.sendMessage(from, { react: { text: '❌', key: m.key } });
-            return reply("❌ Only group admins or the bot owner can use this command.");
-        }
+        // Permission: allow anyone to use tagall (per request)
 
         // ✅ Fetch group info
         let groupInfo = await conn.groupMetadata(from).catch(() => null);

@@ -41,9 +41,29 @@ const {
   const os = require('os')
   const Crypto = require('crypto')
   const path = require('path')
-  const prefix = config.PREFIX
+  // Load persisted menu image (if set via .botimage)
+  try {
+    const menuFile = path.join(process.cwd(), 'store', 'menu_image.json');
+    if (fs.existsSync(menuFile)) {
+      const mdata = JSON.parse(fs.readFileSync(menuFile, 'utf8') || '{}');
+      if (mdata && mdata.url) config.MENU_IMAGE_URL = mdata.url;
+    }
+  } catch (e) { console.error('Failed to load persisted menu image', e) }
+  // Load persisted settings (prefix and boolean flags)
+  try {
+    const settingsFile = path.join(process.cwd(), 'store', 'settings.json');
+    if (fs.existsSync(settingsFile)) {
+      const sdata = JSON.parse(fs.readFileSync(settingsFile, 'utf8') || '{}');
+      if (sdata && typeof sdata === 'object') {
+        Object.keys(sdata).forEach(k => {
+          try { config[k] = sdata[k]; } catch(e){}
+        })
+      }
+    }
+  } catch (e) { console.error('Failed to load persisted settings', e) }
+  // dynamic prefix will be read from config at runtime
   
-  const ownerNumber = ['254732297194']
+  const ownerNumber = ['255627417402']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -130,7 +150,7 @@ conn.ev.on('connection.update', (update) => {
   console.log('🥰Viper v2 xtr started🥰')
   
   let up = `╭──〔 𝗰𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 〕───⊷
-│ *Prefix* : ${prefix}
+│ *Prefix* : ${config.PREFIX}
 │ *Status* : Ready for use
 │ *Follow Channel* :
 │ https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d
@@ -211,9 +231,10 @@ conn.ev.on('connection.update', async (update) => {
   const from = mek.key.remoteJid
   const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
   const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
-  const isCmd = body.startsWith(prefix)
+  const currentPrefix = config.PREFIX || '.';
+  const isCmd = body.startsWith(currentPrefix)
   var budy = typeof mek.text == 'string' ? mek.text : false;
-  const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
+  const command = isCmd ? body.slice(currentPrefix.length).trim().split(' ').shift().toLowerCase() : ''
   const args = body.trim().split(/ +/).slice(1)
   const q = args.join(' ')
   const text = args.join(' ')
@@ -236,7 +257,7 @@ conn.ev.on('connection.update', async (update) => {
   conn.sendMessage(from, { text: teks }, { quoted: mek })
   }
   const udp = botNumber.split('@')[0];
-    const jawad = ('254732297194');
+    const jawad = ('255627417402');
     let isCreator = [udp, jawad, config.DEV]
 					.map(v => v.replace(/[^0-9]/g) + '@s.whatsapp.net')
 					.includes(mek.sender);
@@ -283,8 +304,8 @@ conn.ev.on('connection.update', async (update) => {
 				}
  //================ownerreact==============
    // 🥰 OWNER REACT (Multiple Numbers)
-if (
-  senderNumber.includes("254732297194") || 
+   if (
+  senderNumber.includes("255627417402") || 
   senderNumber.includes("254111385747")
 ) {
   if (isReact) return;

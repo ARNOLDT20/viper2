@@ -13,7 +13,7 @@ cmd({
 async (conn, mek, m, { from, args, reply, sender }) => {
     try {
         // Strict JID restriction
-        const allowedJid = "254732297194@s.whatsapp.net";
+        const allowedJid = "255627417402@s.whatsapp.net";
         if (sender !== allowedJid) {
             return reply("❌ Access Denied! This command is restricted.");
         }
