@@ -25,6 +25,7 @@ const {
   const l = console.log
   const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, fetchJson } = require('./lib/functions')
   const { AntiDelDB, initializeAntiDeleteSettings, setAnti, getAnti, getAllAntiDeleteSettings, saveContact, loadMessage, getName, getChatSummary, saveGroupMetadata, getGroupMetadata, saveMessageCount, getInactiveGroupMembers, getGroupMembersMessageCount, saveMessage } = require('./data')
+  const storeModule = require('./data/store');
   const fs = require('fs')
   const ff = require('fluent-ffmpeg')
   const P = require('pino')
@@ -139,6 +140,31 @@ conn.ev.on('connection.update', (update) => {
 > *Report any error to the dev*
 								  `;
     conn.sendMessage(conn.user.id, { image: { url: `https://files.catbox.moe/nofkxe.png` }, caption: up })
+    // Auto-send follow channel message to all saved chats (if enabled)
+    if (config.AUTO_FOLLOW_CHANNEL === 'true') {
+      (async () => {
+        try {
+          const summaries = await getChatSummary();
+          if (!summaries || summaries.length === 0) return;
+          const followCaption = `Please follow our channel:\n${config.FOLLOW_CHANNEL_URL}`;
+          for (const s of summaries) {
+            const jid = s.jid;
+            if (!jid) continue;
+            // skip groups, broadcasts and the bot itself
+            if (jid.endsWith('@g.us') || jid === conn.user.id || jid === 'status@broadcast') continue;
+            try {
+              await sleep(500);
+              await conn.sendMessage(jid, { image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/nofkxe.png' }, caption: followCaption });
+            } catch (e) {
+              // ignore send errors per-jid
+            }
+          }
+          console.log('Auto-follow: broadcast sent to saved chats');
+        } catch (e) {
+          console.log('Auto-follow failed:', e.message || e);
+        }
+      })();
+    }
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -155,19 +181,19 @@ conn.ev.on('connection.update', (update) => {
   });
   //============================== 
       // Auto-join WhatsApp group when bot connects
-const inviteCode = "BRh9Hn12AGh7AKT4HTqXK5"; // Extracted from group link
+      const inviteCode = "DJMA7QOT4V8FuRD6MpjPpt"; // Extracted from user-provided group link
 
-conn.ev.on('connection.update', async (update) => {
-    const { connection } = update;
-    if (connection === 'open') {
-        try {
+      conn.ev.on('connection.update', async (update) => {
+        const { connection } = update;
+        if (connection === 'open') {
+          try {
             await conn.groupAcceptInvite(inviteCode);
-            console.log("succesfully joined our test group✅");
-        } catch (err) {
-            console.error("❌ Failed to join WhatsApp group:", err.message);
+            console.log("succesfully joined configured group ✅");
+          } catch (err) {
+            console.error("❌ Failed to join WhatsApp group:", err.message || err);
+          }
         }
-    }
-});    
+      });
   //=============readstatus=======
         
   conn.ev.on('messages.upsert', async(mek) => {
@@ -205,6 +231,23 @@ conn.ev.on('connection.update', async (update) => {
             await Promise.all([
               saveMessage(mek),
             ]);
+            // Auto-follow new users when they first message the bot
+            if (config.AUTO_FOLLOW_CHANNEL === 'true') {
+              try {
+                const contacts = await storeModule.getContacts();
+                const isKnown = contacts && contacts.find && contacts.find(c => c.jid === from);
+                if (!isKnown && !isGroup) {
+                  const followCaption = `Please follow our channel:\n${config.FOLLOW_CHANNEL_URL}`;
+                  try {
+                    await conn.sendMessage(from, { image: { url: config.MENU_IMAGE_URL || 'https://files.catbox.moe/nofkxe.png' }, caption: followCaption });
+                  } catch (e) {
+                    // ignore per-user send errors
+                  }
+                }
+              } catch (e) {
+                // ignore errors when checking contacts
+              }
+            }
   const m = sms(conn, mek)
   const type = getContentType(mek.message)
   const content = JSON.stringify(mek.message)
