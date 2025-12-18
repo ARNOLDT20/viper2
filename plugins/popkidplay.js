@@ -39,7 +39,7 @@ cmd({
     }, { quoted: mek });
 
     // 🎧 Use only your GiftedTech API
-    const api = `https://ytapi.giftedtech.co.ke/api/ytdla.php?url=${encodeURIComponent(videoUrl)}&stream=true`;
+    const api = `https://meow-dl.onrender.com/yt?url=YOUTUVE_URL&format=m4a`;
 
     const res = await axios.get(api, {
       responseType: "arraybuffer",
