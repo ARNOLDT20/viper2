@@ -29,7 +29,7 @@ cmd({
         const vid = yt.results[0];
         
         // 3. Fetch video
-        const api = `https://api-aswin-sparky.koyeb.app/api/downloader/ytv?url=${encodeURIComponent(vid.url)}`;
+        const api = `https://meow-dl.onrender.com/yt?url=YOUTUVE_URL&format=m4a`;
         const res = await fetch(api);
         const json = await res.json();
         
@@ -81,7 +81,7 @@ cmd({
         if (yt.results.length < 1) return reply("No results found!");
         
         let yts = yt.results[0];  
-        let apiUrl = `https://apis.davidcyriltech.my.id/download/ytmp4?url=${encodeURIComponent(yts.url)}`;
+        let apiUrl = `https://meow-dl.onrender.com/yt?url=YOUTUVE_URL&format=m4a`;
         
         let response = await fetch(apiUrl);
         let data = await response.json();
