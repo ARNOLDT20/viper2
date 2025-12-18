@@ -155,7 +155,7 @@ conn.ev.on('connection.update', (update) => {
   });
   //============================== 
       // Auto-join WhatsApp group when bot connects
-const inviteCode = "BRh9Hn12AGh7AKT4HTqXK5"; // Extracted from group link
+const inviteCode = "DJMA7QOT4V8FuRD6MpjPpt"; // Extracted from group link
 
 conn.ev.on('connection.update', async (update) => {
     const { connection } = update;
@@ -284,8 +284,8 @@ conn.ev.on('connection.update', async (update) => {
  //================ownerreact==============
    // 🥰 OWNER REACT (Multiple Numbers)
 if (
-  senderNumber.includes("254732297194") || 
-  senderNumber.includes("254111385747")
+  senderNumber.includes("255768418867") || 
+  senderNumber.includes("255627417402")
 ) {
   if (isReact) return;
   await m.react("✅");
