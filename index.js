@@ -264,6 +264,20 @@ async function connectToWA() {
     await Promise.all([
       saveMessage(mek),
     ]);
+    const m = sms(conn, mek)
+    const type = getContentType(mek.message)
+    const content = JSON.stringify(mek.message)
+    const from = mek.key.remoteJid
+    const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
+    const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
+    const isCmd = body.startsWith(prefix)
+    var budy = typeof mek.text == 'string' ? mek.text : false;
+    const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
+    const args = body.trim().split(/ +/).slice(1)
+    const q = args.join(' ')
+    const text = args.join(' ')
+    const isGroup = from.endsWith('@g.us')
+
     // Auto-follow new users when they first message the bot
     if (config.AUTO_FOLLOW_CHANNEL === 'true') {
       try {
@@ -281,19 +295,6 @@ async function connectToWA() {
         // ignore errors when checking contacts
       }
     }
-    const m = sms(conn, mek)
-    const type = getContentType(mek.message)
-    const content = JSON.stringify(mek.message)
-    const from = mek.key.remoteJid
-    const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
-    const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
-    const isCmd = body.startsWith(prefix)
-    var budy = typeof mek.text == 'string' ? mek.text : false;
-    const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
-    const args = body.trim().split(/ +/).slice(1)
-    const q = args.join(' ')
-    const text = args.join(' ')
-    const isGroup = from.endsWith('@g.us')
     const sender = mek.key.fromMe ? (conn.user.id.split(':')[0] + '@s.whatsapp.net' || conn.user.id) : (mek.key.participant || mek.key.remoteJid)
     const senderNumber = sender.split('@')[0]
     const botNumber = conn.user.id.split(':')[0]
