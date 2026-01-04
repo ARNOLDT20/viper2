@@ -24,7 +24,7 @@ async (conn, mek, m, {
   }
 
   try {
-    // created by jawad tech 
+    // created by t20 classic tech 
     const response = await axios.get(`https://api.davidcyriltech.my.id/ssweb?url=${q}`);
     const screenshotUrl = response.data.screenshotUrl;
 

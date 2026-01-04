@@ -13,7 +13,7 @@ cmd({
 },
     async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
         try {
-            let dec = `*👋𝗛𝗲𝗹𝗹𝗼 𝘄𝗲𝗹𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 DARK SHADOW MD 🎊*
+            let dec = `*👋𝗛𝗲𝗹𝗹𝗼 𝘄𝗲𝗹𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 VIPER MD 🎊*
 ╭──────────────
 ┃👨‍💻│ Owner : *${config.OWNER_NAME}*
 ┃🧾│ Baileys : *Multi Device*
@@ -701,7 +701,7 @@ cmd({
 ┃◈┃• luma
 ┃◈┃• dj 
 ┃◈┃• khan
-┃◈┃• jawad
+┃◈┃• t20 classic
 ┃◈┃• gpt4
 ┃◈┃• bing
 ┃◈┃• imagine 

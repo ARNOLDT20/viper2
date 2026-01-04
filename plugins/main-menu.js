@@ -224,7 +224,7 @@ cmd({
 ┃◈┃• luma
 ┃◈┃• dj 
 ┃◈┃• khan
-┃◈┃• jawad
+┃◈┃• t20 classic
 ┃◈┃• gpt4
 ┃◈┃• bing
 ┃◈┃• imagine 

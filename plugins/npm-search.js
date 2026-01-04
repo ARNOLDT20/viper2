@@ -25,7 +25,7 @@ async (conn, mek, m, { from, args, q, reply, react }) => {
         const repo = result.repository ? result.repository : "Not available";
         const npmUrl = `https://www.npmjs.com/package/${result.name}`;
 
-        const text = `*DARK SHADOW MD NPM SEARCH*\n\n` +
+        const text = `*VIPER MD NPM SEARCH*\n\n` +
                      `🔰 *NPM PACKAGE:* ${result.name}\n` +
                      `📄 *DESCRIPTION:* ${result.description || "No description available"}\n` +
                      `⏸️ *LAST VERSION:* ${result["dist-tags"]?.latest || "Unknown"}\n` +
