@@ -17,9 +17,9 @@ AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS BY DARK-SHADO
 // set the auto reply massage on status reply  
 PREFIX: process.env.PREFIX || ".",
 // add your prifix for bot   
-BOT_NAME: process.env.BOT_NAME || "DARK SHADOW-MD",
+BOT_NAME: process.env.BOT_NAME || "VIPER V2",
 // add bot namw here for menu
-STICKER_NAME: process.env.STICKER_NAME || "DARK-SHADOW-MD",
+STICKER_NAME: process.env.STICKER_NAME || "VIPER V2",
 // type sticker pack name 
 CUSTOM_REACT: process.env.CUSTOM_REACT || "false",
 // make this true for custum emoji react    
@@ -27,15 +27,15 @@ CUSTOM_REACT_EMOJIS: process.env.CUSTOM_REACT_EMOJIS || "💝,💖,💗,❤️�
 // chose custom react emojis by yourself 
 DELETE_LINKS: process.env.DELETE_LINKS || "false",
 // automatic delete links witho remove member 
-OWNER_NUMBER: process.env.OWNER_NUMBER || "94773416478",
+OWNER_NUMBER: process.env.OWNER_NUMBER || "255627417402",
 // add your bot owner number
-OWNER_NAME: process.env.OWNER_NAME || "DARK SHADOW",
+OWNER_NAME: process.env.OWNER_NAME || "T20_STARBOY",
 // add bot owner name
-DESCRIPTION: process.env.DESCRIPTION || "*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ ᴍᴅ*",
+DESCRIPTION: process.env.DESCRIPTION || "*© Powered by VIPER V2*",
 // add bot owner name    
-ALIVE_IMG: process.env.ALIVE_IMG || "https://telegra.ph/file/1ece2e0281513c05d20ee.jpg",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://files.catbox.moe/nofkxe.png",
 // add img for alive msg
-LIVE_MSG: process.env.LIVE_MSG || "> HELLO I'AM *DARK-SHADOW-MD*⚡",
+LIVE_MSG: process.env.LIVE_MSG || "> HELLO I'AM *VIPER V2*⚡",
 // add alive msg here 
 READ_MESSAGE: process.env.READ_MESSAGE || "false",
 // Turn true or false for automatic read msgs
@@ -61,7 +61,7 @@ AUTO_TYPING: process.env.AUTO_TYPING || "false",
 // true for automatic show typing   
 READ_CMD: process.env.READ_CMD || "false",
 // true if want mark commands as read 
-DEV: process.env.DEV || "94773416478",
+DEV: process.env.DEV || "255627417402",
 //replace with your whatsapp number        
 ANTI_VV: process.env.ANTI_VV || "true",
 // true for anti once view 

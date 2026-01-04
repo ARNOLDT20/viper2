@@ -19,21 +19,21 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 
 𝗝𝗨𝗦𝗧 𝗡𝗢𝗪 𝗦𝗧𝗔𝗧𝗨𝗦 𝗦𝗘𝗘𝗡🛡️
 
-https://Wa.me//+94773416478?text=Hello_Dark_Shadow😈
+https://Wa.me//+255627417402?text=Hello_VIPER_V2😈
 
 *❄️ඔයාව ඔටෝ සේව් වෙනවා මාව සේව් දාගන්න❄️*`;
 
         // Send the status message with an image
         await conn.sendMessage(from, { 
-            image: { url: `https://files.catbox.moe/ylxg7y.jpg` },  // Image URL
+            image: { url: `https://files.catbox.moe/nofkxe.png` },  // Image URL
             caption: status,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363409414874042@newsletter',
-                    newsletterName: 'DARK-SHADOW',
+                    newsletterJid: '120363420222821450@newsletter',
+                    newsletterName: 'VIPER V2',
                     serverMessageId: 143
                 }
             }

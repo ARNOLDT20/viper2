@@ -29,23 +29,15 @@ async (conn, mek, m, { from }) => {
 
         // Send the owner contact message with image and audio
         await conn.sendMessage(from, {
-            image: { url: 'https://telegra.ph/file/1ece2e0281513c05d20ee.jpg' }, // Image URL from your request
-            caption: `╭━━〔 *DARK SHADOW MD* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• *Here is the owner details*
-┃◈┃• *Name* - Pathum Malsara
-┃◈┃• *Number* 94773416478
-┃◈┃• *Version*: 2.0.0 Beta
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ`, // Display the owner's details
+            image: { url: 'https://files.catbox.moe/nofkxe.png' }, // Image URL
+            caption: `╭━━〔 *VIPER V2* 〕━━┈⊷\n┃◈╭─────────────·๏\n┃◈┃• *Here is the owner details*\n┃◈┃• *Name* - ${ownerName}\n┃◈┃• *Number* ${ownerNumber}\n┃◈┃• *Version*: 2.0.0 Beta\n┃◈└───────────┈⊷\n╰──────────────┈⊷\n> © Powered by VIPER V2`, // Display the owner's details
             contextInfo: {
                 mentionedJid: [`${ownerNumber.replace('+', '')}@s.whatsapp.net`], 
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363409414874042@newsletter',
-                    newsletterName: 'PATHUM MALSARA',
+                    newsletterJid: '120363420222821450@newsletter',
+                    newsletterName: ownerName,
                     serverMessageId: 143
                 }            
             }

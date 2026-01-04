@@ -53,15 +53,15 @@ async(conn, mek, m, {from, l, quoted, body, isCmd, command, args, q, isGroup, se
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` }, // Image URL here
+                image: { url: `https://files.catbox.moe/nofkxe.png` }, // Image URL here
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK-SHADOW',
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'VIPER V2',
                         serverMessageId: 143
                     }
                 }

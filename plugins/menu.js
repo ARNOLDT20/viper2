@@ -10,10 +10,10 @@ cmd({
     category: "menu",
     react: "⚡",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `*👋𝗛𝗲𝗹𝗹𝗼 𝘄𝗲𝗹𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 DARK SHADOW MD 🎊*
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `*👋𝗛𝗲𝗹𝗹𝗼 𝘄𝗲𝗹𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 DARK SHADOW MD 🎊*
 ╭──────────────
 ┃👨‍💻│ Owner : *${config.OWNER_NAME}*
 ┃🧾│ Baileys : *Multi Device*
@@ -44,33 +44,33 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/slm10t.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/slm10t.jpg` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363409414874042@newsletter',
+                            newsletterName: 'DARK SHADOW',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-        // Send audio
-       
-        
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+            // Send audio
+
+
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 cmd({
     pattern: "reactions",
@@ -78,28 +78,28 @@ cmd({
     category: "menu",
     react: "💫",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, reply }) => {
-    try {
-        let dec = `╭━━〔 *Reactions Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• bully @tag
-┃◈┃• cuddle @tag
-┃◈┃• cry @tag
-┃◈┃• hug @tag
-┃◈┃• awoo @tag
-┃◈┃• kiss @tag
-┃◈┃• lick @tag
-┃◈┃• pat @tag
-┃◈┃• smug @tag
-┃◈┃• bonk @tag
-┃◈┃• yeet @tag
-┃◈┃• blush @tag
-┃◈┃• smile @tag
-┃◈┃• wave @tag
-┃◈┃• highfive @tag
-┃◈┃• handhold @tag
-┃◈┃• nom @tag
+},
+    async (conn, mek, m, { from, quoted, reply }) => {
+        try {
+            let dec = `╭━━〔 *Reactions Menu* 〕━━┈⊷
+                await conn.sendMessage(
+                    from,
+                    {
+                        image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                contextInfo: {
+                    mentionedJid: [m.sender],
+                    forwardingScore: 999,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: '120363420222821450@newsletter',
+                        newsletterName: 'VIPER V2',
+                        serverMessageId: 143
+                    }
+                }
+        },
+        { quoted: mek }
+                );
 ┃◈┃• bite @tag
 ┃◈┃• glomp @tag
 ┃◈┃• slap @tag
@@ -111,31 +111,31 @@ async (conn, mek, m, { from, quoted, reply }) => {
 ┃◈┃• cringe @tag
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
-> ${config.DESCRIPTION}`;
+> ${ config.DESCRIPTION } `;
 
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 144
-                    }
-                }
+                image: { url: `https://files.catbox.moe/nofkxe.png` },
+caption: dec,
+    contextInfo: {
+    mentionedJid: [m.sender],
+        forwardingScore: 999,
+            isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+        newsletterJid: '120363420222821450@newsletter',
+            newsletterName: 'VIPER V2',
+                serverMessageId: 144
+    }
+}
             },
-            { quoted: mek }
+{ quoted: mek }
         );
 
     } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
+    console.log(e);
+    reply(`${e}`);
+}
 });
 
 // dlmenu
@@ -146,10 +146,10 @@ cmd({
     category: "menu",
     react: "⤵️",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Download Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Download Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• facebook
 ┃◈┃• mediafire
@@ -196,30 +196,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // group menu
 
@@ -229,11 +229,10 @@ cmd({
     category: "menu",
     react: "⤵️",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try
-       {
-        let dec = `╭━━〔 *Group Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Group Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• grouplink
 ┃◈┃• kickall
@@ -274,30 +273,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // fun menu
 
@@ -307,11 +306,11 @@ cmd({
     category: "menu",
     react: "😎",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
 
-        let dec = `╭━━〔 *Fun Menu* 〕━━┈⊷
+            let dec = `╭━━〔 *Fun Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• shapar
 ┃◈┃• rate
@@ -341,30 +340,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // other menu
 
@@ -374,10 +373,10 @@ cmd({
     category: "menu",
     react: "🤖",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Other Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Other Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• timenow
 ┃◈┃• date
@@ -412,30 +411,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // main menu
 
@@ -445,10 +444,10 @@ cmd({
     category: "menu",
     react: "🗿",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Main Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Main Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• ping
 ┃◈┃• live 
@@ -464,30 +463,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // owner menu
 
@@ -497,10 +496,10 @@ cmd({
     category: "menu",
     react: "🔰",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Owner Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Owner Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• owner
 ┃◈┃• menu
@@ -523,30 +522,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 // convert menu
 
@@ -556,10 +555,10 @@ cmd({
     category: "menu",
     react: "🥀",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Convert Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Convert Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• sticker
 ┃◈┃• sticker2
@@ -584,30 +583,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 
 // anmie menu 
@@ -618,10 +617,10 @@ cmd({
     category: "menu",
     react: "🧚",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-          let dec = `╭━━〔 *Anime Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Anime Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• fack
 ┃◈┃• dog
@@ -653,30 +652,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });
 
 
 // ai menu 
@@ -687,10 +686,10 @@ cmd({
     category: "menu",
     react: "🤖",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━〔 *Ai Menu* 〕━━┈⊷
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━〔 *Ai Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• ai
 ┃◈┃• gpt3
@@ -712,27 +711,27 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://telegra.ph/file/1ece2e0281513c05d20ee.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });

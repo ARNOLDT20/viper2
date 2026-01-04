@@ -1,22 +1,22 @@
 const config = require('../config')
 const { cmd, commands } = require('../command');
 const os = require("os")
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions')
 const axios = require('axios')
 
 cmd({
     pattern: "menu2",
-    alias: ["allmenu","fullmenu"],use: '.menu2',
+    alias: ["allmenu", "fullmenu"], use: '.menu2',
     desc: "menu the bot",
     category: "menu",
     react: "⚡",
     filename: __filename
-}, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-        let dec = `╭━━━〔 *DARK SHADOW MD* 〕━━━┈⊷
-┃★╭──────────────
-┃★│ Owner : *Pathum Malsara*
+},
+    async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+        try {
+            let dec = `╭━━━〔 *VIPER V2* 〕━━━┈⊷
+    ┃★╭──────────────
+    ┃★│ Owner : *${config.OWNER_NAME}*
 ┃★│ Baileys : *Multi Device*
 ┃★│ Type : *NodeJs*
 ┃★│ Platform : *Heroku*
@@ -315,30 +315,30 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://i.ibb.co/3yL2ZL8d/2024-8-23-21h39m1s.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363409414874042@newsletter',
-                        newsletterName: 'DARK SHADOW',
-                        serverMessageId: 143
+            await conn.sendMessage(
+                from,
+                {
+                    image: { url: `https://files.catbox.moe/nofkxe.png` },
+                    caption: dec,
+                    contextInfo: {
+                        mentionedJid: [m.sender],
+                        forwardingScore: 999,
+                        isForwarded: true,
+                        forwardedNewsletterMessageInfo: {
+                            newsletterJid: '120363420222821450@newsletter',
+                            newsletterName: 'VIPER V2',
+                            serverMessageId: 143
+                        }
                     }
-                }
-            },
-            { quoted: mek }
-        );
+                },
+                { quoted: mek }
+            );
 
-        // Send audio
-       
-        
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+            // Send audio
+
+
+        } catch (e) {
+            console.log(e);
+            reply(`${e}`);
+        }
+    });

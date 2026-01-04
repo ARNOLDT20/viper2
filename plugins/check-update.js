@@ -56,32 +56,28 @@ cmd({
     const githubRepo = 'https://github.com/DARK-SHADOW-NEW/KHAN-MD';
 
     // Check update status
-    let updateMessage = `✅ Your DARK SHADOW-MD bot is up-to-date!`;
+    let updateMessage = `✅ Your VIPER V2 bot is up-to-date!`;
     if (localVersion !== latestVersion) {
-      updateMessage = `🚀 Your DARK SHADOW-MD bot is outdated!
-🔹 *Current Version:* ${localVersion}
-🔹 *Latest Version:* ${latestVersion}
-
-Use *.update* to update.`;
+      updateMessage = `🚀 Your VIPER V2 bot is outdated!\n🔹 *Current Version:* ${localVersion}\n🔹 *Latest Version:* ${latestVersion}\n\nUse *.update* to update.`;
     }
 
     const statusMessage = `🌟 *Good ${new Date().getHours() < 12 ? 'Morning' : 'Night'}, ${pushname}!* 🌟\n\n` +
-      `📌 *Bot Name:* DARK SHADOW-MD\n🔖 *Current Version:* ${localVersion}\n📢 *Latest Version:* ${latestVersion}\n📂 *Total Plugins:* ${pluginCount}\n🔢 *Total Commands:* ${totalCommands}\n\n` +
+      `📌 *Bot Name:* VIPER V2\n🔖 *Current Version:* ${localVersion}\n📢 *Latest Version:* ${latestVersion}\n📂 *Total Plugins:* ${pluginCount}\n🔢 *Total Commands:* ${totalCommands}\n\n` +
       `💾 *System Info:*\n⏳ *Uptime:* ${uptime}\n📟 *RAM Usage:* ${ramUsage}MB / ${totalRam}MB\n⚙️ *Host Name:* ${hostName}\n📅 *Last Update:* ${lastUpdate}\n\n` +
       `📝 *Changelog:*\n${latestChangelog}\n\n` +
-      `⭐ *GitHub Repo:* ${githubRepo}\n👤 *Owner:* [https://github.com/DARK-SHADOW-NEW/DARK-SHADOW-V3)\n\n${updateMessage}\n\n🚀 *Hey! Don't forget to fork & star the repo!*`;
+      `⭐ *GitHub Repo:* ${githubRepo}\n👤 *Owner:* https://github.com/DARK-SHADOW-NEW/DARK-SHADOW-V3\n\n${updateMessage}\n\n🚀 *Hey! Don't forget to fork & star the repo!*`;
 
     // Send the status message with an image
     await conn.sendMessage(from, {
-      image: { url: 'https://telegra.ph/file/1ece2e0281513c05d20ee.jpg' },
+      image: { url: 'https://files.catbox.moe/nofkxe.png' },
       caption: statusMessage,
       contextInfo: {
         mentionedJid: [m.sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363409414874042@newsletter',
-          newsletterName: 'DARK SHADOW',
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: 'VIPER V2',
           serverMessageId: 143
         }
       }

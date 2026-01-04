@@ -31,14 +31,14 @@ async (conn, mek, m, {
     // give credit and use
     const imageMessage = {
       image: { url: screenshotUrl },
-      caption: "*WEB SS DOWNLOADER*\n\n> *© Powered By Dark Shadow*",
+      caption: "*WEB SS DOWNLOADER*\n\n> *© Powered By VIPER V2*",
       contextInfo: {
         mentionedJid: [m.sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363409414874042@newsletter',
-          newsletterName: "DARK SHADOW",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "VIPER V2",
           serverMessageId: 143,
         },
       },

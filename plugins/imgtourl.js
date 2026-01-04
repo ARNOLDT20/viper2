@@ -47,14 +47,14 @@ cmd({
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: "120363409414874042@newsletter",
-        newsletterName: "DARK SHADOW",
+        newsletterJid: "120363420222821450@newsletter",
+        newsletterName: "VIPER V2",
         serverMessageId: 143
       }
     };
 
     await conn.sendMessage(from, {
-      text: `✅ *Image Uploaded Successfully 📸*\n📏 *Size:* ${imageBuffer.length} Bytes\n🔗 *URL:* ${imageUrl}\n\n> ⚖️ *Uploaded via DARK SHADOW-AI*`,
+      text: `✅ *Image Uploaded Successfully 📸*\n📏 *Size:* ${imageBuffer.length} Bytes\n🔗 *URL:* ${imageUrl}\n\n> ⚖️ *Uploaded via VIPER V2-AI*`,
       contextInfo: msgContext
     });
 

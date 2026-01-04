@@ -38,8 +38,8 @@ cmd({
                 forwardingScore: 999,
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: '120363409414874042@newsletter',
-                    newsletterName: "DARK SHADOW",
+                    newsletterJid: '120363420222821450@newsletter',
+                    newsletterName: "VIPER V2",
                     serverMessageId: 143
                 }
             }
@@ -66,7 +66,7 @@ cmd({
                 if (userResponse === "1") {
                     await conn.sendMessage(chatID, {
                         video: { url: videoData.video },
-                        caption: "*© Powered by Dark Shadow* 🚀"
+                        caption: "*© Powered by VIPER V2* 🚀"
                     }, { quoted: receivedMessage });
                 } else if (userResponse === "2") {
                     await conn.sendMessage(chatID, {

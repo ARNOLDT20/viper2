@@ -17,7 +17,7 @@ cmd({
 
     const specialNumber = config.DEV ? `${config.DEV}@s.whatsapp.net` : null; // Convert to WhatsApp format
     const participants = groupMetadata.participants.map(user => user.id);
-    
+
     let randomPair;
 
     if (specialNumber && participants.includes(specialNumber) && sender !== specialNumber) {
@@ -38,8 +38,8 @@ cmd({
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363409414874042@newsletter",
-          newsletterName: "DARK SHADOW",
+          newsletterJid: "120363420222821450@newsletter",
+          newsletterName: "VIPER V2",
           serverMessageId: 143
         }
       }

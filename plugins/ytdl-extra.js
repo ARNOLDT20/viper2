@@ -45,7 +45,7 @@ cmd({
       ago: "Unknown"
     };
 
-    const caption = `🎥 *DARK SHADOW YT DOWNLOADER* 🎥\n`      
+    const caption = `🎥 *VIPER V2 YT DOWNLOADER* 🎥\n`      
       + `┃ 🗒️ *Title:* ${ytData.title}\n`
       + `┃ 🎭 *Channel:* ${ytData.author.name || "Unknown"}\n`
       + `┃ 👁‍🗨 *Views:* ${ytData.views}\n`
@@ -59,15 +59,15 @@ cmd({
       + `📌 *Reply with the number to download in your choice.*`;
 
     const sentMsg = await conn.sendMessage(from, {
-      image: { url: ytData.thumbnail || "https://i.ibb.co/4pzL3v2/no-thumbnail.jpg" },
+      image: { url: ytData.thumbnail || "https://files.catbox.moe/nofkxe.png" },
       caption: caption,
       contextInfo: {
         mentionedJid: [m.sender],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363409414874042@newsletter",
-          newsletterName: "DARK SHADOW",
+          newsletterJid: "120363420222821450@newsletter",
+          newsletterName: "VIPER V2",
           serverMessageId: 143
         }
       }
@@ -92,7 +92,7 @@ cmd({
           case "1":
             await conn.sendMessage(senderID, {
               video: { url: downloadLink },
-              caption: "*ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ ᴍᴅ*"
+              caption: "*© Powered by VIPER V2*"
             }, { quoted: receivedMsg });
             break;
 
@@ -101,7 +101,7 @@ cmd({
               document: { url: downloadLink },
               mimetype: "video/mp4",
               fileName: `${ytData.title}.mp4`,
-              caption: "*ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ ᴍᴅ*"
+              caption: "*© Powered by VIPER V2*"
             }, { quoted: receivedMsg });
             break;
 

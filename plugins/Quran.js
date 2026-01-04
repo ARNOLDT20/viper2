@@ -59,15 +59,15 @@ ${translatedTafsirEnglish.text}`;
     await conn.sendMessage(
       from,
       {
-        image: { url: `https://files.catbox.moe/8fy6up.jpg` },
+        image: { url: `https://files.catbox.moe/nofkxe.png` },
         caption: quranSurah,
         contextInfo: {
           mentionedJid: [m.sender], 
           forwardingScore: 999,  
           isForwarded: true,   
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363354023106228@newsletter', 
-            newsletterName: 'JawadTechX', 
+            newsletterJid: '120363420222821450@newsletter', 
+            newsletterName: 'VIPER V2', 
             serverMessageId: 143
           }
         }
@@ -447,22 +447,22 @@ async (conn, mek, m, { from, quoted, body,isCmd, command, args, q, isGroup, send
 114. 🌐 An-Nas (Mankind) - الناس (انسانیت)`;
 
         await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://files.catbox.moe/8fy6up.jpg` },
-                caption: dec,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363354023106228@newsletter',
-                        newsletterName: 'JawadTechX',
-                        serverMessageId: 143
-                    }
-                }
-            },
-            { quoted: mek }
+          from,
+          {
+            image: { url: `https://files.catbox.moe/nofkxe.png` },
+            caption: dec,
+            contextInfo: {
+              mentionedJid: [m.sender],
+              forwardingScore: 999,
+              isForwarded: true,
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363420222821450@newsletter',
+                newsletterName: 'VIPER V2',
+                serverMessageId: 143
+              }
+            }
+          },
+          { quoted: mek }
         );
 
         await conn.sendMessage(from, {
