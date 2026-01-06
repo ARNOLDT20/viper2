@@ -16,7 +16,7 @@ cmd({
             return reply("*Please provide a search query.*");
         }
 
-        
+
         await reply(`*🔎 Downloading Images For ${query}...*`);
 
 
@@ -28,9 +28,9 @@ cmd({
             return reply("*No results found. Please try another keyword.*");
         }
 
-        const results = response.data.result;  
+        const results = response.data.result;
         const selectedImages = results.sort(() => 0.5 - Math.random()).slice(0, 5);
-      
+
         for (let i = 0; i < selectedImages.length; i++) {
             const image = selectedImages[i];
             await conn.sendMessage(

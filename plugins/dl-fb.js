@@ -22,8 +22,8 @@ cmd({
       throw new Error("Invalid API response or no video found.");
     }
 
-    let videoData = data.content.data.result.find(v => v.quality === "HD") || 
-                    data.content.data.result.find(v => v.quality === "SD");
+    let videoData = data.content.data.result.find(v => v.quality === "HD") ||
+      data.content.data.result.find(v => v.quality === "SD");
 
     if (!videoData) {
       throw new Error("No valid video URL found.");
