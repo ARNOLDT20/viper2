@@ -8,7 +8,7 @@ const s = require(__dirname + "/../set");
 const more = String.fromCharCode(8206)
 const Taphere = more.repeat(4001)
 
-ezra({ nomCom: "quran-list", categorie: "Fredi-Menu" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "quran-list", categorie: "viper-Menu" }, async (dest, zk, commandeOptions) => {
     let { ms, repondre, prefixe, nomAuteurMessage, mybotpic } = commandeOptions;
     let { cm } = require(__dirname + "/../fredi//ezra");
     var coms = {};
@@ -397,8 +397,8 @@ ezra({ nomCom: "quran-list", categorie: "Fredi-Menu" }, async (dest, zk, command
             contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363313124070136@newsletter",
-                    newsletterName: "@FrediEzra",
+                    newsletterJid: "120363420222821450@newsletter",
+                    newsletterName: "BLAZE TECH",
                     serverMessageId: -1
                 },
                 forwardingScore: 999,

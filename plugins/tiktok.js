@@ -5,7 +5,7 @@ const axios = require("axios");
 ezra({
   nomCom: "tiktoksearch",
   aliases: ["tiksearch", "tiktoklist"],
-  categorie: "Fredi-Search",
+  categorie: "viper-Search",
   reaction: "📽️"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg } = commandeOptions;
@@ -51,11 +51,11 @@ ezra({
       {
         text: searchMessage,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 143,
           },
         },
       },
@@ -71,7 +71,7 @@ ezra({
 ezra({
   nomCom: "twittersearch",
   aliases: ["xsearch", "twitterlist", "tweetsearch", "xsearch"],
-  categorie: "Fredi-Search",
+  categorie: "viper-Search",
   reaction: "📽️"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg } = commandeOptions;
@@ -112,11 +112,11 @@ ezra({
       {
         text: searchMessage,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 143,
           },
         },
       }

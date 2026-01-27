@@ -13,8 +13,8 @@ const getNewsletterContext = (title = '', userJid = '', thumbnailUrl = '', sourc
   forwardingScore: 999,
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
-    newsletterJid: "120363313124070136@newsletter",
-    newsletterName: "@FrediEzra",
+    newsletterJid: "120363420222821450@newsletter",
+    newsletterName: "BLAZE TECH",
     serverMessageId: Math.floor(100000 + Math.random() * 900000),
   },
   externalAdReply: {
@@ -42,7 +42,7 @@ async function getAudioDownloadUrl(videoUrl) {
       console.log(`Trying audio API: ${api}`);
       const response = await axios.get(api, { timeout: 15000 });
       const data = response.data;
-      
+
       if (data) {
         // Check different response formats
         if (data.download_url) return data.download_url;
@@ -56,7 +56,7 @@ async function getAudioDownloadUrl(videoUrl) {
       continue;
     }
   }
-  
+
   // Fallback to local converter
   throw new Error("Audio API not available. Try again later.");
 }
@@ -73,18 +73,18 @@ async function getVideoDownloadUrl(videoUrl) {
       console.log(`Trying video API: ${api}`);
       const response = await axios.get(api, { timeout: 20000 });
       const data = response.data;
-      
+
       if (data) {
         let url = '';
         let quality = 'Standard';
-        
+
         if (data.download_url) url = data.download_url;
         else if (data.url) url = data.url;
         else if (data.result?.url) url = data.result.url;
         else if (data.result?.downloadUrl) url = data.result.downloadUrl;
         else if (data.videoUrl) url = data.videoUrl;
         else if (typeof data.result === 'string' && data.result.startsWith('http')) url = data.result;
-        
+
         if (url) {
           if (data.quality) quality = data.quality;
           else if (data.result?.quality) quality = data.result.quality;
@@ -96,7 +96,7 @@ async function getVideoDownloadUrl(videoUrl) {
       continue;
     }
   }
-  
+
   throw new Error("Video API not available. Try again later.");
 }
 
@@ -112,46 +112,46 @@ ezra({
   // ===== PART 1: Handle number selection (1-6) =====
   if (arg[0] && !isNaN(arg[0])) {
     const selection = parseInt(arg[0]);
-    
+
     if (selection < 1 || selection > 6) {
       return repondre('Please choose a number between 1 and 6.');
     }
-    
+
     // Get session for this user
     const session = userSessions.get(dest);
     if (!session) {
       return repondre('No video selected. First use: *!download [video name]*');
     }
-    
+
     // Check if session expired (10 minutes)
     if (Date.now() - session.timestamp > 10 * 60 * 1000) {
       userSessions.delete(dest);
       return repondre('Session expired. Start over with: *!download [video name]*');
     }
-    
+
     const { videoUrl, videoInfo } = session;
-    
+
     try {
       // Send processing message
       await repondre(`Processing selection ${selection}...\nTitle: *${videoInfo.title.substring(0, 50)}...*`);
-      
+
       let downloadUrl, qualityInfo = "", mediaType, isDocument, fileName;
-      
+
       // Handle selection
-      switch(selection) {
+      switch (selection) {
         case 1: // Audio message
           mediaType = "audio";
           isDocument = false;
           downloadUrl = await getAudioDownloadUrl(videoUrl);
           break;
-          
+
         case 2: // Audio document
           mediaType = "audio";
           isDocument = true;
           downloadUrl = await getAudioDownloadUrl(videoUrl);
           fileName = `${videoInfo.title.replace(/[^\w\s.-]/gi, '')}.mp3`.substring(0, 80);
           break;
-          
+
         case 3: // Video message
           mediaType = "video";
           isDocument = false;
@@ -159,7 +159,7 @@ ezra({
           downloadUrl = videoResult1.url;
           qualityInfo = videoResult1.quality;
           break;
-          
+
         case 4: // Video document
           mediaType = "video";
           isDocument = true;
@@ -168,7 +168,7 @@ ezra({
           qualityInfo = videoResult2.quality;
           fileName = `${videoInfo.title.replace(/[^\w\s.-]/gi, '')}.mp4`.substring(0, 80);
           break;
-          
+
         case 5: // HD Video
           mediaType = "video";
           isDocument = false;
@@ -176,7 +176,7 @@ ezra({
           downloadUrl = hdResult.url;
           qualityInfo = hdResult.quality + " (HD)";
           break;
-          
+
         case 6: // HQ Audio
           mediaType = "audio";
           isDocument = false;
@@ -184,13 +184,13 @@ ezra({
           qualityInfo = "High Quality";
           break;
       }
-      
+
       if (!downloadUrl) {
         throw new Error("Could not get download link.");
       }
-      
+
       console.log(`Download URL: ${downloadUrl}`);
-      
+
       // Send the media with newsletter context
       const contextInfo = getNewsletterContext(
         videoInfo.title.substring(0, 50),
@@ -198,7 +198,7 @@ ezra({
         videoInfo.thumbnail,
         videoUrl
       );
-      
+
       if (isDocument) {
         await zk.sendMessage(dest, {
           document: { url: downloadUrl },
@@ -224,33 +224,33 @@ ezra({
           }, { quoted: ms });
         }
       }
-      
+
       // Send success message
       await repondre(`✅ ${mediaType === 'audio' ? 'Audio' : 'Video'} sent!${qualityInfo ? `\n📊 Quality: ${qualityInfo}` : ''}`);
-      
+
       // Clear session
       userSessions.delete(dest);
-      
+
     } catch (error) {
       console.error('Download error:', error);
       await repondre(`Error: ${error.message}`);
     }
-    
+
     return;
   }
-  
+
   // ===== PART 2: Handle search query =====
   if (!arg[0]) {
     return repondre(`📥 *YouTube Downloader*\n\nUse: ${prefixe}download [video name/link]\n\nExample:\n${prefixe}download Adele Hello\n${prefixe}download https://youtube.com/...`);
   }
-  
+
   const query = arg.join(" ");
-  
+
   try {
     console.log(`Searching for: ${query}`);
-    
+
     let videoUrl, videoInfo;
-    
+
     // Check if YouTube URL
     if (query.match(/(youtube\.com|youtu\.be)/i)) {
       videoUrl = query;
@@ -265,20 +265,20 @@ ezra({
       videoInfo = searchResults.videos[0];
       videoUrl = videoInfo.url;
     }
-    
+
     if (!videoInfo) {
       return repondre('Failed to get video information.');
     }
-    
+
     // Save to session
     userSessions.set(dest, {
       videoUrl,
       videoInfo,
       timestamp: Date.now()
     });
-    
+
     console.log(`Video found: ${videoInfo.title}`);
-    
+
     // Show menu
     const menuText = `
 🎬 *${videoInfo.title.substring(0, 60)}${videoInfo.title.length > 60 ? '...' : ''}*
@@ -300,12 +300,12 @@ ezra({
 Use: *${prefixe}download [number]*
 Example: *${prefixe}download 1* for audio
 `.trim();
-    
+
     await zk.sendMessage(dest, {
       text: menuText,
       contextInfo: getNewsletterContext("YouTube Downloader", userJid, videoInfo.thumbnail, videoUrl)
     }, { quoted: ms });
-    
+
   } catch (error) {
     console.error('Search error:', error);
     repondre(`Error: ${error.message}`);
@@ -319,17 +319,17 @@ if (typeof zk !== 'undefined' && zk.ev) {
     try {
       const msg = m.messages[0];
       if (!msg.message || msg.key.fromMe) return;
-      
-      const messageText = msg.message.conversation || 
-                         msg.message.extendedTextMessage?.text || "";
-      
+
+      const messageText = msg.message.conversation ||
+        msg.message.extendedTextMessage?.text || "";
+
       // Check if it's a number 1-6
       if (/^[1-6]$/.test(messageText.trim())) {
         const dest = msg.key.remoteJid;
         const selection = parseInt(messageText.trim());
-        
+
         console.log(`Detected number ${selection} from ${dest}`);
-        
+
         // Check session
         const session = userSessions.get(dest);
         if (session) {
@@ -341,18 +341,18 @@ if (typeof zk !== 'undefined' && zk.ev) {
             userJid: msg.key.participant || dest,
             prefixe: "!"
           };
-          
+
           // Process it
-          await zk.sendMessage(dest, { 
-            text: `Processing selection ${selection}...` 
+          await zk.sendMessage(dest, {
+            text: `Processing selection ${selection}...`
           }, { quoted: msg });
-          
+
           // Call the handler directly
           const { videoUrl, videoInfo } = session;
-          
+
           try {
             let downloadUrl, mediaType, isDocument;
-            
+
             if (selection === 1 || selection === 2 || selection === 6) {
               mediaType = "audio";
               isDocument = (selection === 2);
@@ -363,7 +363,7 @@ if (typeof zk !== 'undefined' && zk.ev) {
               const result = await getVideoDownloadUrl(videoUrl);
               downloadUrl = result.url;
             }
-            
+
             if (downloadUrl) {
               const contextInfo = getNewsletterContext(
                 videoInfo.title.substring(0, 50),
@@ -371,7 +371,7 @@ if (typeof zk !== 'undefined' && zk.ev) {
                 videoInfo.thumbnail,
                 videoUrl
               );
-              
+
               if (isDocument) {
                 await zk.sendMessage(dest, {
                   document: { url: downloadUrl },
@@ -392,21 +392,21 @@ if (typeof zk !== 'undefined' && zk.ev) {
                   contextInfo: contextInfo
                 }, { quoted: msg });
               }
-              
-              await zk.sendMessage(dest, { 
-                text: `✅ ${mediaType === 'audio' ? 'Audio' : 'Video'} sent!` 
+
+              await zk.sendMessage(dest, {
+                text: `✅ ${mediaType === 'audio' ? 'Audio' : 'Video'} sent!`
               }, { quoted: msg });
-              
+
               userSessions.delete(dest);
             }
           } catch (error) {
-            await zk.sendMessage(dest, { 
-              text: `Error: ${error.message}` 
+            await zk.sendMessage(dest, {
+              text: `Error: ${error.message}`
             }, { quoted: msg });
           }
         } else {
-          await zk.sendMessage(dest, { 
-            text: 'No active session. Use *!download [video]* first.' 
+          await zk.sendMessage(dest, {
+            text: 'No active session. Use *!download [video]* first.'
           }, { quoted: msg });
         }
       }

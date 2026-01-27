@@ -11,7 +11,7 @@ const fs = require("fs");
 ezra({
   nomCom: "img",
   aliases: ["image", "images"],
-  categorie: "Fredi-Images",
+  categorie: "viper-Images",
   reaction: "📸"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms, arg } = commandeOptions;
@@ -40,11 +40,11 @@ ezra({
         image: { url: results[i].url },
         caption: `DOWNLOAD AND ENJOY BY ☢️LUCKY MD X-FORCE☢️`,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 143,
           }
         }
       }, { quoted: ms });

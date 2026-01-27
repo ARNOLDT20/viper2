@@ -49,10 +49,10 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
-        }
+        },
       }
     }, { quoted: ms });
 
@@ -163,8 +163,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         }
       }

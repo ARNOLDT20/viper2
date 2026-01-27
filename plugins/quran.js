@@ -5,42 +5,42 @@ const { translate } = require('@vitalets/google-translate-api');
 
 ezra({
   nomCom: "surah",
- aliases: ["surahh", "qurann"],
+  aliases: ["surahh", "qurann"],
   reaction: '🤲',
   categorie: "God"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const reference = arg.join(" ");
-  
+
   if (!reference) {
     return repondre("Please specify the surah number or name.", {
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     });
   }
-  
+
   try {
     const response = await axios.get(`https://quran-endpoint.vercel.app/quran/${reference}`);
-    
+
     if (response.data.status !== 200) {
       return repondre("Invalid surah reference. Please specify a valid surah number or name.", {
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 143,
           },
         },
       });
     }
-    
+
     const data = response.data.data;
     const messageText = `
 ᬑ *LUCKY QURAN SURAH* ᬒ
@@ -54,28 +54,28 @@ ezra({
 ╭────────────────◆
 │ *_Powered by ${conf.OWNER_NAME}*
 ╰─────────────────◆ `;
-    
+
     await zk.sendMessage(dest, {
       text: messageText,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
-    
+
   } catch (error) {
     console.error("Error fetching Quran passage:", error);
     await repondre("An error occurred while fetching the Quran passage. Please try again later.", {
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     });
@@ -89,42 +89,42 @@ ezra({
 
 ezra({
   nomCom: "quran",
- aliases: ["surahh", "qurann"],
+  aliases: ["surahh", "qurann"],
   reaction: '🤲',
   categorie: "God"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const reference = arg.join(" ");
-  
+
   if (!reference) {
     return repondre("Please specify the surah number or name.", {
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     });
   }
-  
+
   try {
     const response = await axios.get(`https://quran-endpoint.vercel.app/quran/${reference}`);
-    
+
     if (response.data.status !== 200) {
       return repondre("Invalid surah reference. Please specify a valid surah number or name.", {
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 143,
           },
         },
       });
     }
-    
+
     const data = response.data.data;
     const messageText = `
 ᬑ *LUCKY QURAN SURAH* ᬒ
@@ -138,28 +138,28 @@ ezra({
 ╭────────────────◆
 │ *_Powered by ${conf.OWNER_NAME}*
 ╰─────────────────◆ `;
-    
+
     await zk.sendMessage(dest, {
       text: messageText,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     }, { quoted: ms });
-    
+
   } catch (error) {
     console.error("Error fetching Quran passage:", error);
     await repondre("An error occurred while fetching the Quran passage. Please try again later.", {
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
+          serverMessageId: 143,
         },
       },
     });

@@ -6,7 +6,7 @@ ezra({
   nomCom: "joke",
   aliases: ["jokeapi", "getjoke"],
   desc: "Fetch a random joke from JokeAPI.",
-  categorie: "Fredi-Fun",
+  categorie: "viper-Fun",
   reaction: '🤭',
 }, async (dest, zk, context) => {
   const { repondre } = context;
@@ -20,7 +20,7 @@ ezra({
       return repondre("❌ Error fetching joke. Please try again later.");
     }
 
-    let jokeMessage = `😂 *☢️LUCKY MD X-FORCE☢️ random Joke:*\n\n${data.joke}\n\n`;
+    let jokeMessage = `😂 *viper xmd random Joke:*\n\n${data.joke}\n\n`;
     jokeMessage += `🤷 *Category:* ${data.category}\n`;
     jokeMessage += `🤭 *Safe:* ${data.safe}\n`;
     jokeMessage += `*ID:* ${data.id}\n`;
@@ -37,7 +37,7 @@ ezra({
   nomCom: "randomjoke",
   aliases: ["jokeap"],
   desc: "Fetch a random joke from JokeAPI.",
-  categorie: "Fredi-Fun",
+  categorie: "viper-Fun",
   reaction: '🤭',
 }, async (dest, zk, context) => {
   const { repondre } = context;
@@ -51,7 +51,7 @@ ezra({
       return repondre("❌ Error fetching joke. Please try again later.");
     }
 
-    let jokeMessage = `😂 *☢️LUCKY MD X-FORCE☢️ random Joke:*\n\n${data.joke}\n\n`;
+    let jokeMessage = `😂 *viper xmd random Joke:*\n\n${data.joke}\n\n`;
     jokeMessage += `🤷 *Category:* ${data.category}\n`;
     jokeMessage += `🤭 *Safe:* ${data.safe}\n`;
     jokeMessage += `*ID:* ${data.id}\n`;

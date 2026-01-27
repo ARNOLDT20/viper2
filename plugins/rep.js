@@ -31,8 +31,8 @@ ezra({
       'contextInfo': {
         'isForwarded': true,
         'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363313124070136@newsletter",
-          'newsletterName': "@FrediEzra",
+          'newsletterJid': "120363420222821450@newsletter",
+          'newsletterName': "BLAZE TECH",
           'serverMessageId': 0x8f
         },
         'forwardingScore': 0x3e7,
@@ -78,8 +78,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: -1
         },
         forwardingScore: 999,
@@ -100,9 +100,9 @@ ezra({
       caption: "*🫧 viper xmd repo song 🫧",
       contextInfo: {
         isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363313124070136@newsletter",
-          newsletterName: "@FrediEzra",
+          forwardedNewsletterMessageInfo: {
+          newsletterJid: "120363420222821450@newsletter",
+          newsletterName: "BLAZE TECH",
           serverMessageId: -1
         }
       }

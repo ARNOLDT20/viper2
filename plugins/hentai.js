@@ -68,7 +68,7 @@ ezra({
 
 ezra({
   nomCom: "hneko",
-  categorie: "Fredi-Hentai",
+  categorie: "viper-Hentai",
   reaction: "😅"
 },
   async (origineMessage, zk, commandeOptions) => {
@@ -98,7 +98,7 @@ ezra({
 
 ezra({
   nomCom: "blowjob",
-  categorie: "Fredi-Hentai",
+  categorie: "viper-Hentai",
   reaction: "😱"
 },
   async (origineMessage, zk, commandeOptions) => {
@@ -129,7 +129,7 @@ ezra({
 
 ezra({
   nomCom: "hentaivid",
-  categorie: "Fredi-Hentai",
+  categorie: "viper-Hentai",
   reaction: "😁"
 },
   async (origineMessage, zk, commandeOptions) => {

@@ -22,8 +22,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzral",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -49,8 +49,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -65,8 +65,8 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363313124070136@newsletter',
-            newsletterName: "@FrediEzra",
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
         },
@@ -91,8 +91,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -104,8 +104,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -142,8 +142,8 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363313124070136@newsletter',
-            newsletterName: "@FrediEzra",
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
         },
@@ -191,8 +191,8 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363313124070136@newsletter',
-            newsletterName: "@FrediEzra",
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
         },
@@ -213,7 +213,7 @@ ezra({
 ezra({
   nomCom: "elements",
   reaction: '📓',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const elementQuery = arg.join(" ").trim();
@@ -250,8 +250,8 @@ Regards ${conf.OWNER_NAME} `;
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -267,7 +267,7 @@ ezra({
   nomCom: "githubs",
   aliases: ["gits"],
   reaction: '💻',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
   const githubUsername = arg.join(" ");
@@ -307,8 +307,8 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
       },
@@ -324,7 +324,7 @@ ezra({
   nomCom: "tempmail",
   aliases: ['maile', 'tempe'],
   reaction: '📧',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (dest, zk, context) => {
   const { repondre: replyToUser, prefix, ms: messageQuote } = context;
 
@@ -338,8 +338,8 @@ You can use this email for temporary purposes. I will notify you if you receive 
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         }
       }
@@ -363,8 +363,8 @@ You can use this email for temporary purposes. I will notify you if you receive 
               contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                  newsletterJid: '120363313124070136@newsletter',
-                  newsletterName: "@FrediEzra",
+                  newsletterJid: '120363420222821450@newsletter',
+                  newsletterName: "BLAZE TECH",
                   serverMessageId: 143,
                 }
               }
@@ -387,8 +387,8 @@ You can use this email for temporary purposes. I will notify you if you receive 
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363313124070136@newsletter',
-            newsletterName: "@FrediEzra",
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           }
         }
@@ -402,8 +402,8 @@ You can use this email for temporary purposes. I will notify you if you receive 
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363313124070136@newsletter',
-          newsletterName: "@FrediEzra",
+          newsletterJid: '120363420222821450@newsletter',
+          newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         }
       }
@@ -414,7 +414,7 @@ ezra({
   nomCom: "wikipedia",
   aliases: ["wiki", "wikipeda"],
   reaction: '🤡',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (zk, dest, context) => {
   const { repondre, arg, ms } = context;
 
@@ -453,7 +453,7 @@ ezra({
   nomCom: "hadith",
   aliases: ["islam", "hadees"],
   reaction: '📖',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (dest, zk, params) => {
   const { repondre } = params;
 
@@ -470,8 +470,8 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363313124070136@newsletter',
-            newsletterName: "@FrediEzra",
+            newsletterJid: '120363420222821450@newsletter',
+            newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
         },
