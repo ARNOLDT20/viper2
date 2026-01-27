@@ -45,7 +45,7 @@ ezra({
       document: { url: appDetails.BK9.dllink },
       fileName: `${appDetails.BK9.name}.apk`,
       mimetype: "application/vnd.android.package-archive",
-      caption: `APPLICATION DOWLODED BY ☢️LUCKY MD X-FORCE☢️`,
+      caption: `APPLICATION DOWLODED BY ☢️VIPER MD☢️`,
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
