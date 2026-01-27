@@ -62,7 +62,7 @@ const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter')
 //import chalk from 'chalk'
 const { verifierEtatJid, recupererActionJid } = require("./lib/antilien");
 const { atbverifierEtatJid, atbrecupererActionJid } = require("./lib/antibot");
-let evt = require(__dirname + "/fredi/zokou");
+let evt = require(__dirname + "/fredi/ezra");
 const { isUserBanned, addUserToBanList, removeUserFromBanList } = require("./lib/banUser");
 const { addGroupToBanList, isGroupBanned, removeGroupFromBanList } = require("./lib/banGroup");
 const { isGroupOnlyAdmin, addGroupToOnlyAdminList, removeGroupFromOnlyAdminList } = require("./lib/onlyAdmin");
@@ -217,7 +217,7 @@ setTimeout(() => {
             const allAllowedNumbers = superUserNumbers.concat(sudo);
             const superUser = allAllowedNumbers.includes(auteurMessage);
 
-            var dev = [Fred, Ezra].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
+            var dev = [Fredi, Ezra].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
 
             console.log("\nLUCKY XMD HACKED");
