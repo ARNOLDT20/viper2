@@ -1,10 +1,10 @@
 {
-  "bot-name": "LUCKY-MD-XFORCE MULT DEVICE",
-  "description": "Lucky Whatsapp device bot made by starboy to help Whatsapp users to enjoy while helping...",
+  "bot-name": "viper xmd MULT DEVICE",
+  "description": "viper Whatsapp device bot made by starboy to help Whatsapp users to enjoy while helping...",
   "logo": "https://files.catbox.moe/o4o7w2.png",
   "keywords": [
     "starboy",
-    "Lucky-Md",
+    "viper",
     "mdtech"
   ],
   "documentation-link": "https://lucky-xforce-session-site.onrender.com",
@@ -72,7 +72,7 @@
     },
     "BOT_NAME": {
       "description": "you must give a name for you bot uhh??!!",
-      "value": "⁠LUCKY-MD-XFORCE",
+      "value": "viper xmd",
       "required": false
     },
     "PUBLIC_MODE": {

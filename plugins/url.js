@@ -92,13 +92,13 @@ ezra({ nomCom: "url", categorie: "General-Fredi", reaction: "👨🏿‍💻" },
     // Respond with the URL based on media type
     switch (mediaType) {
       case 'image':
-        repondre(`Lucky md Xforce url: ${catboxUrl}`);
+        repondre(`viper xmd url: ${catboxUrl}`);
         break;
       case 'video':
-        repondre(`Lucky md Xforce url: ${catboxUrl}`);
+        repondre(`viper xmd url: ${catboxUrl}`);
         break;
       case 'audio':
-        repondre(`Lucky md Xforce url: ${catboxUrl}`);
+        repondre(`viper xmd url: ${catboxUrl}`);
         break;
       default:
         repondre('An unknown error occurred.');

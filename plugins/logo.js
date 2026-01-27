@@ -93,7 +93,7 @@ ezra({ nomCom: "naruto", categorie: "viper-Logo", reaction: "👀" }, async (des
 ezra({ nomCom: "didong", categorie: "viper-Logo", reaction: "📱" }, async (dest, zk, commandeOptions) => {
   let { arg, repondre, prefixe, ms } = commandeOptions;
   try {
-    var titre = "\t* logo by Lucky_Md*";
+    var titre = "\t* logo by viper xmd*";
     var lien = "https://ephoto360.com/tao-anh-che-vui-tu-choi-cuoc-goi-voi-ten-cua-ban-930.html";
     if (!arg || arg == "") {
       repondre(`*exemple :* ${prefixe}didong fredi`)
@@ -116,7 +116,7 @@ ezra({ nomCom: "didong", categorie: "viper-Logo", reaction: "📱" }, async (des
 ezra({ nomCom: "wall", categorie: "viper-Logo", reaction: "👍" }, async (dest, zk, commandeOptions) => {
 
   const { arg, repondre, ms, prefixe } = commandeOptions;
-  if (!arg[0]) { repondre(`Exemple of using commande:\n ${prefixe}wall Lucky_Md`); return; }
+  if (!arg[0]) { repondre(`Exemple of using commande:\n ${prefixe}wall viper`); return; }
   let text = arg.join(" ")
   mumaker.textpro("https://textpro.me/break-wall-text-effect-871.html", text)
     .then((data) => {
