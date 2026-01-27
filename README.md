@@ -1,25 +1,25 @@
 
 
-# 🌟 LUCKY XFORCE 🚀
+# 🌟 viper xmd 🚀
 
-[![FREDIEZRA TECH](https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/lucky.svg)](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)
+[![BLAZE TECH](https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 
 ---
 
 ## 📊 Profile Overview
 
-👤 **Developer**: [FREDI AI](https://github.com/mr-X-force)  
+👤 **Developer**: [BLAZE TECH](https://github.com/ARNOLDT20)  
 📊 **Profile Views**:  
-![Profile Views](https://komarev.com/ghpvc/?username=mr-X-force&label=VIEWS&style=flat-square&color=blue)
+![Profile Views](https://komarev.com/ghpvc/?username=ARNOLDT20&label=VIEWS&style=flat-square&color=blue)
 
 📈 **GitHub Stats**:  
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=mr-X-force&show_icons=true&theme=github_dark)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
 
 🏆 **Trophies**:  
-![Trophies](https://github-profile-trophy.vercel.app/?username=mr-X-force&theme=monokai)
+![Trophies](https://github-profile-trophy.vercel.app/?username=ARNOLDT20&theme=monokai)
 
 📈 **Contributions Graph**:  
-![Contributions](https://activity-graph.herokuapp.com/graph?username=mr-X-force&theme=github)
+![Contributions](https://activity-graph.herokuapp.com/graph?username=ARNOLDT20&theme=github)
 
 ---
 
@@ -30,13 +30,13 @@
 ✨ **Dual Mode**: Group + DM features  
 ✨ **Privacy**: Public/Private mode  
 ✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: FredieTech  
+✨ **Support**: Developer maintained: BLAZE TECH  
 
 ---
 
 ## 📥 Download ZIP
 
-📁 **Download ZIP File**: [LUCKY XFORCE ZIP 📁](https://github.com/mr-X-force/LUCKY-MD-XFORCE/archive/refs/heads/main.zip)
+📁 **Download ZIP File**: [viper xmd ZIP 📁](https://github.com/ARNOLDT20/Viper2/archive/refs/heads/main.zip)
 
 ---
 
@@ -65,7 +65,7 @@
 </details>
 
 #### 3. **Koyeb**  
-[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=mr-X-force/LUCKY-MD-XFORCE)  
+[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=ARNOLDT20/Viper2)  
 <details><summary>Steps</summary>
 1. Click above to open deploy panel  
 2. Authorize GitHub and select repo  
@@ -117,7 +117,7 @@
 
 ## 📢 Join Community
 
-👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f)  
+👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)  
 📢 **Stay Updated**: Get the latest updates, features, and support.  
 
 ---
@@ -125,7 +125,7 @@
 ## 📝 License
 
 📜 **License**: This project is under [MIT License](LICENSE).  
-📢 **Credits**: Developed with ❤️ by [FredieTech](https://github.com/mr-X-force).  
+📢 **Credits**: Developed with ❤️ by [BLAZE TECH](https://github.com/ARNOLDT20).  
 
 ---
 

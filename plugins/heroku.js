@@ -4,7 +4,7 @@ const s = require('../set');
 ezra(
   {
     nomCom: "setvar",
-    categorie: "Fredi-Heroku",
+    categorie: "viper-Heroku",
     reaction: "⚙️",
   },
   async (dest, zk, commandeOptions) => {
@@ -14,11 +14,11 @@ ezra(
       console.log('DEBUG - setvar triggered:', { arg, superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or Fredie can use this command 🚫`);
+        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
       }
 
       if (!arg[0] || !arg.join(' ').includes('=')) {
-        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255752593977\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255627417402\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
       }
 
       const text = arg.join(' ').trim();
@@ -52,7 +52,7 @@ ezra(
 ezra(
   {
     nomCom: "allvar",
-    categorie: "Fredi-Heroku",
+    categorie: "viper-Heroku",
     reaction: "📋",
   },
   async (dest, zk, commandeOptions) => {
@@ -62,7 +62,7 @@ ezra(
       console.log('DEBUG - allvar triggered:', { superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or Fredie can use this command 🚫`);
+        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
       }
 
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
@@ -92,7 +92,7 @@ ezra(
 ezra(
   {
     nomCom: "getvar",
-    categorie: "Fredi-Heroku",
+    categorie: "viper-Heroku",
     reaction: "🔍",
   },
   async (dest, zk, commandeOptions) => {
@@ -102,7 +102,7 @@ ezra(
       console.log('DEBUG - getvar triggered:', { arg, superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or Fredie can use this command 🚫`);
+        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
       }
 
       if (!arg[0]) {

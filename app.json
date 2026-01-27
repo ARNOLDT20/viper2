@@ -1,14 +1,14 @@
 {
-  "name": "💦LUCKY-MD-XFORCE💨 MULTI DEVICE",
-  "description": "💦LUCKY-MD-⁠XFORCE💨 Whatsapp device bot made by FrediEzra Tech Info to help Whatsapp users to enjoy while helping...",
+  "name": "VIPER V2",
+  "description": "VIPER V2 Whatsapp device bot owned by T20_STARBOY NUMBER 255627417402.",
   "keywords": [
     "bot",
     "node",
     "baileys",
     "whatsapp"
   ],
-  "logo": "https://files.catbox.moe/1q3yrw.jpg",
-  "repository": "https://github.com/mr-X-force/LUCKY-MD-XFORCE",
+  "logo": "https://files.catbox.moe/nofkxe.png",
+  "repository": "https://github.com/ARNOLDT20/Viper2",
   "succes_url": "/",
   "stack": "container",
   "env": {
@@ -21,7 +21,7 @@
       "description": "Your contact status will be read automatically (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
       "value": "yes",
       "required": false
-    },
+    },
     "GREET_MESSAGE": {
       "description": "when enabled it automatically sends greeting message in your chats",
       "value": "no",
@@ -38,9 +38,9 @@
       "required": false
     },
     "AUTO_SAVE_CONTACTS": {
-      "description":"Enter yes for your bot to auto save contacts",
-      "value":"no",
-      "required":false
+      "description": "Enter yes for your bot to auto save contacts",
+      "value": "no",
+      "required": false
     },
     "AUTO_DOWNLOAD_STATUS": {
       "description": "Your contact status will be downloaded automatically and sent to you (type 'yes' to activate or 'no' to deactivate; don't write in capital letters)",
@@ -54,7 +54,7 @@
     },
     "AUTO_STATUS_TEXT": {
       "description": "type your genuine status message",
-      "value": "💲YOUR STATUS VIEWED BY 💦LUCKY-MD-⁠XFORCE💨 SUCCESSFUL 😇✅✅",
+      "value": "💲YOUR STATUS VIEWED BY VIPER V2 SUCCESSFUL 😇✅✅",
       "required": false
     },
     "AUTO_STATUS_REPLY": {
@@ -76,7 +76,7 @@
       "description": "Insert your Heroku API key (required)",
       "value": "",
       "required": true
-    },
+    },
     "SESSION_ID": {
       "description": "Enter your session ID, the code you receive after scanning the QR code",
       "value": "",
@@ -84,17 +84,17 @@
     },
     "OWNER_NAME": {
       "description": "don't you have a name bro.Insert your name here!!",
-      "value": "FrediEzra",
+      "value": "T20_STARBOY NUMBER 255627417402",
       "required": false
     },
     "AUTO_READ_MESSAGES": {
       "description": "yes toactivate no to deactivate",
       "value": "no",
-      "required": false  
+      "required": false
     },
     "NUMERO_OWNER": {
       "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
-      "value": "255752593977",
+      "value": "255627417402",
       "required": false
     },
     "STARTING_BOT_MESSAGE": {
@@ -127,19 +127,16 @@
       "value": "no",
       "required": false
     }
-    },
-
- "formation": {
-		"worker": {
-			"quantity": 1,
-			"size": "basic"
-		}
-	},
-
-  "addons":[
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
     {
-      "plan":"heroku-postgresql:essential-0"
+      "plan": "heroku-postgresql:essential-0"
     }
   ]
-	
 }

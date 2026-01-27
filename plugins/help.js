@@ -24,7 +24,7 @@ ezra({
     reaction: "🤦",
     aliases: ["panelist", "commandlist", "cmdlist", "list"],
     desc: "Get bot command list.",
-    categorie: "Fredi-Menu"
+    categorie: "viper-Menu"
 }, async (dest, zk, context) => {
     const { respond, prefix, nomAuteurMessage } = context;
     const commands = require(__dirname + "/../fredi/ezra").cm;
@@ -58,11 +58,11 @@ ezra({
     return await zk.sendMessage(dest, {
         text: menu,
         contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363313124070136@newsletter',
+                newsletterName: "@FrediEzra",
+                serverMessageId: 143,
             }
         }
     });

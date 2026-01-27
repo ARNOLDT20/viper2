@@ -18,7 +18,7 @@ const { bugtext5 } = require("../fredi/fredi/bugtext5");
 const { bugtext6 } = require("../fredi/fredi/bugtext6");
 const { bugpdf } = require("../fredi/fredi/bugpdf.js");
 
-const category = "Fredi-Wa-Crush";
+const category = "starboy-Wa-Crush";
 const reaction = "🤯";
 
 const mess = {};
@@ -117,7 +117,7 @@ async function sendbug(dest, zk, ms, repondre, amount, victims, bug) {
 // bug menu
 ezra(
     {
-        nomCom: "fredi-crush",
+        nomCom: "starboy-crush",
         categorie: category,
         reaction: reaction
     },
@@ -134,7 +134,7 @@ ezra(
             )
         );
         const tumbUrl =
-            "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg";
+            "https://files.catbox.moe/nofkxe.png";
         let menu = `${mono}Hello✌️ ${ms.pushName}
 ${timewisher(time)}
 
@@ -173,7 +173,7 @@ ${timewisher(time)}
                                     thumbnailUrl: tumbUrl,
                                     previewType: "PHOTO",
                                     sourceUrl:
-                                        "https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f",
+                                        "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                                     mediaType: 1,
                                     renderLargerAbhinail: true
                                 }
@@ -211,12 +211,12 @@ ezra(
                 title: "bx.pdf",
                 pageCount: 9999999999,
                 thumbnail: {
-                    url: "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg"
+                    url: "https://files.catbox.moe/nofkxe.png"
                 },
                 thumbnailUrl:
-                    "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg",
+                    "https://files.catbox.moe/nofkxe.png",
                 jpegThumbnail: {
-                    url: "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg"
+                    url: "https://files.catbox.moe/nofkxe.png"
                 },
                 mediaKey: "ht55w7B6UoaG9doQuVQ811XNfWcoALqcdQfd61seKKk=",
                 fileName:
@@ -314,12 +314,12 @@ ezra(
             title: "bx.pdf",
             pageCount: 9999999999,
             thumbnail: {
-                url: "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg"
+                url: "https://files.catbox.moe/nofkxe.png"
             },
             thumbnailUrl:
-                "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg",
+                "https://files.catbox.moe/nofkxe.png",
             jpegThumbnail: {
-                url: "https://i.ibb.co/wyYKzMY/68747470733a2f2f74656c656772612e70682f66696c652f6530376133643933336662346361643062333739312e6a7067.jpg"
+                url: "https://files.catbox.moe/nofkxe.png"
             },
             mediaKey: "ht55w7B6UoaG9doQuVQ811XNfWcoALqcdQfd61seKKk=",
             fileName:

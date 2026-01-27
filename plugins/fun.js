@@ -1,49 +1,49 @@
 const axios = require("axios");
-const {ezra} = require("../fredi/ezra");
+const { ezra } = require("../fredi/ezra");
 const traduire = require("../fredi/traduction");
-const {Sticker ,StickerTypes}= require('wa-sticker-formatter');
+const { Sticker, StickerTypes } = require('wa-sticker-formatter');
 const conf = require("../set");
 
 ezra({
   nomCom: "ranime",
-  categorie: "Fredi-Fun",
+  categorie: "viper-Fun",
   reaction: "📺"
 },
-async (origineMessage, zk, commandeOptions) => {
-  const { repondre, ms } = commandeOptions;
+  async (origineMessage, zk, commandeOptions) => {
+    const { repondre, ms } = commandeOptions;
 
-  const jsonURL = "https://api.jikan.moe/v4/random/anime"; // Remplacez par votre URL JSON
+    const jsonURL = "https://api.jikan.moe/v4/random/anime"; // Remplacez par votre URL JSON
 
-  try {
-    const response = await axios.get(jsonURL);
-    const data = response.data.data;
+    try {
+      const response = await axios.get(jsonURL);
+      const data = response.data.data;
 
-    const title = data.title;
-    const synopsis = data.synopsis;
-    const imageUrl = data.images.jpg.image_url; // Utilisez l'URL de l'image JPG
-    const episodes = data.episodes;
-    const status = data.status;
+      const title = data.title;
+      const synopsis = data.synopsis;
+      const imageUrl = data.images.jpg.image_url; // Utilisez l'URL de l'image JPG
+      const episodes = data.episodes;
+      const status = data.status;
 
-    //const texttraduit = await traduire(synopsis,{ to: 'fr' })
+      //const texttraduit = await traduire(synopsis,{ to: 'fr' })
 
-    const message = `📺 Titre: ${title}\n🎬 Épisodes: ${episodes}\n📡 Statut: ${status}\n📝 Synopsis: ${synopsis}\n🔗 URL: ${data.url}
+      const message = `📺 Titre: ${title}\n🎬 Épisodes: ${episodes}\n📡 Statut: ${status}\n📝 Synopsis: ${synopsis}\n🔗 URL: ${data.url}
     
-    \n\n> regards fredidezra\n\n`;
-    
-    // Envoyer l'image et les informations
-    zk.sendMessage(origineMessage, { image: { url: imageUrl }, caption: message }, { quoted: ms });
-  } catch (error) {
-    console.error('Error retrieving data from JSON :', error);
-    repondre('Error retrieving data from JSON.');
-  }
-});
+    \n\n> regards starboy\n\n`;
+
+      // Envoyer l'image et les informations
+      zk.sendMessage(origineMessage, { image: { url: imageUrl }, caption: message }, { quoted: ms });
+    } catch (error) {
+      console.error('Error retrieving data from JSON :', error);
+      repondre('Error retrieving data from JSON.');
+    }
+  });
 
 ezra({
   nomCom: "google",
-  categorie: "Fredi-Search"
+  categorie: "viper-Search"
 }, async (dest, zk, commandeOptions) => {
   const { arg, repondre } = commandeOptions;
-  
+
   if (!arg[0] || arg === "") {
     repondre("Give me a query.\n*Example: .google Who is Lucky Md.*");
     return;
@@ -59,9 +59,9 @@ ezra({
       msg += `➣ Description : ${result.snippet}\n`;
       msg += `➣ Link : ${result.link}\n\n> regards frediezra\n\n`;
     }
-    
-   // const trdmsg = await traduire(msg,{to : 'fr'})
-    repondre(msg);
+
+    // const trdmsg = await traduire(msg,{to : 'fr'})
+    repondre(msg.replace(/regards frediezra/gi, 'regards starboy'));
   } catch (error) {
     repondre("An error occurred during Google search.");
   }
@@ -69,9 +69,9 @@ ezra({
 
 ezra({
   nomCom: "imdb",
-  categorie: "Fredi-Search"
+  categorie: "viper-Search"
 }, async (dest, zk, commandeOptions) => {
-  const { arg, repondre , ms } = commandeOptions;
+  const { arg, repondre, ms } = commandeOptions;
 
   if (!arg[0] || arg === "") {
     repondre("give the name of a series or film.");
@@ -79,12 +79,12 @@ ezra({
   }
 
   try {
-    
+
     const response = await axios.get(`http://www.omdbapi.com/?apikey=742b2d09&t=${arg}&plot=full`);
     const imdbData = response.data;
 
     let imdbInfo = "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍\n";
-    imdbInfo += " ``` lMDB SEARCH BY LUCKY MD XFORCE```\n";
+    imdbInfo += " ``` IMDB SEARCH BY viper xmd```\n";
     imdbInfo += "⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎\n";
     imdbInfo += "🎬Title    : " + imdbData.Title + "\n";
     imdbInfo += "📅year      : " + imdbData.Year + "\n";
@@ -120,9 +120,9 @@ ezra({
 
 ezra({
   nomCom: "emojimix",
-  categorie: "Fredi-Conversion"
+  categorie: "viper-Conversion"
 }, async (dest, zk, commandeOptions) => {
-  const { arg, repondre,ms , nomAuteurMessage } = commandeOptions;
+  const { arg, repondre, ms, nomAuteurMessage } = commandeOptions;
 
   if (!arg[0] || arg.length !== 1) {
     repondre("Incorrect use. Example: .emojimix 😉+😊");
@@ -146,9 +146,9 @@ ezra({
 
     if (response.data.status === true) {
       // Si la requête a réussi, envoyez l'image résultante
-      
+
       let stickerMess = new Sticker(response.data.result, {
-        pack: "LUCKY MD XFORCE",
+        pack: "viper xmd",
         type: StickerTypes.CROPPED,
         categories: ["🤩", "🎉"],
         id: "12345",
@@ -162,6 +162,6 @@ ezra({
       repondre("Unable to create emoji mix.");
     }
   } catch (error) {
-    repondre("An error occurred while creating the emoji mix." + error );
+    repondre("An error occurred while creating the emoji mix." + error);
   }
 });

@@ -11,15 +11,15 @@
     "ezra": "pm2 start index.js --attach --max-memory-restart 490M",
     "c": "tsc"
   },
-  "keywords": [
+    "keywords": [
     "bot",
     "Baileys",
     "Lucky-Xforce",
     "whatsapp",
     "whatsapp-bot",
-    "frediezra"
+    "starboy"
   ],
-  "author": "frediezra",
+  "author": "ARNOLDT20",
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",  

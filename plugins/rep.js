@@ -8,7 +8,7 @@ moment.tz.setDefault('' + set.TIMEZONE);
 
 ezra({
   'nomCom': "ping",
-  'categorie': "General-Fredi"
+  'categorie': "General-viper"
 }, async (_0x12a838, _0x2d8d4e, _0x1f0ba4) => {
   let {
     ms: _0x5d2f0c
@@ -39,7 +39,7 @@ ezra({
         'externalAdReply': {
           'title': "LUCKY-MD-XFORCE",
           'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
-          'thumbnailUrl': "https://files.catbox.moe/uw4l17.jpeg",
+          'thumbnailUrl': "https://files.catbox.moe/nofkxe.png",
           'mediaType': 0x1,
           'renderSmallThumbnail': true
         }
@@ -73,7 +73,7 @@ ezra({
     const gitdata = `> *ɴᴀᴍᴇ:*    ${conf.BOT}\n\n> *sᴛᴀʀs:*  ${data.stargazers_count}\n\n> *ғᴏʀᴋs:*  ${data.forks_count}\n\n> *ᴡᴀᴛᴄʜᴇʀs:*  ${data.watchers}\n\n> *ᴜᴘᴅᴀᴛᴇᴅ:*  ${updated}\n\n> *Repo:* ${data.html_url}\n\n_Powered by FrediEzra Tech Info_`;
 
     await zk.sendMessage(dest, {
-      image: { url: 'https://files.catbox.moe/uw4l17.jpeg' },
+      image: { url: 'https://files.catbox.moe/nofkxe.png' },
       caption: gitdata,
       contextInfo: {
         isForwarded: true,
@@ -86,7 +86,7 @@ ezra({
         externalAdReply: {
           title: "LUCKY MD XFORCE",
           body: "🫧 repo link request 🫧",
-          thumbnailUrl: "https://files.catbox.moe/3o37c5.jpeg",
+          thumbnailUrl: "https://files.catbox.moe/nofkxe.png",
           mediaType: 1,
           sourceUrl: data.html_url || "https://github.com/mr-X-force/LUCKY-MD-XFORCE"
         }
@@ -97,7 +97,7 @@ ezra({
       audio: { url: "https://files.catbox.moe/j3sp1o.mp3" },
       mimetype: "audio/mp4",
       ptt: true,
-      caption: "*🫧 Lucky Xforce repo song 🫧",
+      caption: "*🫧 viper xmd repo song 🫧",
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
@@ -125,15 +125,15 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
-  
+
   // Simple version without API calls
   const repoInfo = `🫧 *LUCKY-MD-XFORCE Repository* 🫧\n\n` +
-                   `✨ *Stars:* 100+\n` +
-                   `🔱 *Forks:* 50+\n` +
-                   `👁️ *Watchers:* 200+\n\n` +
-                   `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
-                   `_Click buttons below to interact_`;
-  
+    `✨ *Stars:* 100+\n` +
+    `🔱 *Forks:* 50+\n` +
+    `👁️ *Watchers:* 200+\n\n` +
+    `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
+    `_Click buttons below to interact_`;
+
   await zk.sendMessage(dest, {
     text: repoInfo,
     footer: "FrediEzra Tech Info",

@@ -5,7 +5,7 @@ const axios = require('axios');
 ezra(
   {
     nomCom: 'lyrics',
-    categorie: 'Fredi-Search',
+    categorie: 'viper-Search',
     reaction: '🎵',
   },
   async (dest, zk, commandeOptions) => {
@@ -44,7 +44,7 @@ ezra(
         dest,
         {
           text: `LUCKY-MD-XFORCE\n\n◈━━━━━━━━━━━━━━━━◈\n🔥BOOM, ${nomAuteurMessage}! Got the lyrics for "${query}"! 🎤\nLyrics:\n${formattedLyrics}\n\n> Powered by FredieTech`,
-          footer: `Hey ${nomAuteurMessage}! Here is Lucky Xforce lyrics`,
+          footer: `Hey ${nomAuteurMessage}! Here is viper xmd lyrics`,
         },
         { quoted: ms }
       );

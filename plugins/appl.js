@@ -9,7 +9,7 @@ ezra({
   nomCom: 'apk',
   aliases: ['app', 'playstore'],
   reaction: '📂',
-  categorie: 'Fredi-Download'
+  categorie: 'viper-Download'
 }, async (groupId, client, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
@@ -47,11 +47,11 @@ ezra({
       mimetype: "application/vnd.android.package-archive",
       caption: `APPLICATION DOWLODED BY ☢️LUCKY MD X-FORCE☢️`,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363313124070136@newsletter',
+          newsletterName: "@FrediEzra",
+          serverMessageId: 143,
         }
       }
     }, { quoted: ms });
@@ -68,7 +68,7 @@ ezra({
   'nomCom': 'app',
   'aliases': ['apks', 'playstore'],
   'reaction': '🉑',
-  'categorie': 'Fredi-Download'
+  'categorie': 'viper-Download'
 }, async (groupId, client, context) => {
   const { repondre, arg, ms } = context;
 
@@ -137,7 +137,7 @@ ezra({
 
   // Extract owner and repo from the GitHub URL using a regex pattern
   let [, owner, repo] = githubLink.match(/(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i) || [];
-  
+
   // Check if owner and repo were extracted correctly
   if (!owner || !repo) {
     return repondre("Couldn't extract owner and repo from the provided link.");
@@ -161,11 +161,11 @@ ezra({
       mimetype: "application/zip",
       caption: `GITHUB ZIP BY ☢️LUCKY MD X-FORCE☢️`,
       contextInfo: {
-         isForwarded: true,
-         forwardedNewsletterMessageInfo: {
-         newsletterJid: '120363313124070136@newsletter',
-         newsletterName: "@FrediEzra",
-         serverMessageId: 143,
+        isForwarded: true,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: '120363313124070136@newsletter',
+          newsletterName: "@FrediEzra",
+          serverMessageId: 143,
         }
       }
     }, { quoted: ms });
