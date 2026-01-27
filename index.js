@@ -673,23 +673,23 @@ setTimeout(() => {
         zk.ev.on("connection.update", async (con) => {
             const { lastDisconnect, connection } = con;
             if (connection === "connecting") {
-                console.log("ℹ️ Lucky Xmd is connecting...");
+                console.log("ℹ️ viper xmd is connecting...");
             }
             else if (connection === 'open') {
-                console.log("🔮 Lucky Xmd Connected to your WhatsApp! ✨");
+                console.log("🔮 viper xmd Connected to your WhatsApp! ✨");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("👀 Lucky Xmd is Online 🕸\n\n");
+                console.log("👀 viper xmd is Online 🕸\n\n");
                 //chargement des luckycmd 
-                console.log("🛒 Initializing Lucky Xmd Plugins...\n");
+                console.log("🛒 Initializing viper xmd Plugins...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
                         try {
                             require(__dirname + "/plugins/" + fichier);
-                            console.log(fichier + "🛒🔑 Lucky Xmd plugins Installed Successfully✔️");
+                            console.log(fichier + "🛒🔑 viper xmd plugins Installed Successfully✔️");
                         }
                         catch (e) {
                             console.log(`${fichier} could not be installed due to : ${e}`);
@@ -708,7 +708,7 @@ setTimeout(() => {
                 else {
                     md = "undefined";
                 }
-                console.log("🏆🗡️ Lucky Xmd Plugins Installation Completed ✅");
+                console.log("🏆🗡️ viper xmd Plugins Installation Completed ✅");
 
                 await activateCrons();
 
