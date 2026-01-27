@@ -31,7 +31,7 @@ ezra({
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
 
-    const { repondre, prefixe } = commandeOptions;
+    const { repondre } = commandeOptions;
     const { cm } = require("../fredi/ezra");
 
     let coms = {};
@@ -49,52 +49,50 @@ ezra({
     moment.tz.setDefault("Africa/Dar_Es_Salam");
     const hour = moment().hour();
 
-    let greeting = "ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
-    if (hour >= 12 && hour < 18) greeting = "ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ";
-    else if (hour >= 18 && hour < 22) greeting = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
-    else greeting = "ɢᴏᴏᴅ ɴɪɢʜᴛ";
+    let greeting = "🌞 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
+    if (hour >= 12 && hour < 18) greeting = "🌤️ ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ";
+    else if (hour >= 18 && hour < 22) greeting = "🌆 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
+    else greeting = "🌙 ɢᴏᴏᴅ ɴɪɢʜᴛ";
 
     const temps = moment().format("HH:mm:ss");
     const date = moment().format("DD/MM/YYYY");
 
     const infoMsg = `
-╭═══════════════⟪ 🤖 VIPER INFO ⟫═══════════════╮
-┃ ✦ ʙᴏᴛ ɴᴀᴍᴇ     : *VIPER V2*
-┃ ✦ ᴘʀᴇғɪx       : [ ${s.PREFIXE} ]
-┃ ✦ ᴍᴏᴅᴇ         : *${mode}*
-┃ ✦ ᴅᴀᴛᴇ         : ${date}
-┃ ✦ ᴛɪᴍᴇ         : ${temps}
-┃ ✦ ᴘʟᴀᴛғᴏʀᴍ     : ${os.platform()}
-┃ ✦ ᴏᴡɴᴇʀ        : *T20_STARBOY*
-┃ ✦ ᴘʟᴜɢɪɴs      : ${cm.length}
-╰═══════════════⟪ ⚡ ⟫═══════════════╯
+✨━━━━━━━━━━━━━━━✨
+🤖 *VIPER V2 INFO* 🤖
+✨━━━━━━━━━━━━━━━✨
+📌 Prefix     : ${s.PREFIXE}
+📌 Mode       : ${mode}
+📌 Date       : ${date}
+📌 Time       : ${temps}
+📌 Platform   : ${os.platform()}
+📌 Owner      : T20_STARBOY
+📌 Plugins    : ${cm.length}
+✨━━━━━━━━━━━━━━━━━━━━━━━━✨
 `;
 
     let menuMsg = `
-✨ *${greeting}* ✨
+${greeting}
 `;
 
     for (const cat in coms) {
         menuMsg += `
-╭━━━━━━━━━━━━━━━⟪ ${toFancyUppercaseFont(cat)} ⟫━━━━━━━━━━━━━━━╮`;
-        for (const cmd of coms[cat]) {
-            menuMsg += `
-┃ 🔹 ${toFancyLowercaseFont(cmd)}`;
-        }
-        menuMsg += `
-╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
+🌟────────── 🌈 ${toFancyUppercaseFont(cat)} 🌈 ─────────🌟
 `;
+        for (const cmd of coms[cat]) {
+            menuMsg += `🔹 ${toFancyLowercaseFont(cmd)}\n`;
+        }
     }
 
     menuMsg += `
-╭──────────────────────────────────────────╮
-┃ 🌟 ᴍᴀᴅᴇ ʙʏ *BLAZE TECH* © 2025
-╰──────────────────────────────────────────╯
+✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
+💎 Made with ❤️ by *BLAZE TECH* © 2025
+✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
 `;
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" }, // ✅ ONLY UPPER THUMBNAIL
+            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
