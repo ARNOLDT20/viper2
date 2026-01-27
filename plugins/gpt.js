@@ -16,8 +16,8 @@ function getContextInfo({
       forwardingScore: 999,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: "120363313124070136@newsletter",
-        newsletterName: "@FrediEzra",
+        newsletterJid: "120363421014261315@newsletter",
+        newsletterName: "Blaze tech",
         serverMessageId: Math.floor(100000 + Math.random() * 900000),
       },
       externalAdReply: {
@@ -61,7 +61,7 @@ ezra(
         ms,
         "Please provide a message.",
         getContextInfo({
-          title: "💦LUCKY XFORCE💨 GPT",
+          title: "💦VIPER MD💨 GPT",
           userJid: auteurMessage,
           thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
         })
@@ -89,7 +89,7 @@ ezra(
         ms,
         "Please wait a moment before sending another GPT request.",
         getContextInfo({
-          title: "💦LUCKY XFORCE💨 GPT",
+          title: "💦VIPER MD💨 GPT",
           userJid: auteurMessage,
           thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
         })
@@ -112,7 +112,7 @@ ezra(
           {
             text: italicMessage,
             contextInfo: getContextInfo({
-              title: "💦LUCKY XFORCE💨 GPT",
+              title: "💦VIPER MD💨 GPT",
               userJid: auteurMessage,
               thumbnailUrl:
                 "https://files.catbox.moe/o4o7w2.png",
@@ -128,7 +128,7 @@ ezra(
           ms,
           "Failed to get a valid response from the AI.",
           getContextInfo({
-            title: "💦LUCKY XFORCE💨 GPT",
+            title: "💦VIPER MD💨 GPT",
             userJid: auteurMessage,
             thumbnailUrl:
               "https://files.catbox.moe/o4o7w2.png",
@@ -143,7 +143,7 @@ ezra(
         ms,
         "Sorry, an error occurred while processing your request. Please try again later.",
         getContextInfo({
-          title: "💦LUCKY XFORCE💨 GPT",
+          title: "💦VIPER MD💨 GPT",
           userJid: auteurMessage,
           thumbnailUrl:
             "https://files.catbox.moe/o4o7w2.png",
