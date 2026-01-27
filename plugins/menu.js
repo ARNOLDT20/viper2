@@ -54,46 +54,39 @@ ezra({
     const temps = moment().format('HH:mm:ss');
     const date = moment().format('DD/MM/YYYY');
     const img = 'https://files.catbox.moe/xqhfyv.webp';
-    const imgs = 'https://files.catbox.moe/6pe5qx.jpg';
+    const imgs = 'https://files.catbox.moe/xqhfyv.webp';
 
     const infoMsg = `
-╭═══════════════⟪ ✦ ⟫═══════════════╮
-┃ 🤖 ʙᴏᴛ ɴᴀᴍᴇ     :  *VIPER V2*
-┃ 🔑 ᴘʀᴇғɪx       :  [ ${s.PREFIXE} ]
-┃ 🌐 ᴍᴏᴅᴇ         :  *${mode}*
-┃ 📅 ᴅᴀᴛᴇ         :  ${date}
-┃ ⏰ ᴛɪᴍᴇ         :  ${temps}
-┃ 💻 ᴘʟᴀᴛғᴏʀᴍ     :  ${os.platform()}
-┃ 👑 ᴏᴡɴᴇʀ        :  *T20_STARBOY*
-┃ 🧩 ᴘʟᴜɢɪɴs      :  ${cm.length}
-╰═══════════════⟪ ✦ ⟫═══════════════╯
-`;
+╭───────────⊷
+*┋* *ʙᴏᴛ ɴᴀᴍᴇ :  VIPER V2*
+*┋* *ᴘʀᴇғɪx :* [ ${s.PREFIXE} ]
+*┋* *ᴍᴏᴅᴇ :* ${mode}
+*┋* *ᴅᴀᴛᴇ  :* ${date}
+*┋* *ᴘʟᴀᴛғᴏʀᴍ :* ${os.platform()}
+*┋* *ᴏᴡɴᴇʀ ɪs : T20_STARBOY*
+*┋* *ᴘʟᴜɢɪɴs ᴄᴍᴅ :* ${cm.length}
+╰───────────⊷\n`;
 
-    let menuMsg = `
-✨ *${greeting}* ✨
-`;
+    let menuMsg = ` *${greeting}*`;
 
     for (const cat in coms) {
         menuMsg += `
-╭━━━━━━━━━━━━━━━⟪ ${toFancyUppercaseFont(cat)} ⟫━━━━━━━━━━━━━━━╮`;
+*「 ${toFancyUppercaseFont(cat)} 」*
+╭───┈┈┈┈────⊷ `;
         for (const cmd of coms[cat]) {
-            menuMsg += `
-┃ ✦ ${toFancyLowercaseFont(cmd)}`;
+            menuMsg += `          
+*┋* ${toFancyLowercaseFont(cmd)}`;
         }
         menuMsg += `
-╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯
-`;
+╰───┈┈┈┈────⊷`;
     }
 
     menuMsg += `
-🌟━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌟
-   » ᴍᴀᴅᴇ ʙʏ *BLAZE TECH* © 2025
-🌟━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌟
-`;
+> @made by BLAZE TECH 2025\n`;
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/6pe5qx.jpg" },
+            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
