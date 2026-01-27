@@ -12,8 +12,8 @@
 // Website blazetech-website.vercel.com
 // Enjoy Movies update starboy-movies-library.vercel.app
 // WE AVAILABLE ALL TIME TO RECEIVE YOU REQUEST FOR ANY DEV OR UPCOMING DEV IN WHATSAPP BOTS
-// **bot start npm read starboy.server.com root @Lucky-md-xforce : "^3.0.0" ***//
-// prepare everything pass lucky
+// **bot start npm read starboy.server.com root @viper-md-xforce : "^3.0.0" ***//
+// prepare everything pass viper
 // starboy loaded updates 
 // bot name is VIPER V2
 
@@ -220,7 +220,7 @@ setTimeout(() => {
             var dev = [Fredi, Ezra].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
 
-            console.log("\nLUCKY XMD HACKED");
+            console.log("\nviper xmd hacked");
             console.log("=========== written message===========");
             if (verifGroupe) {
                 console.log("message provenant du groupe : " + nomGroupe);
@@ -683,7 +683,7 @@ setTimeout(() => {
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
                 console.log("👀 viper xmd is Online 🕸\n\n");
-                //chargement des luckycmd 
+                //chargement des vipercmd 
                 console.log("🛒 Initializing viper xmd Plugins...\n");
                 fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
