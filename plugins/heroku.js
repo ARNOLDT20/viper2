@@ -14,22 +14,22 @@ ezra(
       console.log('DEBUG - setvar triggered:', { arg, superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
+        return repondre(`viper xmd says only owner or viper can use this command 🚫`);
       }
 
       if (!arg[0] || !arg.join(' ').includes('=')) {
-        return repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255627417402\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+        return repondre(`viper xmd\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ Use this Format it right, like: .setvar OWNER_NUMBER=255627417402\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
       }
 
       const text = arg.join(' ').trim();
       const [key, value] = text.split('=').map(str => str.trim());
 
       if (!key || !value) {
-        return repondre(`LUCKY-MD-XFORCE says STOP WASTING MY TIME! Provide a valid KEY=VALUE pair!🙂‍↔️`);
+        return repondre(`viper xmd says STOP WASTING MY TIME! Provide a valid KEY=VALUE pair!🙂‍↔️`);
       }
 
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
-        return repondre(`LUCKY-MD-XFORCE says CONFIG ERROR! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it now!`);
+        return repondre(`viper xmd says CONFIG ERROR! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it now!`);
       }
 
       const Heroku = require("heroku-client");
@@ -40,7 +40,7 @@ ezra(
         body: { [key]: value },
       });
 
-      await repondre(`LUCKY-MD-XFORCE\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ BOOM! Heroku var ${key} set to ${value}! bot is rebooting...🛒\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
+      await repondre(`viper xmd\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈\n│❒ BOOM! Heroku var ${key} set to ${value}! bot is rebooting...🛒\n╰┈┈┈┈┈┈┈┈┈┈┈┈`);
 
     } catch (error) {
       console.error('setvar error:', error);
@@ -62,11 +62,11 @@ ezra(
       console.log('DEBUG - allvar triggered:', { superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
+        return repondre(`viper xmd says only owner or viper can use this command 🚫`);
       }
 
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
-        return repondre(`LUCKY-MD-XFORCE CONFIG DISASTER! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Sort it out! 🙂‍↕️`);
+        return repondre(`viper xmd CONFIG DISASTER! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Sort it out! 🙂‍↕️`);
       }
 
       const Heroku = require("heroku-client");
@@ -74,7 +74,7 @@ ezra(
       const baseURI = `/apps/${s.HEROKU_APP_NAME}`;
 
       const vars = await heroku.get(`${baseURI}/config-vars`);
-      let str = `LUCKY-MD-XFORCE VARS\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n`;
+      let str = `viper xmd VARS\n\n╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n`;
       for (const vr in vars) {
         str += `🛒 *${vr}* = ${vars[vr]}\n`;
       }
@@ -84,7 +84,7 @@ ezra(
 
     } catch (error) {
       console.error('allvar error:', error);
-      await repondre(`LUCKY-MD-XFORCE\nCRASH AND BURN! Error: ${error.message} 😡 Get it together!`);
+      await repondre(`viper xmd\nCRASH AND BURN! Error: ${error.message} 😡 Get it together!`);
     }
   }
 );
@@ -102,17 +102,17 @@ ezra(
       console.log('DEBUG - getvar triggered:', { arg, superUser });
 
       if (!superUser) {
-        return repondre(`LUCKY-MD-XFORCE says only owner or viper can use this command 🚫`);
+        return repondre(`viper xmd says only owner or viper can use this command 🚫`);
       }
 
       if (!arg[0]) {
-        return repondre(`LUCKY-MD-XFORCE\n Give me a variable name in CAPS! 😮‍💨`);
+        return repondre(`viper xmd\n Give me a variable name in CAPS! 😮‍💨`);
       }
 
       const varName = arg.join(' ').trim().toUpperCase();
 
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
-        return repondre(`LUCKY-MD-XFORCE\nCONFIG FAILURE! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it! 😵`);
+        return repondre(`viper xmd\nCONFIG FAILURE! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it! 😵`);
       }
 
       const Heroku = require("heroku-client");
@@ -128,7 +128,7 @@ ezra(
 
     } catch (error) {
       console.error('getvar error:', error);
-      await repondre(`LUCKY-MD-XFORXE\nTOTAL FAILURE! Error: ${error.message} 😡 Fix this mess!`);
+      await repondre(`viper xmd\nTOTAL FAILURE! Error: ${error.message} 😡 Fix this mess!`);
     }
   }
 );

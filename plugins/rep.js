@@ -37,7 +37,7 @@ ezra({
         },
         'forwardingScore': 0x3e7,
         'externalAdReply': {
-          'title': "LUCKY-MD-XFORCE",
+          'title': "viper xmd",
           'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
           'thumbnailUrl': "https://files.catbox.moe/o4o7w2.png",
           'mediaType': 0x1,
@@ -127,7 +127,7 @@ ezra({
   const { repondre, ms } = commandeOptions;
 
   // Simple version without API calls
-  const repoInfo = `🫧 *LUCKY-MD-XFORCE Repository* 🫧\n\n` +
+  const repoInfo = `🫧 *viper xmd Repository* 🫧\n\n` +
     `✨ *Stars:* 100+\n` +
     `🔱 *Forks:* 50+\n` +
     `👁️ *Watchers:* 200+\n\n` +

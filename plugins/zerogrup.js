@@ -64,8 +64,8 @@ ezra({ nomCom: "getallmembers", categorie: 'viper-Group', reaction: "📣" }, as
   let mess = Array.isArray(arg) && arg.length ? arg.join(' ') : 'No message provided';
   let membresGroupe = verifGroupe && infosGroupe ? infosGroupe.participants || [] : [];
 
-  let tag = `☢️LUCKY-MD-XFORCE☢️\n\n┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n  
-        🌟 *GROUP MEMBERS GIDS* 🌟
+  let tag = `☢️viper xmd☢️\n\n┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n  
+      🌟 *GROUP MEMBERS GIDS* 🌟
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n
 > regards frediezra®\n\n`;
 
@@ -110,7 +110,7 @@ ezra({ nomCom: "tagall", categorie: 'viper-Group', reaction: "📯" }, async (de
   let membresGroupe = verifGroupe ? await infosGroupe.participants : ""
   var tag = "";
   tag += `┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n  
-        🌟 *LUCKY-MD-XFORCE TAGS* 🌟
+      🌟 *viper xmd TAGS* 🌟
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈\n
 👥 Group : ${nomGroupe} 🚀 
 👤 Autor : *${nomAuteurMessage}* 👋 
@@ -330,7 +330,7 @@ ezra({ nomCom: "remove", categorie: 'viper-Group', reaction: "😱" }, async (de
             if (admin == false) {
               const gifLink = "https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/remover.gif"
               var sticker = new Sticker(gifLink, {
-                pack: 'LUCKY-MD-XFORCE', // The pack name
+                pack: 'viper xmd', // The pack name
                 author: nomAuteurMessage, // The author name
                 type: StickerTypes.FULL, // The sticker type
                 categories: ['🤩', '🎉'], // The sticker category
@@ -741,7 +741,7 @@ ezra({ nomCom: "tag", categorie: 'viper-Group', reaction: "🎤" }, async (dest,
         let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
-          pack: 'LUCKY-MD-XFORCE',
+          pack: 'viper xmd',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",
@@ -851,7 +851,7 @@ ezra({ nomCom: "hidetag", categorie: 'viper-Group', reaction: "🎤" }, async (d
         let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
-          pack: 'LUCKY-MD-XFORCE',
+          pack: 'viper xmd',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",
@@ -961,7 +961,7 @@ ezra({ nomCom: "htag", categorie: 'viper-Group', reaction: "🎤" }, async (dest
         let media = await zk.downloadAndSaveMediaMessage(msgRepondu.stickerMessage)
 
         let stickerMess = new Sticker(media, {
-          pack: 'LUCKY-MD-XFORCE',
+          pack: 'viper xmd',
           type: StickerTypes.CROPPED,
           categories: ["🤩", "🎉"],
           id: "12345",

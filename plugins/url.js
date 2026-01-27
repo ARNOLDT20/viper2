@@ -146,7 +146,7 @@ ezra({ nomCom: "sticker", categorie: "viper-Conversion", reaction: "👨🏿‍�
     }
 
     sticker = new Sticker(buffer, {
-      pack: "LUCKY-MD-XFORCE",
+      pack: "viper xmd",
       author: nomAuteurMessage,
       type:
         arg.includes("crop") || arg.includes("c")
@@ -170,7 +170,7 @@ ezra({ nomCom: "sticker", categorie: "viper-Conversion", reaction: "👨🏿‍�
     }
 
     sticker = new Sticker(buffer, {
-      pack: "LUCKY-MD-XFORCE", // pack stick
+      pack: "viper xmd", // pack stick
       author: nomAuteurMessage, // name of the author of the stick
       type:
         arg.includes("-r") || arg.includes("-c")
@@ -328,7 +328,7 @@ ezra({ nomCom: "write", categorie: "viper-Conversion", reaction: "👨🏿‍�
     // Create the sticker
     const stickerMess = new Sticker(meme, {
       pack: nomAuteurMessage,
-      author: 'LUCKY-XFORCE',
+      author: 'viper xmd',
       type: StickerTypes.FULL,
       categories: ["🤩", "🎉"],
       id: "12345",

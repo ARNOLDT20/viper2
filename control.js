@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => {
-  res.send("LUCKY MD XFORCE💨 IS ALIVE 🫧");
+  res.send("viper xmd💨 IS ALIVE 🫧");
 });
 // Add port listening
 app.listen(PORT, () => {
@@ -164,7 +164,7 @@ setTimeout(() => {
       "👀 Watching you like console logs 👨‍💻",
       "📌 Daily desk goals: Build, Break, Fix, Repeat.",
       "🎭 This bot has more personalities than your ex.",
-      "👑 Bot: LUCKY-MD-XFORCE | AI: Fredi AI",
+      "👑 Bot: viper xmd | AI: Fredi AI",
       "✨ Today is yours. Make it *legendary*.",
       "📊 Performance: 100% Efficiency (maybe 💀)",
       "⚙️ Built with ❤️ by FredieTech",
@@ -179,7 +179,7 @@ setTimeout(() => {
         const currentDateTime = getCurrentDateTime();
 
         const dynamicLine = bioLines[bioIndex];
-        const bioText = `🤖 Lucky Md Xforce is Active\n📅 ${currentDateTime}\n${dynamicLine}`;
+        const bioText = `🤖 viper xmd is Active\n📅 ${currentDateTime}\n${dynamicLine}`;
 
         await zk.updateProfileStatus(bioText); // Update the bio
         console.log(`✅ Updated Bio:\n${bioText}`);
