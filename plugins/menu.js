@@ -30,7 +30,8 @@ ezra({
     reaction: "☢️",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
-    const { repondre, prefixe, nomAuteurMessage } = commandeOptions;
+
+    const { repondre, prefixe } = commandeOptions;
     const { cm } = require("../fredi/ezra");
 
     let coms = {};
@@ -93,7 +94,7 @@ ezra({
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
+            image: { url: "https://files.catbox.moe/xqhfyv.webp" }, // ✅ ONLY UPPER THUMBNAIL
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
@@ -102,14 +103,6 @@ ezra({
                     newsletterJid: "120363421014261315@newsletter",
                     newsletterName: "Blaze tech",
                     serverMessageId: -1
-                },
-                externalAdReply: {
-                    title: "☢️ VIPER XMD ☢️",
-                    body: "🔑 Command Menu",
-                    thumbnailUrl: "https://files.catbox.moe/xqhfyv.webp",
-                    sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
-                    mediaType: 1,
-                    renderLargerThumbnail: true
                 }
             }
         });
