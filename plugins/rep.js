@@ -22,34 +22,61 @@ ezra({
   };
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
-    await _0x2d8d4e.sendMessage(_0x12a838, {
-      'audio': {
-        'url': "https://files.catbox.moe/se9mii.mp3"
-      },
-      'mimetype': "audio/mp4",
-      'ptt': true,
-      'contextInfo': {
-        'isForwarded': true,
-        'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363420222821450@newsletter",
-          'newsletterName': "BLAZE TECH",
-          'serverMessageId': 0x8f
-        },
-        'forwardingScore': 0x3e7,
-        'externalAdReply': {
-          'title': "viper xmd",
-          'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
-          'thumbnailUrl': "https://files.catbox.moe/o4o7w2.png",
-          'mediaType': 0x1,
-          'renderSmallThumbnail': true
+    const audioUrl = "https://files.catbox.moe/se9mii.mp3";
+    let audioAvailable = false;
+    try {
+      const head = await axios.head(audioUrl, { timeout: 5000 });
+      audioAvailable = head && head.status && head.status === 200;
+    } catch (err) {
+      audioAvailable = false;
+    }
+
+    if (audioAvailable) {
+      await _0x2d8d4e.sendMessage(_0x12a838, {
+        audio: { url: audioUrl },
+        mimetype: "audio/mpeg",
+        ptt: true,
+        contextInfo: {
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: "120363421014261315@newsletter",
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 0x8f
+          },
+          forwardingScore: 0x3e7,
+          externalAdReply: {
+            title: "viper xmd",
+            body: `⚫ Pong: ${_0x4950ba}ms\n📅 Date: ${_0x4c687e}\n⏰ Time: ${_0xb5466b}`,
+            thumbnailUrl: set.URL || "https://files.catbox.moe/xqhfyv.webp",
+            mediaType: 1,
+            renderSmallThumbnail: true
+          }
         }
-      }
-    }, {
-      'quoted': _0x5d2f0c
-    });
+      }, { quoted: _0x5d2f0c });
+    } else {
+      await _0x2d8d4e.sendMessage(_0x12a838, {
+        text: `⚫ Pong: ${_0x4950ba}ms\n📅 Date: ${_0x4c687e}\n⏰ Time: ${_0xb5466b}\n\n⚠️ Audio not available.`,
+        contextInfo: {
+          isForwarded: true,
+          forwardedNewsletterMessageInfo: {
+            newsletterJid: "120363421014261315@newsletter",
+            newsletterName: "BLAZE TECH",
+            serverMessageId: 0x8f
+          },
+          forwardingScore: 0x3e7,
+          externalAdReply: {
+            title: "viper xmd",
+            body: `Ping result`,
+            thumbnailUrl: set.URL || "https://files.catbox.moe/xqhfyv.webp",
+            mediaType: 1,
+            renderSmallThumbnail: true
+          }
+        }
+      }, { quoted: _0x5d2f0c });
+    }
   } catch (_0x1149fe) {
     console.log("❌ Ping Command Error: " + _0x1149fe);
-    repondre("❌ Error: " + _0x1149fe);
+    if (typeof repondre === 'function') repondre("❌ Error: " + _0x1149fe);
   }
 });
 
@@ -78,17 +105,17 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: -1
         },
         forwardingScore: 999,
         externalAdReply: {
-          title: "LUCKY MD XFORCE",
+          title: "VIPER MD",
           body: "🫧 repo link request 🫧",
           thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
           mediaType: 1,
-          sourceUrl: data.html_url || "https://github.com/mr-X-force/LUCKY-MD-XFORCE"
+          sourceUrl: data.html_url || "https://github.com/ARNOLDT20/Viper2",
         }
       }
     });
@@ -101,7 +128,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
           forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363420222821450@newsletter",
+          newsletterJid: "120363421014261315@newsletter",
           newsletterName: "BLAZE TECH",
           serverMessageId: -1
         }
@@ -131,16 +158,39 @@ ezra({
     `✨ *Stars:* 100+\n` +
     `🔱 *Forks:* 50+\n` +
     `👁️ *Watchers:* 200+\n\n` +
-    `🔗 *GitHub:* https://github.com/mr-X-force/LUCKY-MD-XFORCE\n\n` +
+    `🔗 *GitHub:* https://github.com/ARNOLDT20/Viper2\n\n` +
     `_Click buttons below to interact_`;
 
   await zk.sendMessage(dest, {
     text: repoInfo,
-    footer: "FrediEzra Tech Info",
+    footer: "blaze Tech Info",
     buttons: [
       { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
       { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },
       { buttonId: 'id3', buttonText: { displayText: '📁 Fork Now' } }
     ]
   }, { quoted: ms });
+  try {
+    await zk.sendMessage(dest, {
+      text: repoInfo,
+      footer: "blaze Tech Info",
+      buttons: [
+        { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
+        { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },
+        { buttonId: 'id3', buttonText: { displayText: '📁 Fork Now' } }
+      ],
+      contextInfo: {
+        externalAdReply: {
+          title: 'viper xmd',
+          body: 'Repository',
+          thumbnailUrl: set.URL || 'https://files.catbox.moe/xqhfyv.webp',
+          mediaType: 1,
+          sourceUrl: 'https://github.com/ARNOLDT20/Viper2'
+        }
+      }
+    }, { quoted: ms });
+  } catch (err) {
+    console.error('Error sending repo buttons:', err);
+    if (typeof repondre === 'function') await repondre('❌ Failed to send repo info.');
+  }
 });

@@ -13,7 +13,7 @@ const getNewsletterContext = (title = '', userJid = '', thumbnailUrl = '', sourc
   forwardingScore: 999,
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
-    newsletterJid: "120363420222821450@newsletter",
+    newsletterJid: "120363421014261315@newsletter",
     newsletterName: "BLAZE TECH",
     serverMessageId: Math.floor(100000 + Math.random() * 900000),
   },

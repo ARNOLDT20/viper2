@@ -130,7 +130,7 @@ ezra({ nomCom: "bible-list", categorie: "viper-Menu" }, async (dest, zk, command
             contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363420222821450@newsletter",
+                    newsletterJid: "120363421014261315@newsletter",
                     newsletterName: "Blaze tech",
                     serverMessageId: -1
                 },

@@ -20,7 +20,7 @@ module.exports = {
     AUTO_REACT: process.env.AUTO_REACTION || "no",
     AUTO_STICKER: process.env.AUTO_STICKER || "no",
     AUTO_SAVE_CONTACTS: process.env.AUTO_SAVE_CONTACTS || 'no',
-    URL: process.env.URL || "https://files.catbox.moe/o4o7w2.png",
+    URL: process.env.URL || "https://files.catbox.moe/xqhfyv.webp",
     AUTO_REACT_STATUS: process.env.AUTO_REACT_STATUS || 'no',
     CHAT_BOT: process.env.CHAT_BOT || "no",
     AUTO_READ_MESSAGES: process.env.AUTO_READ_MESSAGES || "no",

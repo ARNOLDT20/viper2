@@ -86,12 +86,12 @@ ezra({
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/o4o7w2.png" },
+            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363420222821450@newsletter",
+                    newsletterJid: "120363421014261315@newsletter",
                     newsletterName: "Blaze tech",
                     serverMessageId: -1
                 },
@@ -99,7 +99,7 @@ ezra({
                 externalAdReply: {
                     title: "☢️viper xmd☢️",
                     body: "🔑🗝️ Command List",
-                    thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
+                    thumbnailUrl: "https://files.catbox.moe/xqhfyv.webp",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
                     renderLargerThumbnail: true

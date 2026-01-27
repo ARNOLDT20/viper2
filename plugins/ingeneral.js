@@ -22,7 +22,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -49,7 +49,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -65,7 +65,7 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363420222821450@newsletter',
+            newsletterJid: '120363421014261315@newsletter',
             newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
@@ -91,7 +91,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -104,7 +104,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -142,7 +142,7 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363420222821450@newsletter',
+            newsletterJid: '120363421014261315@newsletter',
             newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
@@ -191,7 +191,7 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363420222821450@newsletter',
+            newsletterJid: '120363421014261315@newsletter',
             newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
@@ -250,7 +250,7 @@ Regards ${conf.OWNER_NAME} `;
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -307,7 +307,7 @@ ezra({
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         },
@@ -338,7 +338,7 @@ You can use this email for temporary purposes. I will notify you if you receive 
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         }
@@ -363,7 +363,7 @@ You can use this email for temporary purposes. I will notify you if you receive 
               contextInfo: {
                 isForwarded: true,
                 forwardedNewsletterMessageInfo: {
-                  newsletterJid: '120363420222821450@newsletter',
+                  newsletterJid: '120363421014261315@newsletter',
                   newsletterName: "BLAZE TECH",
                   serverMessageId: 143,
                 }
@@ -387,7 +387,7 @@ You can use this email for temporary purposes. I will notify you if you receive 
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363420222821450@newsletter',
+            newsletterJid: '120363421014261315@newsletter',
             newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           }
@@ -402,7 +402,7 @@ You can use this email for temporary purposes. I will notify you if you receive 
       contextInfo: {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363420222821450@newsletter',
+          newsletterJid: '120363421014261315@newsletter',
           newsletterName: "BLAZE TECH",
           serverMessageId: 143,
         }
@@ -470,7 +470,7 @@ ezra({
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
-            newsletterJid: '120363420222821450@newsletter',
+            newsletterJid: '120363421014261315@newsletter',
             newsletterName: "BLAZE TECH",
             serverMessageId: 143,
           },
