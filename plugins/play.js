@@ -2,285 +2,333 @@ const { ezra } = require("../fredi/ezra");
 const axios = require('axios');
 const ytSearch = require('yt-search');
 const conf = require(__dirname + '/../set');
+const { Catbox } = require("node-catbox");
+const fs = require('fs-extra');
 const { repondre } = require(__dirname + "/../fredi/context");
 
-// ContextInfo configuration
-/*const getContextInfo = (title = '', userJid = '', thumbnailUrl = '', sourceUrl = '') => ({
+// Initialize Catbox
+const catbox = new Catbox();
+
+// Common contextInfo configuration
+const getContextInfo = (title = '', userJid = '', thumbnailUrl = '') => ({
   mentionedJid: [userJid],
   forwardingScore: 999,
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
-    newsletterJid: "120363266249040649@newsletter",
-    newsletterName: "Keith Support 🔥",
+    newsletterJid: "120363421014261315@newsletter",
+    newsletterName: "Blaze tech",
     serverMessageId: Math.floor(100000 + Math.random() * 900000),
   },
   externalAdReply: {
     showAdAttribution: true,
-    title: conf.BOT || 'Music Downloader',
+    title: conf.BOT || 'YouTube Downloader',
     body: title || "Media Downloader",
     thumbnailUrl: thumbnailUrl || conf.URL || '',
-    sourceUrl: sourceUrl || '',
+    sourceUrl: conf.GURL || '',
     mediaType: 1,
     renderLargerThumbnail: false
   }
-});*/
+});
 
-// From Events.js
+// Function to upload a file to Catbox and return the URL
+async function uploadToCatbox(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) {
+      throw new Error("File does not exist");
+    }
+    const uploadResult = await catbox.uploadFile({ path: filePath });
+    return uploadResult || null;
+  } catch (error) {
+    console.error('Catbox upload error:', error);
+    throw new Error(`Failed to upload file: ${error.message}`);
+  }
+}
 
+// Common function for YouTube search
+async function searchYouTube(query) {
+  try {
+    const searchResults = await ytSearch(query);
+    if (!searchResults?.videos?.length) {
+      throw new Error('No video found for the specified query.');
+    }
+    return searchResults.videos[0];
+  } catch (error) {
+    console.error('YouTube search error:', error);
+    throw new Error(`YouTube search failed: ${error.message}`);
+  }
+}
+
+// Common function for downloading media from APIs
+async function downloadFromApis(apis) {
+  for (const api of apis) {
+    try {
+      const response = await axios.get(api, { timeout: 15000 });
+      if (response.data?.success || response.data?.status === 'success' || response.data?.url) {
+        return response.data;
+      }
+    } catch (error) {
+      console.warn(`API ${api} failed:`, error.message);
+      continue;
+    }
+  }
+  throw new Error('Failed to retrieve download URL from all sources.');
+}
+
+// Audio download command with new API endpoints
 ezra({
   nomCom: "play",
   aliases: ["song", "playdoc", "audio", "mp3"],
-  categorie: "Search",
-  reaction: "🎸"
+  categorie: "Fredi-Download",
+  reaction: "🎵"
 }, async (dest, zk, commandOptions) => {
-  const { arg, ms, repondre } = commandOptions;
-
-  // Check if a query is provided
-  if (!arg[0]) {
-    return repondre("😐 Please provide a audio name or YouTube link.");
-  }
-
-  let videoUrl, videoInfo;
-  const query = arg.join(" ");
+  const { arg, ms, userJid } = commandOptions;
 
   try {
-    // Check if it's a YouTube URL
-    if (query.match(/(youtube\.com|youtu\.be)/i)) {
-      videoUrl = query;
-      // Extract video ID for getting info
-      const videoId = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i)?.[1];
-      videoInfo = await ytSearch({ videoId });
-    } else {
-      // Perform a YouTube search based on the query
-      const searchResults = await ytSearch(query);
-
-      // Check if any videos were found
-      if (!searchResults || !searchResults.videos.length) {
-        return repondre('⚠️ No audio found for the specified query.');
-      }
-
-      videoInfo = searchResults.videos[0];
-      videoUrl = videoInfo.url;
+    if (!arg[0]) {
+      return repondre(zk, dest, ms, "Please provide a song name.");
     }
 
-    // Function to get download data from APIs
-    const getDownloadData = async (url) => {
-      try {
-        const response = await axios.get(url, { timeout: 10000 });
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching data from API:', error.message);
-        return { status: false };
-      }
-    };
+    const query = arg.join(" ");
+    const video = await searchYouTube(query);
 
-    // List of APIs to try in order
+    await zk.sendMessage(dest, {
+      text: "⬇️ Downloading audio... This may take a moment...",
+      contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)
+    }, { quoted: ms });
+
+    // Using new API endpoints for audio
     const apis = [
-      `https://apis-keith.vercel.app/download/ytmp3?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/mp3?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/dlmp3?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/audio?url=${encodeURIComponent(videoUrl)}`
+      `https://api.ootaizumi.web.id/downloader/youtube/v2?url=${encodeURIComponent(video.url)}&type=audio`,
+      `https://api.ootaizumi.web.id/downloader/youtube?url=${encodeURIComponent(video.url)}&type=audio`,
+      `https://api.ootaizumi.web.id/downloader/youtube/play?query=${encodeURIComponent(query)}&type=audio`
     ];
 
-    let downloadUrl;
-    
-    // Try each API in order until we get a successful response
-    for (const api of apis) {
-      const data = await getDownloadData(api);
-      
-      if (data && data.status) {
-        // Extract download URL based on API response structure
-        if (api.includes('ytmp3')) {
-          downloadUrl = data.result.url;
-        } else if (api.includes('mp3')) {
-          downloadUrl = data.result.downloadUrl;
-        } else if (api.includes('dlmp3')) {
-          downloadUrl = data.result.data.downloadUrl;
-        } else if (api.includes('audio')) {
-          downloadUrl = data.result;
-        }
-        
-        if (downloadUrl) break;
-      }
+    const downloadData = await downloadFromApis(apis);
+
+    // Handle different API response formats
+    let downloadUrl, title;
+    if (downloadData.url) {
+      downloadUrl = downloadData.url;
+      title = video.title || "Audio Track";
+    } else if (downloadData.result?.url) {
+      downloadUrl = downloadData.result.url;
+      title = downloadData.result.title || video.title;
+    } else if (downloadData.download_url) {
+      downloadUrl = downloadData.download_url;
+      title = downloadData.title || video.title;
+    } else {
+      throw new Error('Invalid API response format');
     }
 
-    // If no download URL was found
-    if (!downloadUrl) {
-      return repondre('⚠️ Failed to retrieve download URL from all sources. Please try again later.');
-    }
-
-    // Prepare the message payloads for both audio and document
     const messagePayloads = [
-      // Audio message
       {
         audio: { url: downloadUrl },
-        mimetype: 'audio/mpeg',
-        contextInfo: {
-          externalAdReply: {
-            title: videoInfo.title || 'Lucky Audio Download',
-            body: 'Powered by fredi ai site',
-            mediaType: 1,
-            sourceUrl: conf.GURL || videoUrl,
-            thumbnailUrl: videoInfo.thumbnail || 'https://i.ytimg.com/vi/2WmBa1CviYE/hqdefault.jpg',
-            renderLargerThumbnail: false
-          }
-        }
+        mimetype: 'audio/mp4',
+        caption: `🎵 *${title}*`,
+        contextInfo: getContextInfo(title, userJid, video.thumbnail)
       },
-      // Document message (mp3 file)
       {
         document: { url: downloadUrl },
         mimetype: 'audio/mpeg',
-        fileName: `${videoInfo.title.replace(/[^\w\s]/gi, '')}.mp3` || 'audio.mp3',
-        contextInfo: {
-          externalAdReply: {
-            title: videoInfo.title || 'Audio Documents Download',
-            body: 'Document version - Powered by Fredi Ai site',
-            mediaType: 1,
-            sourceUrl: conf.GURL || videoUrl,
-            thumbnailUrl: videoInfo.thumbnail || 'https://i.ytimg.com/vi/2WmBa1CviYE/hqdefault.jpg',
-            renderLargerThumbnail: false
-          }
-        }
+        fileName: `${title}.mp3`.replace(/[^\w\s.-]/gi, ''),
+        caption: `📁 *${title}* (Document)`,
+        contextInfo: getContextInfo(title, userJid, video.thumbnail)
       }
     ];
 
-    // Send both audio and document versions
     for (const payload of messagePayloads) {
       await zk.sendMessage(dest, payload, { quoted: ms });
     }
 
   } catch (error) {
-    console.error('⚠️ Error during download process:', error);
-    return repondre(`⚠️ Download failed due to an error: ${error.message || error}`);
+    console.error('Audio download error:', error);
+    repondre(zk, dest, ms, `Download failed: ${error.message}`);
   }
 });
 
-
-// Video downloader 
+// Video download command with new API endpoints
 ezra({
   nomCom: "video",
-  aliases: ["vdoc", "videodoc", "videos", "mp4"],
-  categorie: "Fredi-Search",
-  reaction: "🎬"
+  aliases: ["videodoc", "film", "mp4"],
+  categorie: "Fredi-Download",
+  reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
-  const { arg, ms, repondre } = commandOptions;
-
-  // Check if a query is provided
-  if (!arg[0]) {
-    return repondre("😐 Please provide a video name or YouTube link.");
-  }
-
-  let videoUrl, videoInfo;
-  const query = arg.join(" ");
+  const { arg, ms, userJid } = commandOptions;
 
   try {
-    // Check if it's a YouTube URL
-    if (query.match(/(youtube\.com|youtu\.be)/i)) {
-      videoUrl = query;
-      // Extract video ID for getting info
-      const videoId = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i)?.[1];
-      videoInfo = await ytSearch({ videoId });
-    } else {
-      // Perform a YouTube search based on the query
-      const searchResults = await ytSearch(query);
-
-      // Check if any videos were found
-      if (!searchResults || !searchResults.videos.length) {
-        return repondre('⚠️ No video found for the specified query.');
-      }
-
-      videoInfo = searchResults.videos[0];
-      videoUrl = videoInfo.url;
+    if (!arg[0]) {
+      return repondre(zk, dest, ms, "Please provide a video name.");
     }
 
-    // Function to get download data from APIs
-    const getDownloadData = async (url) => {
-      try {
-        const response = await axios.get(url, { timeout: 10000 });
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching data from API:', error.message);
-        return { status: false };
-      }
-    };
+    const query = arg.join(" ");
+    const video = await searchYouTube(query);
 
-    // List of APIs to try in order
+    await zk.sendMessage(dest, {
+      text: "⬇️ Downloading video... This may take a moment...",
+      contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)
+    }, { quoted: ms });
+
+    // Using new API endpoints for video
     const apis = [
-      `https://apis-keith.vercel.app/download/ytmp4?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/mp4?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/dlmp4?url=${encodeURIComponent(videoUrl)}`,
-      `https://apis-keith.vercel.app/download/video?url=${encodeURIComponent(videoUrl)}`
+      `https://api.ootaizumi.web.id/downloader/youtube/v2?url=${encodeURIComponent(video.url)}&type=video`,
+      `https://api.ootaizumi.web.id/downloader/youtube?url=${encodeURIComponent(video.url)}&type=video`,
+      `https://api.ootaizumi.web.id/downloader/youtube/play?query=${encodeURIComponent(query)}&type=video`
     ];
 
-    let downloadUrl;
-    
-    // Try each API in order until we get a successful response
-    for (const api of apis) {
-      const data = await getDownloadData(api);
-      
-      if (data && data.status) {
-        // Extract download URL based on API response structure
-        if (api.includes('ytmp4')) {
-          downloadUrl = data.result.url;
-        } else if (api.includes('mp4')) {
-          downloadUrl = data.result.downloadUrl;
-        } else if (api.includes('dlmp4')) {
-          downloadUrl = data.result.data.downloadUrl;
-        } else if (api.includes('video')) {
-          downloadUrl = data.result;
-        }
-        
-        if (downloadUrl) break;
-      }
+    const downloadData = await downloadFromApis(apis);
+
+    // Handle different API response formats
+    let downloadUrl, title;
+    if (downloadData.url) {
+      downloadUrl = downloadData.url;
+      title = video.title || "Video";
+    } else if (downloadData.result?.url) {
+      downloadUrl = downloadData.result.url;
+      title = downloadData.result.title || video.title;
+    } else if (downloadData.download_url) {
+      downloadUrl = downloadData.download_url;
+      title = downloadData.title || video.title;
+    } else {
+      throw new Error('Invalid API response format');
     }
 
-    // If no download URL was found
-    if (!downloadUrl) {
-      return repondre('⚠️ Failed to retrieve download URL from all sources. Please try again later.');
-    }
-
-    // Prepare the message payloads for both audio and document
     const messagePayloads = [
-      // Audio message
       {
-        audio: { url: downloadUrl },
-        mimetype: 'video/mpeg',
-        contextInfo: {
-          externalAdReply: {
-            title: videoInfo.title || 'Lucky Video Download',
-            body: 'Powered by fredi ai site',
-            mediaType: 1,
-            sourceUrl: conf.GURL || videoUrl,
-            thumbnailUrl: videoInfo.thumbnail || 'https://i.ytimg.com/vi/2WmBa1CviYE/hqdefault.jpg',
-            renderLargerThumbnail: false
-          }
-        }
+        video: { url: downloadUrl },
+        mimetype: 'video/mp4',
+        caption: `🎥 *${title}*`,
+        contextInfo: getContextInfo(title, userJid, video.thumbnail)
       },
-      // Document message (mp4 file)
       {
         document: { url: downloadUrl },
-        mimetype: 'video/mpeg',
-        fileName: `${videoInfo.title.replace(/[^\w\s]/gi, '')}.mp4` || 'audio.mp4',
-        contextInfo: {
-          externalAdReply: {
-            title: videoInfo.title || 'Video Documents Download',
-            body: 'Document version - Powered by Fredi Ai site',
-            mediaType: 1,
-            sourceUrl: conf.GURL || videoUrl,
-            thumbnailUrl: videoInfo.thumbnail || 'https://i.ytimg.com/vi/2WmBa1CviYE/hqdefault.jpg',
-            renderLargerThumbnail: false
-          }
-        }
+        mimetype: 'video/mp4',
+        fileName: `${title}.mp4`.replace(/[^\w\s.-]/gi, ''),
+        caption: `📁 *${title}* (Document)`,
+        contextInfo: getContextInfo(title, userJid, video.thumbnail)
       }
     ];
 
-    // Send both audio and document versions
     for (const payload of messagePayloads) {
       await zk.sendMessage(dest, payload, { quoted: ms });
     }
 
   } catch (error) {
-    console.error('⚠️ Error during download process:', error);
-    return repondre(`⚠️ Download failed due to an error: ${error.message || error}`);
+    console.error('Video download error:', error);
+    repondre(zk, dest, ms, `Download failed: ${error.message}`);
+  }
+});
+
+// Direct search and download command using the /play endpoint
+ezra({
+  nomCom: "ytsearch",
+  aliases: ["youtube", "yt"],
+  categorie: "Fredi-Download",
+  reaction: "🔍"
+}, async (dest, zk, commandOptions) => {
+  const { arg, ms, userJid } = commandOptions;
+
+  try {
+    if (!arg[0]) {
+      return repondre(zk, dest, ms, "Please provide a search query.");
+    }
+
+    const query = arg.join(" ");
+
+    await zk.sendMessage(dest, {
+      text: "🔍 Searching YouTube...",
+      contextInfo: getContextInfo("Searching", userJid)
+    }, { quoted: ms });
+
+    // Direct search using the /play endpoint
+    const apiUrl = `https://api.ootaizumi.web.id/downloader/youtube/play?query=${encodeURIComponent(query)}`;
+
+    const response = await axios.get(apiUrl, { timeout: 15000 });
+
+    if (!response.data || (!response.data.url && !response.data.result?.url)) {
+      throw new Error('No results found or invalid API response');
+    }
+
+    // Handle response format
+    let downloadData;
+    if (response.data.result) {
+      downloadData = response.data;
+    } else {
+      downloadData = response.data;
+    }
+
+    let downloadUrl, title, thumbnail;
+
+    if (downloadData.result?.url) {
+      downloadUrl = downloadData.result.url;
+      title = downloadData.result.title || query;
+      thumbnail = downloadData.result.thumbnail || '';
+    } else if (downloadData.url) {
+      downloadUrl = downloadData.url;
+      title = downloadData.title || query;
+      thumbnail = downloadData.thumbnail || '';
+    } else {
+      downloadUrl = downloadData.download_url || downloadData.url;
+      title = downloadData.title || query;
+      thumbnail = downloadData.thumbnail || '';
+    }
+
+    // Check if it's audio or video based on file extension or API response
+    const isAudio = downloadUrl.includes('.mp3') || (downloadData.type === 'audio');
+
+    const messagePayload = isAudio ? {
+      audio: { url: downloadUrl },
+      mimetype: 'audio/mp4',
+      caption: `🎵 *${title}*`,
+      contextInfo: getContextInfo(title, userJid, thumbnail)
+    } : {
+      video: { url: downloadUrl },
+      mimetype: 'video/mp4',
+      caption: `🎥 *${title}*`,
+      contextInfo: getContextInfo(title, userJid, thumbnail)
+    };
+
+    await zk.sendMessage(dest, messagePayload, { quoted: ms });
+
+  } catch (error) {
+    console.error('YouTube search error:', error);
+    repondre(zk, dest, ms, `Search failed: ${error.message}`);
+  }
+});
+
+// URL upload command (unchanged, but kept for completeness)
+ezra({
+  nomCom: 'url-link',
+  categorie: "Fredi-Download",
+  reaction: '👨🏿‍💻'
+}, async (dest, zk, commandOptions) => {
+  const { msgRepondu, userJid, ms } = commandOptions;
+
+  try {
+    if (!msgRepondu) {
+      return repondre(zk, dest, ms, "Please mention an image, video, or audio.");
+    }
+
+    const mediaTypes = [
+      'videoMessage', 'gifMessage', 'stickerMessage',
+      'documentMessage', 'imageMessage', 'audioMessage'
+    ];
+
+    const mediaType = mediaTypes.find(type => msgRepondu[type]);
+    if (!mediaType) {
+      return repondre(zk, dest, ms, "Unsupported media type.");
+    }
+
+    const mediaPath = await zk.downloadAndSaveMediaMessage(msgRepondu[mediaType]);
+    const fileUrl = await uploadToCatbox(mediaPath);
+    fs.unlinkSync(mediaPath);
+
+    await zk.sendMessage(dest, {
+      text: `✅ Here's your file URL:\n${fileUrl}`,
+      contextInfo: getContextInfo("Upload Complete", userJid)
+    });
+
+  } catch (error) {
+    console.error("Upload error:", error);
+    repondre(zk, dest, ms, `Upload failed: ${error.message}`);
   }
 });
