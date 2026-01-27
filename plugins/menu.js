@@ -54,7 +54,7 @@ ezra({
     const temps = moment().format('HH:mm:ss');
     const date = moment().format('DD/MM/YYYY');
     const img = 'https://files.catbox.moe/xqhfyv.webp';
-    const imgs = 'https://files.catbox.moe/xqhfyv.webp';
+    const imgs = 'https://files.catbox.moe/6pe5qx.jpg';
 
     const infoMsg = `
 ╭═══════════════⟪ ✦ ⟫═══════════════╮
@@ -93,7 +93,7 @@ ezra({
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
+            image: { url: "https://files.catbox.moe/6pe5qx.jpg" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
