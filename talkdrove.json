@@ -1,7 +1,7 @@
 {
   "bot-name": "LUCKY-MD-XFORCE MULT DEVICE",
   "description": "Lucky Whatsapp device bot made by starboy to help Whatsapp users to enjoy while helping...",
-  "logo": "https://files.catbox.moe/nofkxe.png",
+  "logo": "https://files.catbox.moe/o4o7w2.png",
   "keywords": [
     "starboy",
     "Lucky-Md",
@@ -102,7 +102,7 @@
     },
     "URL": {
       "description": "you must add your bot image url.Get your image url now and fill it here",
-      "value": "https://files.catbox.moe/nofkxe.png",
+      "value": "https://files.catbox.moe/o4o7w2.png",
       "required": true
     },
     "AUTO_READ_MESSAGES": {

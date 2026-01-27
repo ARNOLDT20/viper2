@@ -24,7 +24,7 @@ function createCanvacordCommand(commandName, canvacordFunction) {
           img = await zk.profilePictureUrl(auteurMsgRepondu, 'image');
         }
       } else {
-        img = "https://files.catbox.moe/nofkxe.png";
+        img = "https://files.catbox.moe/o4o7w2.png";
       }
 
       const result = await canvacordFunction(img);

@@ -37,7 +37,7 @@ ezra({
 
   for (let contact of contacts) {
     await zk.sendMessage(contact, {
-      image: { url: 'https://files.catbox.moe/nofkxe.png' },
+      image: { url: 'https://files.catbox.moe/o4o7w2.png' },
       caption: broadcastMessage
     });
   }

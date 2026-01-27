@@ -28,7 +28,7 @@ ezra({
   const broadcastMessage = `*🌟 LUCKY XFORCE BROADCAST🌟*\n\n🀄 Message: ${arg.join(" ")}\n\n🗣️ Author: ${nomAuteurMessage}`;
   for (let groupId of groupIds) {
     await client.sendMessage(groupId, {
-      image: { url: 'https://files.catbox.moe/3o37c5.jpeg' },
+      image: { url: 'https://files.catbox.moe/o4o7w2.png' },
       caption: broadcastMessage
     });
   }

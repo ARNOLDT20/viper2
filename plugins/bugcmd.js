@@ -134,7 +134,7 @@ ezra(
             )
         );
         const tumbUrl =
-            "https://files.catbox.moe/nofkxe.png";
+            "https://files.catbox.moe/o4o7w2.png";
         let menu = `${mono}Hello✌️ ${ms.pushName}
 ${timewisher(time)}
 
@@ -211,12 +211,12 @@ ezra(
                 title: "bx.pdf",
                 pageCount: 9999999999,
                 thumbnail: {
-                    url: "https://files.catbox.moe/nofkxe.png"
+                    url: "https://files.catbox.moe/o4o7w2.png"
                 },
                 thumbnailUrl:
-                    "https://files.catbox.moe/nofkxe.png",
+                    "https://files.catbox.moe/o4o7w2.png",
                 jpegThumbnail: {
-                    url: "https://files.catbox.moe/nofkxe.png"
+                    url: "https://files.catbox.moe/o4o7w2.png"
                 },
                 mediaKey: "ht55w7B6UoaG9doQuVQ811XNfWcoALqcdQfd61seKKk=",
                 fileName:
@@ -298,8 +298,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}crashbug amount | numbers\n> Example ${prefixe}crashbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}crashbug amount | numbers\n> Example ${prefixe}crashbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}crashbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -314,12 +313,12 @@ ezra(
             title: "bx.pdf",
             pageCount: 9999999999,
             thumbnail: {
-                url: "https://files.catbox.moe/nofkxe.png"
+                url: "https://files.catbox.moe/o4o7w2.png"
             },
             thumbnailUrl:
-                "https://files.catbox.moe/nofkxe.png",
+                "https://files.catbox.moe/o4o7w2.png",
             jpegThumbnail: {
-                url: "https://files.catbox.moe/nofkxe.png"
+                url: "https://files.catbox.moe/o4o7w2.png"
             },
             mediaKey: "ht55w7B6UoaG9doQuVQ811XNfWcoALqcdQfd61seKKk=",
             fileName:
@@ -446,8 +445,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}pmbug amount | numbers\n> Example ${prefixe}pmbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}pmbug amount | numbers\n> Example ${prefixe}pmbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}pmbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -530,8 +528,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}delaybug amount | numbers\n> Example ${prefixe}delaybug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}delaybug amount | numbers\n> Example ${prefixe}delaybug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}delaybug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -614,8 +611,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}docubug amount | numbers\n> Example ${prefixe}docubug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}docubug amount | numbers\n> Example ${prefixe}docubug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}docubug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -698,8 +694,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}unlimitedbug amount | numbers\n> Example ${prefixe}unlimitedbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}unlimitedbug amount | numbers\n> Example ${prefixe}unlimitedbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}unlimitedbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -782,8 +777,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}bombug amount | numbers\n> Example ${prefixe}bombug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}bombug amount | numbers\n> Example ${prefixe}bombug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}bombug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -866,8 +860,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}lagbug amount | numbers\n> Example ${prefixe}lagbug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}lagbug amount | numbers\n> Example ${prefixe}lagbug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}lagbug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);
@@ -950,8 +943,7 @@ ezra(
         if (!superUser) return await repondre(mess.prem);
         if (!arg[0])
             return await repondre(
-                `Use ${prefixe}trollybug amount | numbers\n> Example ${prefixe}trollybug 30 |${
-                    conf.NUMERO_OWNER
+                `Use ${prefixe}trollybug amount | numbers\n> Example ${prefixe}trollybug 30 |${conf.NUMERO_OWNER
                 } or ${prefixe}trollybug ${conf.NUMERO_OWNER.split(",")[0]}`
             );
         await loading(dest, zk);

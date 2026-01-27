@@ -39,7 +39,7 @@ ezra({
         'externalAdReply': {
           'title': "LUCKY-MD-XFORCE",
           'body': "⚫ Pong: " + _0x4950ba + "ms\n📅 *Date:* " + _0x4c687e + "\n⏰ *Time:* " + _0xb5466b,
-          'thumbnailUrl': "https://files.catbox.moe/nofkxe.png",
+          'thumbnailUrl': "https://files.catbox.moe/o4o7w2.png",
           'mediaType': 0x1,
           'renderSmallThumbnail': true
         }
@@ -73,7 +73,7 @@ ezra({
     const gitdata = `> *ɴᴀᴍᴇ:*    ${conf.BOT}\n\n> *sᴛᴀʀs:*  ${data.stargazers_count}\n\n> *ғᴏʀᴋs:*  ${data.forks_count}\n\n> *ᴡᴀᴛᴄʜᴇʀs:*  ${data.watchers}\n\n> *ᴜᴘᴅᴀᴛᴇᴅ:*  ${updated}\n\n> *Repo:* ${data.html_url}\n\n_Powered by FrediEzra Tech Info_`;
 
     await zk.sendMessage(dest, {
-      image: { url: 'https://files.catbox.moe/nofkxe.png' },
+      image: { url: 'https://files.catbox.moe/o4o7w2.png' },
       caption: gitdata,
       contextInfo: {
         isForwarded: true,
@@ -86,7 +86,7 @@ ezra({
         externalAdReply: {
           title: "LUCKY MD XFORCE",
           body: "🫧 repo link request 🫧",
-          thumbnailUrl: "https://files.catbox.moe/nofkxe.png",
+          thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
           mediaType: 1,
           sourceUrl: data.html_url || "https://github.com/mr-X-force/LUCKY-MD-XFORCE"
         }

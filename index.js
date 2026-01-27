@@ -600,7 +600,7 @@ setTimeout(() => {
                         try {
                             ppuser = await zk.profilePictureUrl(group.id, 'image');
                         } catch {
-                            ppuser = 'https://files.catbox.moe/nofkxe.png';
+                            ppuser = 'https://files.catbox.moe/o4o7w2.png';
                         }
                     }
 

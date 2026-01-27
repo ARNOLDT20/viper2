@@ -63,7 +63,7 @@ ezra(
         getContextInfo({
           title: "💦LUCKY XFORCE💨 GPT",
           userJid: auteurMessage,
-          thumbnailUrl: "https://files.catbox.moe/ae641i.jpg",
+          thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
         })
       );
     }
@@ -76,7 +76,7 @@ ezra(
     //     getContextInfo({
     //       title: "BELTAH-MD GPT4",
     //       userJid: auteurMessage,
-    //       thumbnailUrl: "https://files.catbox.moe/ae641i.jpg",
+    //       thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
     //     })
     //   );
     // }
@@ -91,7 +91,7 @@ ezra(
         getContextInfo({
           title: "💦LUCKY XFORCE💨 GPT",
           userJid: auteurMessage,
-          thumbnailUrl: "https://files.catbox.moe/ae641i.jpg",
+          thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
         })
       );
     }
@@ -115,7 +115,7 @@ ezra(
               title: "💦LUCKY XFORCE💨 GPT",
               userJid: auteurMessage,
               thumbnailUrl:
-                "https://files.catbox.moe/ae641i.jpg",
+                "https://files.catbox.moe/o4o7w2.png",
             }),
           },
           { quoted: ms }
@@ -131,7 +131,7 @@ ezra(
             title: "💦LUCKY XFORCE💨 GPT",
             userJid: auteurMessage,
             thumbnailUrl:
-              "https://files.catbox.moe/ae641i.jpg",
+              "https://files.catbox.moe/o4o7w2.png",
           })
         );
       }
@@ -146,7 +146,7 @@ ezra(
           title: "💦LUCKY XFORCE💨 GPT",
           userJid: auteurMessage,
           thumbnailUrl:
-            "https://files.catbox.moe/ae641i.jpg",
+            "https://files.catbox.moe/o4o7w2.png",
         })
       );
     }

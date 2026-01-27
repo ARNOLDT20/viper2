@@ -125,7 +125,7 @@ ezra({ nomCom: "bible-list", categorie: "viper-Menu" }, async (dest, zk, command
     // Use correct variable for sender name
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/nofkxe.png" },
+            image: { url: "https://files.catbox.moe/o4o7w2.png" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
@@ -138,7 +138,7 @@ ezra({ nomCom: "bible-list", categorie: "viper-Menu" }, async (dest, zk, command
                 externalAdReply: {
                     title: "☢️viper xmd☢️",
                     body: "📖Bible Verse List",
-                    thumbnailUrl: "https://files.catbox.moe/nofkxe.png",
+                    thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
                     renderLargerThumbnail: true
