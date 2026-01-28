@@ -44,7 +44,7 @@ ezra(
 
     } catch (error) {
       console.error('setvar error:', error);
-      await repondre(`LUCKY-MD-XFORCE FAIL! Something broke: ${error.message} 😴 Fix it or suffer!`);
+      await repondre(`viper-XFORCE FAIL! Something broke: ${error.message} 😴 Fix it or suffer!`);
     }
   }
 );

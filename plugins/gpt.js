@@ -22,7 +22,7 @@ function getContextInfo({
       },
       externalAdReply: {
         showAdAttribution: true,
-        title: conf?.BOT || "💦LUCKY XFORCE💨 GPT",
+        title: conf?.BOT || "💦viper md💨 GPT",
         body: "🔵 Powering Smart Automation 🔵",
         thumbnailUrl: thumbnailUrl || conf?.URL || "",
         sourceUrl: conf?.GURL || "https://wa.me/255752593977",
