@@ -75,7 +75,7 @@ ezra({
                 externalAdReply: {
                     title: "☢️ VIPER MD ☢️",
                     body: "Fast • Stable • Powerful",
-                    thumbnailUrl: "https://files.catbox.moe/6pe5qx.jpg",
+                    thumbnailUrl: "https://files.catbox.moe/3iihyv.jpg",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
                     renderLargerThumbnail: true
