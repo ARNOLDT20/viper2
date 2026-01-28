@@ -8,7 +8,7 @@ const s = require("../set");
 ezra({
     nomCom: "menu",
     categorie: "Main",
-    reaction: "☢️",
+    reaction: "📋",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
 
@@ -38,52 +38,82 @@ ezra({
             categories[c.categorie].push(c.nomCom);
         }
 
-        // HEADER (beautified with clean formatting)
+        // Category emoji mapping
+        const categoryEmojis = {
+            'Main': '🏠',
+            'Download': '📥',
+            'Search': '🔍',
+            'Fun': '🎮',
+            'Game': '🎲',
+            'Group': '👥',
+            'Owner': '👑',
+            'Tools': '🛠️',
+            'Image': '🖼️',
+            'Audio': '🎵',
+            'Video': '🎬',
+            'Sticker': '🩷',
+            'Utility': '⚙️',
+            'Education': '📚',
+            'Economy': '💰',
+            'Religion': '🛐',
+            'Anime': '🎌',
+            'Media': '📱',
+            'Web': '🌐',
+            'AI': '🤖',
+            'Plugin': '🧩',
+            'Misc': '📦',
+            'Admin': '🛡️',
+            'Moderation': '🔧'
+        };
+
+        // HEADER
         let text = `
-╔═══════════════════════╗
-       ⚡ *VIPER MD* ⚡
-╚═══════════════════════╝
+╭───────────────────────────────────╮
+│        ⚡ *VIPER MD BOT* ⚡        │
+╰───────────────────────────────────╯
 
-╭───────────────────────╮
-│ 👑 *Owner*  : T20_STARBOY
-│ ⚙️  *Mode*   : ${mode}
-│ 🕒  *Time*   : ${time}
-│ 📅  *Date*   : ${date}
-│ 💻  *System* : ${os.platform()}
-│ 🧩  *Plugins*: ${cm.length}
-╰───────────────────────╯
+╭───────── *SYSTEM INFO* ──────────╮
+│ 👑 *Owner*   : T20_STARBOY
+│ ⚙️  *Mode*    : ${mode}
+│ 🕒  *Time*    : ${time}
+│ 📅  *Date*    : ${date}
+│ 💻  *System*  : ${os.platform()}
+│ 🧩  *Plugins* : ${cm.length}
+╰───────────────────────────────────╯
 
-╭─── *COMMANDS LIST* ───╮`;
+╭───────── *COMMANDS LIST* ────────╮`;
 
-        // MENU BODY
+        // MENU BODY - Vertical alignment with reduced spacing
         for (const cat in categories) {
-            text += `\n\n│ 📁 *${cat.toUpperCase()}*\n│`;
-            let line = "";
-            for (const cmd of categories[cat]) {
-                line += ` ${s.PREFIXE}${cmd}`;
-                if (line.length > 20) {
-                    text += `\n│   ${line}`;
-                    line = "";
-                }
+            const emoji = categoryEmojis[cat] || '📁';
+            text += `\n│\n│ ${emoji} *${cat.toUpperCase()}*\n│\n│`;
+
+            // Create vertical columns for commands (2 or 3 per line)
+            const commands = categories[cat];
+            for (let i = 0; i < commands.length; i += 3) {
+                const lineCommands = commands.slice(i, i + 3);
+                let line = "  ";
+                lineCommands.forEach((cmd, idx) => {
+                    line += `▸ ${s.PREFIXE}${cmd}`.padEnd(18);
+                });
+                text += `\n│ ${line}`;
             }
-            if (line) text += `\n│   ${line}`;
-            text += "\n│";
         }
 
         text += `
-╰───────────────────────╯
+│\n╰───────────────────────────────────╯
 
-╭───────────────────────╮
-│ 💡  _Use commands with prefix_
-│ 🚀  *Blaze Tech © 2025*
-╰───────────────────────╯
+╭───────── *QUICK ACCESS* ─────────╮
+│ 🔧 ${s.PREFIXE}help [command]
+│ 📊 ${s.PREFIXE}info
+│ 🏓 ${s.PREFIXE}ping
+│ 📖 ${s.PREFIXE}allmenu
+╰───────────────────────────────────╯
 
-┌───────────────────────┐
-│  📍 *Quick Access:*   │
-│  • ${s.PREFIXE}help [command]  │
-│  • ${s.PREFIXE}info            │
-│  • ${s.PREFIXE}ping            │
-└───────────────────────┘`;
+╭───────────────────────────────────╮
+│ 🚀 *Blaze Tech © 2025*
+│ 📍 _Use ${s.PREFIXE}help [command]_ 
+╰───────────────────────────────────╯`;
 
         // SEND (text-only = fastest & safest)
         await zk.sendMessage(jid, {
@@ -92,8 +122,8 @@ ezra({
                 forwardingScore: 999,
                 isForwarded: true,
                 externalAdReply: {
-                    title: "⚡ VIPER MD ⚡",
-                    body: "Fast • Clean • Powerful",
+                    title: "⚡ VIPER MD MENU ⚡",
+                    body: "Vertical Command List • Fast • Clean",
                     thumbnailUrl: "https://files.catbox.moe/m6aoje.jpg",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
