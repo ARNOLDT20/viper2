@@ -56,9 +56,9 @@ ezra({
     const date = moment().format("DD/MM/YYYY");
 
     const infoMsg = `
-✨━━━━━━━━━━━━━━━✨
+✨━━━━━━✨
 🤖 *VIPER V2 INFO* 🤖
-✨━━━━━━━━━━━━━━━✨
+✨━━━━━━✨
 📌 Prefix     : ${s.PREFIXE}
 📌 Mode       : ${mode}
 📌 Date       : ${date}
@@ -66,7 +66,7 @@ ezra({
 📌 Platform   : ${os.platform()}
 📌 Owner      : T20_STARBOY
 📌 Plugins    : ${cm.length}
-✨━━━━━━━━━━━━━━━━━━━━━━━━✨
+✨━━━━━━━━✨
 `;
 
     let menuMsg = `
@@ -75,7 +75,7 @@ ${greeting}
 
     for (const cat in coms) {
         menuMsg += `
-🌟────────── 🌈 ${toFancyUppercaseFont(cat)} 🌈 ─────────🌟
+🌟──── ${toFancyUppercaseFont(cat)} ────🌟
 `;
         for (const cmd of coms[cat]) {
             menuMsg += `🔹 ${toFancyLowercaseFont(cmd)}\n`;
@@ -83,14 +83,14 @@ ${greeting}
     }
 
     menuMsg += `
-✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
+✨━━━━━━━━━━━━━━━━✨
 💎 Made with ❤️ by *BLAZE TECH* © 2025
-✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
+✨━━━━━━━━━━━━━━━━✨
 `;
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" }, // Normal URL, HD
+            image: { url: "https://files.catbox.moe/6pe5qx.jpg" },
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
