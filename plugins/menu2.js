@@ -4,20 +4,13 @@ const moment = require("moment-timezone");
 const os = require("os");
 const s = require("../set");
 
+const readMore = String.fromCharCode(8206).repeat(4001);
+
 // Fancy uppercase font
 const toFancyUppercaseFont = (text) => {
     const fonts = {
         'A': '𝐀', 'B': '𝐁', 'C': '𝐂', 'D': '𝐃', 'E': '𝐄', 'F': '𝐅', 'G': '𝐆', 'H': '𝐇', 'I': '𝐈', 'J': '𝐉', 'K': '𝐊', 'L': '𝐋', 'M': '𝐌',
         'N': '𝐍', 'O': '𝐎', 'P': '𝐏', 'Q': '𝐐', 'R': '𝐑', 'S': '𝐒', 'T': '𝐓', 'U': '𝐔', 'V': '𝐕', 'W': '𝐖', 'X': '𝐗', 'Y': '𝐘', 'Z': '𝐙'
-    };
-    return text.split('').map(c => fonts[c] || c).join('');
-};
-
-// Fancy lowercase font
-const toFancyLowercaseFont = (text) => {
-    const fonts = {
-        'a': 'ᴀ', 'b': 'ʙ', 'c': 'ᴄ', 'd': 'ᴅ', 'e': 'ᴇ', 'f': 'ғ', 'g': 'ɢ', 'h': 'ʜ', 'i': 'ɪ', 'j': 'ᴊ', 'k': 'ᴋ', 'l': 'ʟ', 'm': 'ᴍ',
-        'n': 'ɴ', 'o': 'ᴏ', 'p': 'ᴘ', 'q': 'ǫ', 'r': 'ʀ', 's': 's', 't': 'ᴛ', 'u': 'ᴜ', 'v': 'ᴠ', 'w': 'ᴡ', 'x': 'x', 'y': 'ʏ', 'z': 'ᴢ'
     };
     return text.split('').map(c => fonts[c] || c).join('');
 };
@@ -28,37 +21,32 @@ ezra({
     reaction: "☢️",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
-
     const { repondre } = commandeOptions;
     const { cm } = require("../fredi/ezra");
 
+    // Organize commands by category
     let coms = {};
-    let mode = "public";
-
-    if ((s.MODE).toLocaleLowerCase() != "yes") {
-        mode = "private";
-    }
-
     cm.map(async (com) => {
         if (!coms[com.categorie]) coms[com.categorie] = [];
         coms[com.categorie].push(com.nomCom);
     });
 
+    // Greeting
     moment.tz.setDefault("Africa/Dar_Es_Salam");
     const hour = moment().hour();
-
     let greeting = "🌞 ɢᴏᴏᴅ ᴍᴏʀɴɪɴɢ";
     if (hour >= 12 && hour < 18) greeting = "🌤️ ɢᴏᴏᴅ ᴀғᴛᴇʀɴᴏᴏɴ";
     else if (hour >= 18 && hour < 22) greeting = "🌆 ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ";
     else greeting = "🌙 ɢᴏᴏᴅ ɴɪɢʜᴛ";
 
-    const temps = moment().format("HH:mm:ss");
     const date = moment().format("DD/MM/YYYY");
+    const temps = moment().format("HH:mm:ss");
+    const mode = (s.MODE.toLowerCase() === "yes") ? "public" : "private";
 
     const infoMsg = `
-✨━━━━━━━━━━━━━━━✨
-🤖 *VIPER V2 INFO* 🤖
-✨━━━━━━━━━━━━━━━✨
+✨ VIPER V2 ✨
+${greeting}
+
 📌 Prefix     : ${s.PREFIXE}
 📌 Mode       : ${mode}
 📌 Date       : ${date}
@@ -66,32 +54,21 @@ ezra({
 📌 Platform   : ${os.platform()}
 📌 Owner      : T20_STARBOY
 📌 Plugins    : ${cm.length}
-✨━━━━━━━━━━━━━━━━━━━━━━━━✨
 `;
 
-    let menuMsg = `
-${greeting}
-`;
-
-    for (const cat in coms) {
-        menuMsg += `
-🌟────────── 🌈 ${toFancyUppercaseFont(cat)} 🌈 ─────────🌟
-`;
-        for (const cmd of coms[cat]) {
-            menuMsg += `🔹 ${toFancyLowercaseFont(cmd)}\n`;
-        }
-    }
-
-    menuMsg += `
-✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
-💎 Made with ❤️ by *BLAZE TECH* © 2025
-✨━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━✨
-`;
+    // Build buttons array from categories
+    const buttons = Object.keys(coms).map((cat, index) => ({
+        buttonId: `menu_cat_${index}`, // Unique ID for each category
+        buttonText: { displayText: `🌟 ${cat} 🌟` },
+        type: 1
+    }));
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" }, // Normal URL, HD
-            caption: infoMsg + menuMsg,
+            image: { url: "https://files.catbox.moe/xqhfyv.webp" }, // HD image URL
+            caption: infoMsg + "\nTap a category below ⬇️",
+            buttons: buttons,
+            headerType: 4, // 4 = image header
             contextInfo: {
                 isForwarded: true,
                 forwardingScore: 999,
@@ -103,7 +80,7 @@ ${greeting}
             }
         });
     } catch (error) {
-        console.error("Menu error:", error);
+        console.error("Menu button error:", error);
         repondre("🥵 Menu error: " + error);
     }
 });

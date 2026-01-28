@@ -23,7 +23,7 @@ const toFancyLowercaseFont = (text) => {
 };
 
 ezra({
-    nomCom: "menu2",
+    nomCom: "menu",
     categorie: "starboy-Menu",
     reaction: "☢️",
     nomFichier: __filename
