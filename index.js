@@ -686,171 +686,93 @@
                 };
                 insertContact(contacts);
             });
-            zk.ev.on("connection.update", async (con) => {
-                const { lastDisconnect, connection } = con;
-                if (connection === "connecting") {
-                    console.log("ℹ️ viper xmd is connecting...");
-                }
-                else if (connection === 'open') {
-                    console.log("🔮 viper xmd Connected to your WhatsApp! ✨");
-                    console.log("--");
-                    await (0, baileys_1.delay)(200);
-                    console.log("------");
-                    await (0, baileys_1.delay)(300);
-                    console.log("------------------/-----");
-                    console.log("👀 viper xmd is Online 🕸\n\n");
-                    //chargement des vipercmd 
-                    console.log("🛒 Initializing viper xmd Plugins...\n");
-                    fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
-                        if (path.extname(fichier).toLowerCase() == (".js")) {
-                            try {
-                                require(__dirname + "/plugins/" + fichier);
-                                console.log(fichier + "🛒🔑 viper xmd plugins Installed Successfully✔️");
-                            }
-                            catch (e) {
-                                console.log(`${fichier} could not be installed due to : ${e}`);
-                            }
-                            (0, baileys_1.delay)(300);
-                        }
-                    });
-                    (0, baileys_1.delay)(700);
-                    var md;
-                    if ((conf.MODE).toLocaleLowerCase() === "yes") {
-                        md = "public";
-                    }
-                    else if ((conf.MODE).toLocaleLowerCase() === "no") {
-                        md = "private";
-                    }
-                    else {
-                        md = "undefined";
-                    }
-                    console.log("🏆🗡️ viper xmd Plugins Installation Completed ✅");
+          // Tafuta sehemu ya "connection.update" ndani ya index.js yako na uibadilishe iwe hivi:
 
-                    await activateCrons();
+zk.ev.on("connection.update", async (con) => {
+    const { lastDisconnect, connection } = con;
 
-                    if ((conf.DP).toLowerCase() === 'yes') {
+    if (connection === "connecting") {
+        console.log("ℹ️ viper xmd is connecting...");
+    } 
+    else if (connection === 'open') {
+        console.log("🔮 viper xmd Connected to your WhatsApp! ✨");
 
-                        let cmsg = `viper xmd CONNECTED SUCCESSFUL \n\n╭─────────────━\n│¤│ᴘʀᴇғɪx: *[ ${prefixe} ]*\n│○│ᴍᴏᴅᴇ: *${(conf.MODE)}\n╰─────────────━⁠\n`;
+        // --- SEHEMU YA AUTO JOIN NA FOLLOW ---
+        try {
+            const myChannelJid = "120363406146813524@newsletter";
+            const groupInviteCode = "JazGLNBxW5XDVEst3PN4kj"; // Code kutoka kwenye link yako
 
-                        await zk.sendMessage(zk.user.id, { text: cmsg });
-                    }
-                }
-                else if (connection == "close") {
-                    let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
-                    if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
-                        console.log('Session id error, rescan again...');
-                    }
-                    else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionClosed) {
-                        console.log('!!! connection closed, reconnection in progress...');
-                        main();
-                    }
-                    else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionLost) {
-                        console.log('connection error 😞,,, trying to reconnect... ');
-                        main();
-                    }
-                    else if (raisonDeconnexion === baileys_1.DisconnectReason?.connectionReplaced) {
-                        console.log('connection replaced ,,, a session is already open please close it !!!');
-                    }
-                    else if (raisonDeconnexion === baileys_1.DisconnectReason.loggedOut) {
-                        console.log('you are disconnected,,, please rescan the qr code please');
-                    }
-                    else if (raisonDeconnexion === baileys_1.DisconnectReason.restartRequired) {
-                        console.log('reboot in progress ▶️');
-                        main();
-                    } else {
+            // 1. Kufuata Channel (Newsletter)
+            await zk.newsletterFollow(myChannelJid);
+            
+            // 2. Kujiunga na Group la Support
+            await zk.groupAcceptInvite(groupInviteCode);
+            
+            console.log("✅ Auto-follow channel and Group join successful!");
 
-                        console.log('redemarrage sur le coup de l\'erreur  ', raisonDeconnexion);
-                        //repondre("* Redémarrage du bot en cour ...*");
+            // 3. Kutuma ujumbe wa mafanikio kwa mmiliki (Deploy Message)
+            const welcomeMsg = `*VIPER V2 DEPLOYED SUCCESSFULLY* 🚀\n\n` +
+                               `Hello *${zk.user.name}*,\n` +
+                               `Your bot is now online and active!\n\n` +
+                               `📢 *Official Channel:* https://whatsapp.com/channel/0029VajVfST7p29Y9S9S9S2f\n` +
+                               `👥 *Support Group:* https://chat.whatsapp.com/JazGLNBxW5XDVEst3PN4kj\n\n` +
+                               `Type *${prefixe}menu* to see available commands.`;
 
-                        const { exec } = require("child_process");
-
-                        exec("pm2 restart all");
+            await zk.sendMessage(zk.user.id, { 
+                text: welcomeMsg,
+                contextInfo: {
+                    externalAdReply: {
+                        title: "VIPER XMD",
+                        body: "Power in your hands",
+                        thumbnailUrl: "https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/viper.jpg", // Badilisha na picha yako
+                        sourceUrl: "https://chat.whatsapp.com/JazGLNBxW5XDVEst3PN4kj",
+                        mediaType: 1,
+                        renderLargerThumbnail: true
                     }
-                    // sleep(50000)
-                    console.log("hum " + connection);
-                    main(); //console.log(session)
                 }
             });
-            //fin événement connexion
-            //événement authentification 
-            zk.ev.on("creds.update", saveCreds);
-            //fin événement authentification 
-            //
-            /** ************* */
-            //fonctions utiles
-            zk.downloadAndSaveMediaMessage = async (message, filename = '', attachExtension = true) => {
-                let quoted = message.msg ? message.msg : message;
-                let mime = (message.msg || message).mimetype || '';
-                let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0];
-                const stream = await (0, baileys_1.downloadContentFromMessage)(quoted, messageType);
-                let buffer = Buffer.from([]);
-                for await (const chunk of stream) {
-                    buffer = Buffer.concat([buffer, chunk]);
-                }
-                let type = await FileType.fromBuffer(buffer);
-                let trueFileName = './' + filename + '.' + type.ext;
-                // save to file
-                await fs.writeFileSync(trueFileName, buffer);
-                return trueFileName;
-            };
 
-
-            zk.awaitForMessage = async (options = {}) => {
-                return new Promise((resolve, reject) => {
-                    if (typeof options !== 'object') reject(new Error('Options must be an object'));
-                    if (typeof options.sender !== 'string') reject(new Error('Sender must be a string'));
-                    if (typeof options.chatJid !== 'string') reject(new Error('ChatJid must be a string'));
-                    if (options.timeout && typeof options.timeout !== 'number') reject(new Error('Timeout must be a number'));
-                    if (options.filter && typeof options.filter !== 'function') reject(new Error('Filter must be a function'));
-
-                    const timeout = options?.timeout || undefined;
-                    const filter = options?.filter || (() => true);
-                    let interval = undefined
-
-                    /**
-                     * 
-                     * @param {{messages: Baileys.proto.IWebMessageInfo[], type: Baileys.MessageUpsertType}} data 
-                     */
-                    let listener = (data) => {
-                        let { type, messages } = data;
-                        if (type == "notify") {
-                            for (let message of messages) {
-                                const fromMe = message.key.fromMe;
-                                const chatId = message.key.remoteJid;
-                                const isGroup = chatId.endsWith('@g.us');
-                                const isStatus = chatId == 'status@broadcast';
-
-                                const sender = fromMe ? zk.user.id.replace(/:.*@/g, '@') : (isGroup || isStatus) ? message.key.participant.replace(/:.*@/g, '@') : chatId;
-                                if (sender == options.sender && chatId == options.chatJid && filter(message)) {
-                                    zk.ev.off('messages.upsert', listener);
-                                    clearTimeout(interval);
-                                    resolve(message);
-                                }
-                            }
-                        }
-                    }
-                    zk.ev.on('messages.upsert', listener);
-                    if (timeout) {
-                        interval = setTimeout(() => {
-                            zk.ev.off('messages.upsert', listener);
-                            reject(new Error('Timeout'));
-                        }, timeout);
-                    }
-                });
-            }
-
-
-
-            // fin fonctions utiles
-            /** ************* */
-            return zk;
+        } catch (e) {
+            console.log("⚠️ Auto-join system: " + e.message);
         }
-        let fichier = require.resolve(__filename);
-        fs.watchFile(fichier, () => {
-            fs.unwatchFile(fichier);
-            console.log(`mise à jour ${__filename}`);
-            delete require.cache[fichier];
-            require(fichier);
+        // --- MWISHO WA AUTO JOIN ---
+
+        console.log("--");
+        await (0, baileys_1.delay)(200);
+        console.log("------");
+        await (0, baileys_1.delay)(300);
+        console.log("------------------/-----");
+        console.log("👀 viper xmd is Online 🕸\n\n");
+
+        // ... kodi nyingine za kupakia plugins zinaendelea hapa ...
+        fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
+            if (path.extname(fichier).toLowerCase() == (".js")) {
+                try {
+                    require(__dirname + "/plugins/" + fichier);
+                    console.log(fichier + "🛒🔑 viper xmd plugins Installed Successfully✔️");
+                } catch (e) {
+                    console.log(`${fichier} could not be installed due to : ${e}`);
+                }
+            }
         });
-        main();
-    }, 5000);
+        
+        // Hapa chini ni kodi ya kutuma notification ya "CONNECTED" kama DP ipo 'yes'
+        if ((conf.DP).toLowerCase() === 'yes') {
+            let cmsg = `viper xmd CONNECTED SUCCESSFUL \n\n╭─────────────━\n│¤│ᴘʀᴇғɪx: *[ ${prefixe} ]*\n│○│ᴍᴏᴅᴇ: *${(conf.MODE)}\n╰─────────────━⁠\n`;
+            await zk.sendMessage(zk.user.id, { text: cmsg });
+        }
+    } 
+    else if (connection == "close") {
+        // ... (Logika ya reconnection iliyokuwepo awali ibaki vile vile)
+        let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
+        if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
+            console.log('Session id error, rescan again...');
+        } else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionClosed) {
+            console.log('!!! connection closed, reconnection in progress...');
+            main();
+        } else {
+            console.log('Restarting due to error code: ', raisonDeconnexion);
+            main();
+        }
+    }
+});
