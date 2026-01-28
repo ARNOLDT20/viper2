@@ -400,13 +400,22 @@
                 } catch (error) {
                 }
 
+                                // --- FIXED ANTILINK BLOCK ---
                 try {
-                    const yes = await verifierEtatJid(origineMessage)
-                    if (
-                        texte.match(/https?:\/\/|www\.|\.com|\.net|\.org|\.xyz|\.link|\.me|\.online|\.app|\.store|\.tech|\.site|\.live/i) && verifGroupe && yes) {
-                        console.log("lien detecté")
-                        var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
-                        if (superUser || verifAdmin || !verifZokAdmin) { console.log('je fais rien'); return };
+                    const antilinkStatus = await verifierEtatJid(origineMessage);
+                    const isLink = texte.match(/https?:\/\/|www\.|\.com|\.net|\.org|\.xyz|\.link|\.me|\.online|\.app|\.store|\.tech|\.site|\.live/i);
+
+                    if (isLink && verifGroupe && antilinkStatus) {
+                        console.log("Link detected!");
+                        
+                        // Use the correct admin variable
+                        const botIsAdmin = verifEzraAdmin; 
+                        
+                        // Bypass if: sender is Owner/Sudo, sender is Admin, or Bot itself is not Admin
+                        if (superUser || verifAdmin || !botIsAdmin) { 
+                            console.log('Antilink ignored: User is Admin/Owner or Bot lacks Admin rights'); 
+                            return; 
+                        }
 
                         const key = {
                             remoteJid: origineMessage,
@@ -414,57 +423,65 @@
                             id: ms.key.id,
                             participant: auteurMessage
                         };
-                        var txt = "lien detected, \n";
+
+                        let txt = "⚠️ *VIPER V2 ANTILINK* ⚠️\n";
                         const gifLink = "https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/remover.gif";
+                        
+                        // Prepare Warning Sticker
                         var sticker = new Sticker(gifLink, {
-                            pack: 'BLAZE TECH',
-                            author: conf.OWNER_NAME,
+                            pack: 'VIPER XMD',
+                            author: 'STARBOY',
                             type: StickerTypes.FULL,
-                            categories: ['🤩', '🎉'],
-                            id: '12345',
-                            quality: 50,
-                            background: '#000000'
+                            quality: 50
                         });
+                        
                         await sticker.toFile("st1.webp");
-                        var action = await recupererActionJid(origineMessage);
+                        const action = await recupererActionJid(origineMessage);
 
                         if (action === 'remove') {
-                            txt += `message deleted \n @${auteurMessage.split("@")[0]} removed from group.`;
+                            txt += `Link detected! @${auteurMessage.split("@")[0]} has been removed from the group.`;
+                            
                             await zk.sendMessage(origineMessage, { sticker: fs.readFileSync("st1.webp") });
-                            (0, baileys_1.delay)(800);
+                            await (0, baileys_1.delay)(1000); // Wait for sticker to send
                             await zk.sendMessage(origineMessage, { text: txt, mentions: [auteurMessage] }, { quoted: ms });
-                            try {
-                                await zk.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
-                            }
-                            catch (e) {
-                                console.log("antiien ") + e;
-                            }
+                            
+                            // Delete link and kick user
                             await zk.sendMessage(origineMessage, { delete: key });
-                            await fs.unlink("st1.webp");
-                        }
-                        else if (action === 'delete') {
-                            txt += `message deleted \n @${auteurMessage.split("@")[0]} avoid sending link.`;
+                            await zk.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
+                            
+                        } else if (action === 'delete') {
+                            txt += `Links are not allowed here! @${auteurMessage.split("@")[0]}, your message has been deleted.`;
+                            
                             await zk.sendMessage(origineMessage, { text: txt, mentions: [auteurMessage] }, { quoted: ms });
                             await zk.sendMessage(origineMessage, { delete: key });
-                            await fs.unlink("st1.webp");
 
                         } else if (action === 'warn') {
                             const { getWarnCountByJID, ajouterUtilisateurAvecWarnCount } = require('./lib/warn');
                             let warn = await getWarnCountByJID(auteurMessage);
-                            let warnlimit = conf.WARN_COUNT
+                            let warnlimit = conf.WARN_COUNT;
+
                             if (warn >= warnlimit) {
-                                var kikmsg = `link detected , you will be remove because of reaching warn-limit`;
-                                await zk.sendMessage(origineMessage, { text: kikmsg, mentions: [auteurMessage] }, { quoted: ms });
-                                await zk.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
+                                txt += `Warning limit reached! @${auteurMessage.split("@")[0]} is being removed...`;
+                                await zk.sendMessage(origineMessage, { text: txt, mentions: [auteurMessage] }, { quoted: ms });
                                 await zk.sendMessage(origineMessage, { delete: key });
+                                await zk.groupParticipantsUpdate(origineMessage, [auteurMessage], "remove");
                             } else {
-                                var rest = warnlimit - warn;
-                                var msg = `Link detected , your warn_count was upgrade ;\n rest : ${rest} `;
-                                await ajouterUtilisateurAvecWarnCount(auteurMessage)
-                                await zk.sendMessage(origineMessage, { text: msg, mentions: [auteurMessage] }, { quoted: ms });
+                                await ajouterUtilisateurAvecWarnCount(auteurMessage);
+                                let remaining = warnlimit - (warn + 1);
+                                txt += `Link detected! Warning added to @${auteurMessage.split("@")[0]}.\nRemaining warnings: ${remaining}`;
+                                await zk.sendMessage(origineMessage, { text: txt, mentions: [auteurMessage] }, { quoted: ms });
                                 await zk.sendMessage(origineMessage, { delete: key });
                             }
                         }
+                        
+                        // Safe file deletion
+                        if (fs.existsSync("st1.webp")) { fs.unlinkSync("st1.webp"); }
+                    }
+                } catch (e) {
+                    console.error("Antilink Logic Error: ", e);
+                }
+                // --- END OF ANTILINK ---
+
                     }
                 }
                 catch (e) {
