@@ -131,10 +131,10 @@
 
 ## 📱 Connect With Me
 
-📱 **Facebook**: [FredieEzra](https://facebook.com/@FrediEzra)  
-📸 **Instagram**: [frediezra](https://instagram.com/frediezra)  
-📹 **YouTube**: [FrediAi-Tech](https://youtube.com/frediai-tech)  
-📧 **GitHub**: [Fredi Ai](https://github.com/mr-X-force)  
+📱 **Facebook**: [ArnoldTarimo](https://facebook.com/@arnold.tarimo.94)  
+📸 **Instagram**: [officialArnold](https://instagram.com/official_arold.1)  
+📹 **YouTube**: [blaze-Tech](https://youtube.com/frediai-tech)  
+📧 **GitHub**: [ARNOLDT20](https://github.com/ARNOLDT20)  
 
 ---
 
