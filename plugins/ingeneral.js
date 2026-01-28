@@ -439,7 +439,7 @@ ezra({
 
 🔗 *URL*: ${con.content_urls.mobile.page}
 
-> Powered by ☢️LUCKY MD X-FORCE☢️
+> Powered by ☢️viper md☢️
     `;
     repondre(texa);
   } catch (err) {
