@@ -38,33 +38,52 @@ ezra({
             categories[c.categorie].push(c.nomCom);
         }
 
-        // HEADER (clean, premium look)
-        let text =
-            `☢️━━━━━━━━━━━━━━━━☢️
-        *VIPER MD*
-☢️━━━━━━━━━━━━━━━━☢️
+        // HEADER (beautified with clean formatting)
+        let text = `
+╔═══════════════════════╗
+       ⚡ *VIPER MD* ⚡
+╚═══════════════════════╝
 
-👑 *Owner*     : T20_STARBOY
-⚙️ *Mode*      : ${mode}
-🕒 *Time*      : ${time}
-📅 *Date*      : ${date}
-💻 *System*    : ${os.platform()}
-🧩 *Plugins*   : ${cm.length}
+╭───────────────────────╮
+│ 👑 *Owner*  : T20_STARBOY
+│ ⚙️  *Mode*   : ${mode}
+│ 🕒  *Time*   : ${time}
+│ 📅  *Date*   : ${date}
+│ 💻  *System* : ${os.platform()}
+│ 🧩  *Plugins*: ${cm.length}
+╰───────────────────────╯
 
-✨━━━━━━━━━━━━━━━━✨`;
+╭─── *COMMANDS LIST* ───╮`;
 
         // MENU BODY
         for (const cat in categories) {
-            text += `\n\n📂 *${cat.toUpperCase()}*\n`;
+            text += `\n\n│ 📁 *${cat.toUpperCase()}*\n│`;
+            let line = "";
             for (const cmd of categories[cat]) {
-                text += `   ▸ ${s.PREFIXE}${cmd}\n`;
+                line += ` ${s.PREFIXE}${cmd}`;
+                if (line.length > 20) {
+                    text += `\n│   ${line}`;
+                    line = "";
+                }
             }
+            if (line) text += `\n│   ${line}`;
+            text += "\n│";
         }
 
         text += `
-✨━━━━━━━━━━━━━━━━✨
-💡 _Use commands with prefix_
-🚀 *Blaze Tech © 2025*`;
+╰───────────────────────╯
+
+╭───────────────────────╮
+│ 💡  _Use commands with prefix_
+│ 🚀  *Blaze Tech © 2025*
+╰───────────────────────╯
+
+┌───────────────────────┐
+│  📍 *Quick Access:*   │
+│  • ${s.PREFIXE}help [command]  │
+│  • ${s.PREFIXE}info            │
+│  • ${s.PREFIXE}ping            │
+└───────────────────────┘`;
 
         // SEND (text-only = fastest & safest)
         await zk.sendMessage(jid, {
@@ -73,7 +92,7 @@ ezra({
                 forwardingScore: 999,
                 isForwarded: true,
                 externalAdReply: {
-                    title: "☢️ VIPER MD ☢️",
+                    title: "⚡ VIPER MD ⚡",
                     body: "Fast • Clean • Powerful",
                     thumbnailUrl: "https://files.catbox.moe/m6aoje.jpg",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
