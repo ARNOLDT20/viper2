@@ -6,7 +6,7 @@ ezra({
   nomCom: "profile",
   aliases: ["pp", "who"],
   desc: "to generate profile picture",
-  categorie: "Fledi-Fun"
+  categorie: "viper-Fun"
 }, async (dest, zk, commandeOptions) => {
   const { ms, arg, repondre, auteurMessage, nomAuteurMessage, msgRepondu, auteurMsgRepondu } = commandeOptions;
 
@@ -15,10 +15,10 @@ ezra({
 
   try {
     if (!msgRepondu) {
-      jid = auteurMessage; 
-      nom = nomAuteurMessage; 
+      jid = auteurMessage;
+      nom = nomAuteurMessage;
     } else {
-      jid = auteurMsgRepondu; 
+      jid = auteurMsgRepondu;
       nom = "@" + auteurMsgRepondu.split("@")[0];
     }
 
@@ -38,19 +38,19 @@ ezra({
       status = await zk.fetchStatus(jid); // Use the actual method from your instance
     } catch (error) {
       console.error('Error retrieving user status:', error);
-      status = { status: "About not accessible due to user privacy" }; 
+      status = { status: "About not accessible due to user privacy" };
     }
 
     const mess = {
       image: { url: ppUrl },
-      caption: `Name: ${nom}\nAbout:\n${status.status}`, 
+      caption: `Name: ${nom}\nAbout:\n${status.status}`,
       mentions: msgRepondu ? [auteurMsgRepondu] : []
     };
 
-    await zk.sendMessage(dest, mess, { quoted: ms }); 
+    await zk.sendMessage(dest, mess, { quoted: ms });
 
   } catch (error) {
-    console.error('Unexpected error in profile command:', error); 
+    console.error('Unexpected error in profile command:', error);
   }
 });
 
@@ -58,7 +58,7 @@ ezra({
   nomCom: "profile2",
   aliases: ["pp2", "whois2"],
   desc: "to generate business profile picture",
-  categorie: "Fledi-Fun"
+  categorie: "viper-Fun"
 }, async (dest, zk, commandeOptions) => {
   const { ms, arg, repondre, auteurMessage, nomAuteurMessage, msgRepondu, auteurMsgRepondu } = commandeOptions;
 
@@ -67,10 +67,10 @@ ezra({
 
   try {
     if (!msgRepondu) {
-      jid = auteurMessage; 
-      nom = nomAuteurMessage; 
+      jid = auteurMessage;
+      nom = nomAuteurMessage;
     } else {
-      jid = auteurMsgRepondu; 
+      jid = auteurMsgRepondu;
       nom = "@" + auteurMsgRepondu.split("@")[0];
     }
 
@@ -112,6 +112,6 @@ ezra({
     await zk.sendMessage(dest, mess, { quoted: ms });
 
   } catch (error) {
-    console.error('Unexpected error in profile command:', error); 
+    console.error('Unexpected error in profile command:', error);
   }
 });

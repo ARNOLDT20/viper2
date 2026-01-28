@@ -75,7 +75,7 @@ ezra({
 
     const data = response.data;
     const messageText = `
-📖 ☢️LUCKY MD X-FORCE☢️ HOLY BIBLE 📖
+📖 ☢️viper md☢️ HOLY BIBLE 📖
 
 ⁠ *_WE'RE READING:_* ${data.reference}
 
@@ -162,7 +162,7 @@ ezra({
   nomCom: "pair",
   aliases: ["session", "qrcode"],
   reaction: '🚀',
-  categorie: 'General-Fredi'
+  categorie: 'General-viper'
 }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
