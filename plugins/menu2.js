@@ -67,7 +67,7 @@ ezra({
                 externalAdReply: {
                     title: "VIPER MD",
                     body: "Menu Style 2",
-                    thumbnailUrl: "https://files.catbox.moe/xqhfyv.webp",
+                    thumbnailUrl: "https://files.catbox.moe/6pe5qx.jpg",
                     sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
                     renderLargerThumbnail: true
