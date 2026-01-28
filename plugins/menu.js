@@ -3,6 +3,7 @@ const { ezra } = require("../fredi/ezra");
 const moment = require("moment-timezone");
 const os = require("os");
 const s = require("../set");
+const { getBuffer } = require("../lib/functions"); // Buffer helper
 
 const readMore = String.fromCharCode(8206).repeat(4001);
 
@@ -57,6 +58,14 @@ ezra({
     const temps = moment().format("HH:mm:ss");
     const date = moment().format("DD/MM/YYYY");
 
+    // Fetch HD image as buffer
+    let imageBuffer;
+    try {
+        imageBuffer = await getBuffer("https://files.catbox.moe/xqhfyv.webp");
+    } catch (err) {
+        console.error("Failed to fetch menu image buffer:", err);
+    }
+
     const infoMsg = `
 ✨━━━━━━━━━━━━━━━✨
 🤖 *VIPER V2 INFO* 🤖
@@ -92,7 +101,7 @@ ${greeting}
 
     try {
         await zk.sendMessage(dest, {
-            image: { url: "https://files.catbox.moe/xqhfyv.webp" },
+            image: imageBuffer || { url: "https://files.catbox.moe/xqhfyv.webp" }, // HD buffer fallback to URL
             caption: infoMsg + menuMsg,
             contextInfo: {
                 isForwarded: true,
