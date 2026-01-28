@@ -425,71 +425,90 @@ ezra({ nomCom: "info", categorie: 'viper-Group' }, async (dest, zk, commandeOpti
 
 
 
-// COMMAND TO ACTVATE ANTILINK GROUP
-ezra({ nomCom: "antilink", categorie: 'viper-Group', reaction: "🔗" }, async (dest, zk, commandeOptions) => {
+ezra({ 
+    nomCom: "antilink", 
+    categorie: 'viper-Group', 
+    reaction: "🔗" 
+}, async (dest, zk, commandeOptions) => {
 
+    var { repondre, arg, verifGroupe, superUser, verifAdmin } = commandeOptions;
 
-  var { repondre, arg, verifGroupe, superUser, verifAdmin } = commandeOptions;
-
-
-
-  if (!verifGroupe) {
-    return repondre("*for groups only*");
-  }
-
-  if (superUser || verifAdmin) {
-    const enetatoui = await verifierEtatJid(dest)
-    try {
-      if (!arg || !arg[0] || arg === ' ') { repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete."); return };
-
-      if (arg[0] === 'on') {
-
-
-        if (enetatoui) {
-          repondre("the antilink is already activated for this group")
-        } else {
-          await ajouterOuMettreAJourJid(dest, "oui");
-
-          repondre("the antilink is activated successfully")
-        }
-
-      } else if (arg[0] === "off") {
-
-        if (enetatoui) {
-          await ajouterOuMettreAJourJid(dest, "non");
-
-          repondre("The antilink has been successfully deactivated");
-
-        } else {
-          repondre("antilink is not activated for this group");
-        }
-      } else if (arg.join('').split("/")[0] === 'action') {
-
-
-        let action = (arg.join('').split("/")[1]).toLowerCase();
-
-        if (action == 'remove' || action == 'warn' || action == 'delete') {
-
-          await mettreAJourAction(dest, action);
-
-          repondre(`The anti-link action has been updated to ${arg.join('').split("/")[1]}`);
-
-        } else {
-          repondre("The only actions available are warn, remove, and delete");
-        }
-
-
-      } else repondre("antilink on to activate the anti-link feature\nantilink off to deactivate the anti-link feature\nantilink action/remove to directly remove the link without notice\nantilink action/warn to give warnings\nantilink action/delete to remove the link without any sanctions\n\nPlease note that by default, the anti-link feature is set to delete.")
-
-
-    } catch (error) {
-      repondre(error)
+    // 1. Check if the command is used in a group
+    if (!verifGroupe) {
+        return repondre("*This command is for groups only.*");
     }
 
-  } else {
-    repondre('You are not entitled to this order');
-  }
+    // 2. Check for Admin or Owner permissions
+    if (superUser || verifAdmin) {
+        try {
+            // Check current antilink status (on/off)
+            const isActivated = await verifierEtatJid(dest);
 
+            // If no arguments provided, show usage instructions and current status
+            if (!arg || arg.length === 0 || arg[0] === '') { 
+                return repondre(`*VIPER V2 ANTILINK SETTINGS*
+                
+*Usage:*
+- *.antilink on* : Activate the anti-link feature.
+- *.antilink off* : Deactivate the anti-link feature.
+- *.antilink action/delete* : Delete links without kicking.
+- *.antilink action/warn* : Give warnings to users.
+- *.antilink action/remove* : Kick users immediately.
+
+*Current Status:* ${isActivated ? "Activated (ON)" : "Deactivated (OFF)"}`);
+            }
+
+            const commandType = arg[0].toLowerCase();
+
+            // ACTIVATE (ON)
+            if (commandType === 'on') {
+                if (isActivated) {
+                    repondre("Antilink is already activated for this group.");
+                } else {
+                    await ajouterOuMettreAJourJid(dest, "oui");
+                    repondre("✅ Antilink has been successfully activated.");
+                }
+
+            // DEACTIVATE (OFF)
+            } else if (commandType === "off") {
+                if (!isActivated) {
+                    repondre("Antilink is not activated for this group.");
+                } else {
+                    await ajouterOuMettreAJourJid(dest, "non");
+                    repondre("❌ Antilink has been successfully deactivated.");
+                }
+
+            // UPDATE ACTION (delete/remove/warn)
+            } else if (commandType.startsWith('action')) {
+                
+                // Logic to handle both 'action/remove' or 'action remove'
+                let actionPart = commandType.includes('/') ? commandType.split('/')[1] : arg[1];
+
+                if (!actionPart) {
+                    return repondre("Please specify an action. Example: *.antilink action/remove*");
+                }
+
+                let action = actionPart.toLowerCase();
+
+                if (action === 'remove' || action === 'warn' || action === 'delete') {
+                    await mettreAJourAction(dest, action);
+                    repondre(`✅ Anti-link action has been updated to: *${action}*`);
+                } else {
+                    repondre("❌ Invalid action. Available actions: *warn, remove, delete*");
+                }
+
+            } else {
+                repondre("Unknown command. Use *on*, *off*, or *action/hatua*.");
+            }
+
+        } catch (error) {
+            console.error(error);
+            repondre("An error occurred while processing the command.");
+        }
+
+    } else {
+        repondre('Access denied. Only Admins can use this command.');
+    }
 });
 
 
