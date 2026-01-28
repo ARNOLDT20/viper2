@@ -48,7 +48,7 @@ ezra(
     nomCom: "gpt",
     aliases: ["gpt4", "ai"],
     reaction: "🫰",
-    categorie: "Fredi-Ai",
+    categorie: "viper-Ai",
   },
   async (dest, zk, commandeOptions) => {
     const { ms, arg, auteurMessage } = commandeOptions;

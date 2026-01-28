@@ -15,8 +15,8 @@ const getContextInfo = (title = '', userJid = '', thumbnailUrl = '') => ({
   forwardingScore: 999,
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
-    newsletterJid: "120363313124070136@newsletter",
-    newsletterName: "Fredi AI CEO",
+    newsletterJid: "120363421014261315@newsletter",
+    newsletterName: "Blaze tech",
     serverMessageId: Math.floor(100000 + Math.random() * 900000),
   },
   externalAdReply: {
@@ -78,7 +78,7 @@ async function downloadFromApis(apis) {
 ezra({
   nomCom: "play",
   aliases: ["song", "playdoc", "audio", "mp3"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "🎵"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -90,7 +90,7 @@ ezra({
 
     const query = arg.join(" ");
     const video = await searchYouTube(query);
-    
+
     await zk.sendMessage(dest, {
       text: "⬇️ Downloading audio... This may take a moment...",
       contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)
@@ -104,7 +104,7 @@ ezra({
     ];
 
     const downloadData = await downloadFromApis(apis);
-    
+
     // Handle different API response formats
     let downloadUrl, title;
     if (downloadData.url) {
@@ -150,7 +150,7 @@ ezra({
 ezra({
   nomCom: "video",
   aliases: ["videodoc", "film", "mp4"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -162,7 +162,7 @@ ezra({
 
     const query = arg.join(" ");
     const video = await searchYouTube(query);
-    
+
     await zk.sendMessage(dest, {
       text: "⬇️ Downloading video... This may take a moment...",
       contextInfo: getContextInfo("Downloading", userJid, video.thumbnail)
@@ -176,7 +176,7 @@ ezra({
     ];
 
     const downloadData = await downloadFromApis(apis);
-    
+
     // Handle different API response formats
     let downloadUrl, title;
     if (downloadData.url) {
@@ -222,7 +222,7 @@ ezra({
 ezra({
   nomCom: "ytsearch",
   aliases: ["youtube", "yt"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "🔍"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -233,7 +233,7 @@ ezra({
     }
 
     const query = arg.join(" ");
-    
+
     await zk.sendMessage(dest, {
       text: "🔍 Searching YouTube...",
       contextInfo: getContextInfo("Searching", userJid)
@@ -241,9 +241,9 @@ ezra({
 
     // Direct search using the /play endpoint
     const apiUrl = `https://api.ootaizumi.web.id/downloader/youtube/play?query=${encodeURIComponent(query)}`;
-    
+
     const response = await axios.get(apiUrl, { timeout: 15000 });
-    
+
     if (!response.data || (!response.data.url && !response.data.result?.url)) {
       throw new Error('No results found or invalid API response');
     }
@@ -257,7 +257,7 @@ ezra({
     }
 
     let downloadUrl, title, thumbnail;
-    
+
     if (downloadData.result?.url) {
       downloadUrl = downloadData.result.url;
       title = downloadData.result.title || query;
@@ -274,7 +274,7 @@ ezra({
 
     // Check if it's audio or video based on file extension or API response
     const isAudio = downloadUrl.includes('.mp3') || (downloadData.type === 'audio');
-    
+
     const messagePayload = isAudio ? {
       audio: { url: downloadUrl },
       mimetype: 'audio/mp4',
@@ -298,7 +298,7 @@ ezra({
 // URL upload command (unchanged, but kept for completeness)
 ezra({
   nomCom: 'url-link',
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: '👨🏿‍💻'
 }, async (dest, zk, commandOptions) => {
   const { msgRepondu, userJid, ms } = commandOptions;

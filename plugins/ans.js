@@ -10,7 +10,7 @@ ezra({ nomCom: "viper", reaction: "🤷", categorie: "viper-IA" }, async (dest, 
 
   const { repondre, ms, arg } = commandeOptions;
 
-  if (!arg || !arg[0]) { return repondre("I'm listening to you.") }
+  if (!arg || !arg[0]) { return repondre("yoh I'm listening to you.") }
   //var quest = arg.join(' ');
   try {
 
@@ -44,7 +44,7 @@ ezra({ nomCom: "viper", reaction: "🤷", categorie: "viper-IA" }, async (dest, 
 
 
 
-ezra({ nomCom: "bing4", reaction: "🌀", categorie: "Fredi-IA" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "bing4", reaction: "🌀", categorie: "viper-IA" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -72,7 +72,7 @@ ezra({ nomCom: "bing4", reaction: "🌀", categorie: "Fredi-IA" }, async (dest, 
   }
 });
 
-ezra({ nomCom: "ai2", reaction: "🌀", categorie: "Fredi-IA" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "ai2", reaction: "🌀", categorie: "viper-IA" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {
@@ -97,7 +97,7 @@ ezra({ nomCom: "ai2", reaction: "🌀", categorie: "Fredi-IA" }, async (dest, zk
 });
 
 
-ezra({ nomCom: "gpt-all", reaction: "🌀", categorie: "Fredi-IA" }, async (dest, zk, commandeOptions) => {
+ezra({ nomCom: "gpt-all", reaction: "🌀", categorie: "viper-IA" }, async (dest, zk, commandeOptions) => {
   const { repondre, arg, ms } = commandeOptions;
 
   try {

@@ -6,7 +6,7 @@ const { uploadImageToImgur } = require("../fredi/imgur")
 function createCanvacordCommand(commandName, canvacordFunction) {
   ezra({
     nomCom: commandName,
-    categorie: "Fredi-Image-Edit",
+    categorie: "viper-Image-Edit",
     reaction: "🎉"
   }, async (origineMessage, zk, commandeOptions) => {
     const { ms, msgRepondu, auteurMsgRepondu } = commandeOptions;

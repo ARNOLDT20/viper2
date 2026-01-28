@@ -8,7 +8,7 @@ const moment = require("moment-timezone");
 ezra({
   nomCom: 'broadcast',
   aliase: 'spread',
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: '⚪'
 }, async (bot, client, context) => {
   const { arg, repondre, superUser, nomAuteurMessage } = context;
@@ -23,9 +23,9 @@ ezra({
 
   const groups = await client.groupFetchAllParticipating();
   const groupIds = Object.values(groups).map(group => group.id);
-  await repondre("*💦 LUCKY-MD-XFORCE💨 is sending your message to all groups ,,,💦*...");
+  await repondre("*💦 viper md💨 is sending your message to all groups ,,,💦*...");
 
-  const broadcastMessage = `*🌟 LUCKY XFORCE BROADCAST🌟*\n\n🀄 Message: ${arg.join(" ")}\n\n🗣️ Author: ${nomAuteurMessage}`;
+  const broadcastMessage = `*🌟 viper BROADCAST🌟*\n\n🀄 Message: ${arg.join(" ")}\n\n🗣️ Author: ${nomAuteurMessage}`;
   for (let groupId of groupIds) {
     await client.sendMessage(groupId, {
       image: { url: 'https://files.catbox.moe/o4o7w2.png' },
@@ -53,7 +53,7 @@ const handleDisapCommand = async (chatId, client, context, duration) => {
 // Disappearing Messages Off Command
 ezra({
   nomCom: "disap-off",
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: '💦'
 }, async (chatId, client, context) => {
   const { repondre, verifGroupe, verifAdmin } = context;
@@ -73,7 +73,7 @@ ezra({
 // Disappearing Messages Setup Command
 ezra({
   nomCom: 'disap',
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: '💦'
 }, async (chatId, client, context) => {
   const { repondre, verifGroupe, verifAdmin } = context;
@@ -90,13 +90,13 @@ ezra({
 });
 
 // Disappearing Messages Commands (1, 7, 90 days)
-ezra({ nomCom: "disap1", categorie: "Fredi-Group", reaction: '⚪' }, async (chatId, client, context) => {
+ezra({ nomCom: "disap1", categorie: "viper-Group", reaction: '⚪' }, async (chatId, client, context) => {
   handleDisapCommand(chatId, client, context, 86400); // 1 day
 });
-ezra({ nomCom: "disap7", categorie: 'Fredi-Group', reaction: '⚪' }, async (chatId, client, context) => {
+ezra({ nomCom: "disap7", categorie: 'viper-Group', reaction: '⚪' }, async (chatId, client, context) => {
   handleDisapCommand(chatId, client, context, 604800); // 7 days
 });
-ezra({ nomCom: "disap90", categorie: 'Fredi-Group', reaction: '⚪' }, async (chatId, client, context) => {
+ezra({ nomCom: "disap90", categorie: 'viper-Group', reaction: '⚪' }, async (chatId, client, context) => {
   handleDisapCommand(chatId, client, context, 7776000); // 90 days
 });
 
@@ -104,7 +104,7 @@ ezra({ nomCom: "disap90", categorie: 'Fredi-Group', reaction: '⚪' }, async (ch
 ezra({
   nomCom: 'req',
   alias: 'requests',
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: "⚪"
 }, async (chatId, client, context) => {
   const { repondre, verifGroupe, verifAdmin } = context;
@@ -156,13 +156,13 @@ const handleRequestCommand = async (chatId, client, context, action) => {
 // Approve Requests Command
 ezra({
   nomCom: "approve",
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: "⚪"
 }, (chatId, client, context) => handleRequestCommand(chatId, client, context, "approve"));
 
 // Reject Requests Command
 ezra({
   nomCom: "reject",
-  categorie: "Fredi-Group",
+  categorie: "viper-Group",
   reaction: "⚪"
 }, (chatId, client, context) => handleRequestCommand(chatId, client, context, "reject"));

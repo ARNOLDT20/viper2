@@ -3,7 +3,7 @@ const { ezra } = require("../fredi/ezra");
 const moment = require("moment-timezone");
 const os = require("os");
 const s = require("../set");
-const { getBuffer } = require("../lib/functions"); // Buffer helper
+const { getBuffer } = require("../lib/functions"); // HD buffer helper
 
 const readMore = String.fromCharCode(8206).repeat(4001);
 
@@ -58,7 +58,7 @@ ezra({
     const temps = moment().format("HH:mm:ss");
     const date = moment().format("DD/MM/YYYY");
 
-    // Fetch HD image as buffer
+    // Fetch HD image buffer
     let imageBuffer;
     try {
         imageBuffer = await getBuffer("https://files.catbox.moe/xqhfyv.webp");

@@ -38,7 +38,7 @@ ezra({
     for (let i = 0; i < Math.min(results.length, 5); i++) {
       zk.sendMessage(dest, {
         image: { url: results[i].url },
-        caption: `DOWNLOAD AND ENJOY BY ☢️LUCKY MD X-FORCE☢️`,
+        caption: `DOWNLOAD AND ENJOY BY ☢️viper md☢️`,
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
@@ -56,7 +56,7 @@ ezra({
 ezra({
   nomCom: "insult",
   aliases: ["abuse", "tusi"],
-  categorie: "Fredi-Search",
+  categorie: "viper-Search",
   reaction: "🤷"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
@@ -81,7 +81,7 @@ ezra({
   nomCom: "fullpp",
   aliases: ["updatepp", "ppfull"],
   reaction: '🍂',
-  categorie: "Fredi-New"
+  categorie: "viper-New"
 }, async (dest, zk, commandeOptions) => {
   const { repondre, msgRepondu, auteurMessage } = commandeOptions;
 
