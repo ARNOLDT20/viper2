@@ -19,7 +19,7 @@
 📈 **Contributions Graph (alternative)**:  
 ![Contributions](https://ghchart.rshah.org/ARNOLDT20)
 
-_Note: some dynamic badge services (github-readme-stats, github-profile-trophy, activity-graph) are intermittently down or rate-limited. If you prefer those exact cards, re-enable their URLs when the services are available._
+much love from STAR BOY
 
 ---
 
@@ -132,7 +132,7 @@ _Note: some dynamic badge services (github-readme-stats, github-profile-trophy, 
 ## 📱 Connect With Me
 
 📱 **Facebook**: [ArnoldTarimo](https://facebook.com/@arnold.tarimo.94)  
-📸 **Instagram**: [officialArnold](https://instagram.com/official_arold.1)  
+📸 **Instagram**: [officialArnold](https://instagram.com/official_arnold.1)  
 📹 **YouTube**: [blaze-Tech](https://youtube.com/frediai-tech)  
 📧 **GitHub**: [ARNOLDT20](https://github.com/ARNOLDT20)  
 
