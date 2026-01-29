@@ -546,7 +546,13 @@ setTimeout(() => {
             }
 
             if (verifCom) {
-                const cd = evt.cm.find((zokou) => zokou.nomCom === (com));
+                const cd = evt.cm.find((zokou) => {
+                    try {
+                        if (zokou.nomCom && zokou.nomCom.toString().toLowerCase() === com) return true;
+                        if (Array.isArray(zokou.aliases) && zokou.aliases.map(a => a.toString().toLowerCase()).includes(com)) return true;
+                    } catch (e) { }
+                    return false;
+                });
                 if (cd) {
                     try {
                         if ((conf.MODE).toLocaleLowerCase() != 'yes' && !superUser) {

@@ -1753,7 +1753,13 @@ setTimeout(() => {
       //execution des luckycmd   
       if (verifCom) {
         //await await zk.readMessages(ms.key);
-        const cd = evt.cm.find((ezra) => ezra.nomCom === (com));
+        const cd = evt.cm.find((ezra) => {
+          try {
+            if (ezra.nomCom && ezra.nomCom.toString().toLowerCase() === com) return true;
+            if (Array.isArray(ezra.aliases) && ezra.aliases.map(a => a.toString().toLowerCase()).includes(com)) return true;
+          } catch (e) { }
+          return false;
+        });
         if (cd) {
           try {
 
