@@ -129,40 +129,58 @@ setTimeout(() => {
         };
         const zk = (0, baileys_1.default)(sockOptions);
         store.bind(zk.ev);
-        // Replace the status reaction code with this:
+        // Status reaction helper: accepts many truthy values and provides fallbacks
+        const isEnabled = (v) => {
+            if (!v && v !== 0) return false;
+            try {
+                const s = v.toString().toLowerCase();
+                return ['yes', 'y', 'true', '1', 'oui', 'o'].includes(s);
+            } catch (e) { return false; }
+        };
 
-        if (conf.AUTO_REACT_STATUS === "yes") {
+        if (isEnabled(conf.AUTO_REACT_STATUS)) {
             zk.ev.on("messages.upsert", async (m) => {
                 const { messages } = m;
 
                 for (const message of messages) {
-                    if (message.key && message.key.remoteJid === "status@broadcast") {
+                    try {
+                        if (!message.key || message.key.remoteJid !== "status@broadcast") continue;
+
+                        // Array of possible reaction emojis
+                        const reactionEmojis = ["❤️", "🔥", "👍", "😂", "😮", "😢", "🤔", "👏", "🎉", "🤩"];
+                        const randomEmoji = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
+
+                        // Try marking as read (best-effort)
+                        try { await zk.readMessages([message.key]); } catch (e) { }
+
+                        // Small delay before reacting
+                        await new Promise(resolve => setTimeout(resolve, 400));
+
+                        // Primary attempt: react to the status broadcast JID
                         try {
-                            // Array of possible reaction emojis
-                            const reactionEmojis = ["❤️", "🔥", "👍", "😂", "😮", "😢", "🤔", "👏", "🎉", "🤩"];
-                            const randomEmoji = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
-
-                            // Mark as read first
-                            await zk.readMessages([message.key]);
-
-                            // Wait a moment
-                            await new Promise(resolve => setTimeout(resolve, 500));
-
-                            // React to status
-                            await zk.sendMessage(message.key.remoteJid, {
-                                react: {
-                                    text: randomEmoji,
-                                    key: message.key
+                            await zk.sendMessage(message.key.remoteJid, { react: { text: randomEmoji, key: message.key } });
+                            console.log(`Reacted to status (broadcast) from ${message.key.participant} with ${randomEmoji}`);
+                        } catch (errPrimary) {
+                            console.warn('Primary status react failed, trying participant react:', errPrimary?.message || errPrimary);
+                            // Fallback: try sending reaction to the participant directly
+                            try {
+                                const participant = message.key.participant || message.participant || message.key?.participant;
+                                if (participant) {
+                                    await zk.sendMessage(participant, { react: { text: randomEmoji, key: message.key } });
+                                    console.log(`Reacted to status (participant) ${participant} with ${randomEmoji}`);
+                                } else {
+                                    console.warn('No participant available for fallback react.');
                                 }
-                            });
-
-                            console.log(`Reacted to status from ${message.key.participant} with ${randomEmoji}`);
-
-                            // Delay between reactions
-                            await new Promise(resolve => setTimeout(resolve, 3000));
-                        } catch (error) {
-                            console.error("Status reaction failed:", error);
+                            } catch (errFallback) {
+                                console.error('Fallback status react also failed:', errFallback);
+                            }
                         }
+
+                        // Throttle tiny bit
+                        await new Promise(resolve => setTimeout(resolve, 1200));
+
+                    } catch (error) {
+                        console.error('Error processing status message for reaction:', error);
                     }
                 }
             });
@@ -406,7 +424,8 @@ setTimeout(() => {
                     texte.match(/https?:\/\/|www\.|\.com|\.net|\.org|\.xyz|\.link|\.me|\.online|\.app|\.store|\.tech|\.site|\.live/i) && verifGroupe && yes) {
                     console.log("lien detecté")
                     var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
-                    if (superUser || verifAdmin || !verifZokAdmin) { console.log('je fais rien'); return };
+                    // Skip enforcement for super users, group admins, or when the bot itself is admin
+                    if (superUser || verifAdmin || verifEzraAdmin) { console.log('je fais rien'); return };
 
                     const key = {
                         remoteJid: origineMessage,
