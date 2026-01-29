@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: viper-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: viper-bot
+  template:
+    metadata:
+      labels:
+        app: viper-bot
+    spec:
+      containers:
+      - name: viper
+        image: YOUR_REGISTRY/viper-22:latest
+        imagePullPolicy: Always
+        env:
+        - name: NODE_ENV
+          value: "production"
+        ports:
+        - containerPort: 80

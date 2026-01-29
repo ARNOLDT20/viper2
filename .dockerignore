@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.env
+.vscode
+data/*.log
+*.tgz
+Dockerfile
+.DS_Store

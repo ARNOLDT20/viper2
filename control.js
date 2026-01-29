@@ -281,7 +281,7 @@ setTimeout(() => {
     // Function to handle anti-delete
     // ✅ Log active status
     if (conf.LUCKY_ADM === "yes") {
-      console.log("🛡️ Lucky Md Xforce AntiDelete is ACTIVE!");
+      console.log("🛡️ viper md AntiDelete is ACTIVE!");
     }
 
     zk.ev.on("messages.upsert", async (m) => {
@@ -332,7 +332,7 @@ setTimeout(() => {
           }
 
           // 🪧 Notification Text
-          const notification = `🫧 *Lucky Md Xforce antiDelete* 🫧\n` +
+          const notification = `🫧 *viper md antiDelete* 🫧\n` +
             `• Deleted by: @${deleterJid.split("@")[0]}\n` +
             `• Original sender: @${originalSenderJid.split("@")[0]}\n` +
             `${groupInfo}\n` +
