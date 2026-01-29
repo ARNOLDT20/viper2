@@ -83,7 +83,7 @@ ezra({
 /*
 ezra({
   nomCom: "repo",
-  categorie: "General-Fredi",
+  categorie: "General-viper",
   reaction: "🫧",
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
@@ -152,8 +152,6 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
-
-  // Simple version without API calls
   const repoInfo = `🫧 *viper xmd Repository* 🫧\n\n` +
     `✨ *Stars:* 100+\n` +
     `🔱 *Forks:* 50+\n` +
@@ -161,23 +159,16 @@ ezra({
     `🔗 *GitHub:* https://github.com/ARNOLDT20/Viper2\n\n` +
     `_Click buttons below to interact_`;
 
-  await zk.sendMessage(dest, {
-    text: repoInfo,
-    footer: "blaze Tech Info",
-    buttons: [
-      { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
-      { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },
-      { buttonId: 'id3', buttonText: { displayText: '📁 Fork Now' } }
-    ]
-  }, { quoted: ms });
   try {
+    // Send an image card with buttons and an external ad reply (link preview)
     await zk.sendMessage(dest, {
-      text: repoInfo,
-      footer: "blaze Tech Info",
+      image: { url: set.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+      caption: repoInfo,
+      footer: 'blaze Tech Info',
       buttons: [
-        { buttonId: 'id1', buttonText: { displayText: '🌐 Visit Repo' } },
-        { buttonId: 'id2', buttonText: { displayText: '⭐ Star Now' } },
-        { buttonId: 'id3', buttonText: { displayText: '📁 Fork Now' } }
+        { buttonId: 'visit_repo', buttonText: { displayText: '🌐 Visit Repo' } },
+        { buttonId: 'star_repo', buttonText: { displayText: '⭐ Star Now' } },
+        { buttonId: 'fork_repo', buttonText: { displayText: '📁 Fork Now' } }
       ],
       contextInfo: {
         externalAdReply: {
@@ -190,7 +181,12 @@ ezra({
       }
     }, { quoted: ms });
   } catch (err) {
-    console.error('Error sending repo buttons:', err);
-    if (typeof repondre === 'function') await repondre('❌ Failed to send repo info.');
+    console.error('Error sending repo info (fallback to text):', err);
+    try {
+      await zk.sendMessage(dest, { text: repoInfo }, { quoted: ms });
+    } catch (err2) {
+      console.error('Failed fallback repo text send:', err2);
+      if (typeof repondre === 'function') await repondre('❌ Failed to send repo info.');
+    }
   }
 });
