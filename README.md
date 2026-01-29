@@ -2,7 +2,7 @@
 
 # 🌟 viper xmd 🚀
 
-[![BLAZE TECH](https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/lucy.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
+[![BLAZE TECH](https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 
 ---
 
@@ -12,14 +12,14 @@
 📊 **Profile Views**:  
 ![Profile Views](https://komarev.com/ghpvc/?username=ARNOLDT20&label=VIEWS&style=flat-square&color=blue)
 
-📈 **GitHub Stats**:  
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=ARNOLDT20&show_icons=true&theme=github_dark)
+📈 **GitHub Stats (fallback badges)**:  
+[![GitHub followers](https://img.shields.io/github/followers/ARNOLDT20?label=Followers&style=flat-square)](https://github.com/ARNOLDT20)
+[![Top Langs](https://img.shields.io/github/languages/top/ARNOLDT20/Viper2?style=flat-square)](https://github.com/ARNOLDT20)
 
-🏆 **Trophies**:  
-![Trophies](https://github-profile-trophy.vercel.app/?username=ARNOLDT20&theme=monokai)
+📈 **Contributions Graph (alternative)**:  
+![Contributions](https://ghchart.rshah.org/ARNOLDT20)
 
-📈 **Contributions Graph**:  
-![Contributions](https://activity-graph.herokuapp.com/graph?username=ARNOLDT20&theme=github)
+_Note: some dynamic badge services (github-readme-stats, github-profile-trophy, activity-graph) are intermittently down or rate-limited. If you prefer those exact cards, re-enable their URLs when the services are available._
 
 ---
 
