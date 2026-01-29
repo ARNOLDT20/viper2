@@ -152,6 +152,11 @@ ezra({
   nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
   const { repondre, ms } = commandeOptions;
+  try {
+    await zk.sendMessage(dest, { text: 'Processing repo...' }, { quoted: ms });
+  } catch (ackErr) {
+    // ignore ack errors
+  }
   const repoInfo = `🫧 *viper xmd Repository* 🫧\n\n` +
     `✨ *Stars:* 100+\n` +
     `🔱 *Forks:* 50+\n` +
@@ -186,7 +191,11 @@ ezra({
       await zk.sendMessage(dest, { text: repoInfo }, { quoted: ms });
     } catch (err2) {
       console.error('Failed fallback repo text send:', err2);
-      if (typeof repondre === 'function') await repondre('❌ Failed to send repo info.');
+      try {
+        await zk.sendMessage(dest, { text: `❌ Failed to send repo info. Error: ${String(err2)}` }, { quoted: ms });
+      } catch (err3) {
+        if (typeof repondre === 'function') await repondre('❌ Failed to send repo info.');
+      }
     }
   }
 });
