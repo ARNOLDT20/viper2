@@ -19,123 +19,89 @@
 📈 **Contributions Graph (alternative)**:  
 ![Contributions](https://ghchart.rshah.org/ARNOLDT20)
 
-much love from STAR BOY
+<p align="center">
+	<a href="https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d">
+		<img src="media/lucky.svg" alt="viper logo" width="220" />
+	</a>
+</p>
+
+<p align="center">
+	<strong style="font-size:20px">viper xmd</strong>
+</p>
+
+<p align="center">
+	<!-- Badges -->
+	<img src="https://img.shields.io/badge/version-2.0.0-brightgreen.svg" alt="version" />
+	<img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="license" />
+	<a href="https://github.com/ARNOLDT20"><img src="https://img.shields.io/github/followers/ARNOLDT20?label=Followers&style=flat-square" alt="followers"/></a>
+</p>
+
+---
+
+## 📊 Profile Overview
+
+👤 **Developer**: [BLAZE TECH](https://github.com/ARNOLDT20)
+
+<p align="center">
+	<img src="https://ghchart.rshah.org/ARNOLDT20" alt="Contribution chart" />
+</p>
 
 ---
 
 ## 🎯 Features
 
-✨ **Anti-Features**: Anti-call, anti-delete, short session  
-✨ **Auto-Features**: Auto status read, auto message react  
-✨ **Dual Mode**: Group + DM features  
-✨ **Privacy**: Public/Private mode  
-✨ **Hosting**: Secure cloud-hosting compatible  
-✨ **Support**: Developer maintained: BLAZE TECH  
+| Core | Auto | Moderation |
+|---|---|---|
+| 🤖 Dual Mode (Groups & DMs) | 🔁 Auto-react & Auto-read | 🔒 Anti-call & Anti-delete |
+| ⚙️ Configurable Commands | ⏱️ Typing/Presence helpers | 👑 Owner-only controls |
 
 ---
 
-## 📥 Download ZIP
+## 🚀 Quick Start
 
-📁 **Download ZIP File**: [viper xmd ZIP 📁](https://github.com/ARNOLDT20/Viper2/archive/refs/heads/main.zip)
+Clone and start locally:
 
----
+```bash
+git clone https://github.com/ARNOLDT20/Viper2.git
+cd Viper2
+npm install
+npm run start
+```
 
-## 🚀 Deployment Options
+Run with Docker (example):
 
-### 🌐 Cloud Platforms
-
-#### 1. **Heroku**  
-[Heroku](https://lucky-md-xforce-deploy-your-bot-with-your-github-username.vercel.app)  
-<details><summary>Steps</summary>
-1. Fork this repo  
-2. Click Heroku button above  
-3. Connect your GitHub and select this repo  
-4. Set config vars like SESSION_ID  
-5. Click **Deploy App**  
-</details>
-
-#### 2. **Railway**  
-[Railway](https://railway.app/new)  
-<details><summary>Steps</summary>
-1. Open link  
-2. Click **Deploy from GitHub repo**  
-3. Select this repo  
-4. Go to variables tab → add SESSION_ID, AUTOBIO etc.  
-5. Deploy  
-</details>
-
-#### 3. **Koyeb**  
-[Koyeb](https://app.koyeb.com/services/deploy?type=git&repository=ARNOLDT20/Viper2)  
-<details><summary>Steps</summary>
-1. Click above to open deploy panel  
-2. Authorize GitHub and select repo  
-3. Set environment variables  
-4. Deploy and wait for logs to show successful build  
-</details>
-
-#### 4. **Render**  
-[Render](https://dashboard.render.com/web/new)  
-<details><summary>Steps</summary>
-1. Open Render dashboard  
-2. Click **New Web Service**  
-3. Connect your GitHub  
-4. Choose this repo  
-5. Add build/start command & ENV vars  
-6. Click **Create Web Service**  
-</details>
-
-#### 5. **TalkDrove**  
-[TalkDrove](https://host.talkdrove.com/share-bot/47)  
-<details><summary>Steps</summary>
-1. Open the TalkDrove link  
-2. Click **Deploy Now**  
-3. Paste repo link  
-4. Add ENV values (SESSION_ID)  
-5. Deploy the bot  
-</details>
-
-#### 6. **Netlify** (For Frontend)  
-[Netlif](https://app.netlify.com/)  
-<details><summary>Steps</summary>
-1. Use for frontend session site only  
-2. Drag/drop or link repo with index.html  
-3. Publish to host session UI  
-</details>
+```bash
+docker build -t viper-22:latest .
+docker run -e SESSION_ID=your_session_id -d viper-22:latest
+```
 
 ---
 
-## 🛠️ Setup Guide
+## 💡 Useful Commands
 
-1. **Fork the Repo**: Start by forking this repository to your GitHub account.  
-2. **Get Session ID**: Use [this link](https://test-pair-uuw6.onrender.com) to get your session ID.  
-3. **Choose Host**: Select a deployment platform from the options above.  
-4. **Deploy**: Follow the platform-specific instructions to deploy the bot.  
-5. **Configure**: Set up environment variables like SESSION_ID as required.  
-6. **Start Bot**: Once deployed, the bot will start automatically.  
+- `.motivation` — Send a motivational image (aliases: `.motivate`, `.inspire`, `.quote`)
+- `.uptime` — Show bot uptime
+- `.mode public|private|toggle` — Change bot mode
 
 ---
 
-## 📢 Join Community
+## 🛠️ Deployment
 
-👥 **WhatsApp Channel**: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)  
-📢 **Stay Updated**: Get the latest updates, features, and support.  
-
----
-
-## 📝 License
-
-📜 **License**: This project is under [MIT License](LICENSE).  
-📢 **Credits**: Developed with ❤️ by [BLAZE TECH](https://github.com/ARNOLDT20).  
+See `README_DEPLOY_KATABUMP.md` for Docker / Kubernetes / platform steps. Set required env vars like `SESSION_ID` before starting the bot.
 
 ---
 
-## 📱 Connect With Me
+## 🤝 Contributing
 
-📱 **Facebook**: [ArnoldTarimo](https://facebook.com/@arnold.tarimo.94)  
-📸 **Instagram**: [officialArnold](https://instagram.com/official_arnold.1)  
-📹 **YouTube**: [blaze-Tech](https://youtube.com/frediai-tech)  
-📧 **GitHub**: [ARNOLDT20](https://github.com/ARNOLDT20)  
+1. Fork the repository
+2. Create a feature branch
+3. Commit and open a Pull Request
 
+---
+
+## 📢 Community & Support
+
+Join the WhatsApp channel for updates: [Join Now](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 ---
 
 ## 📲 Download APK
