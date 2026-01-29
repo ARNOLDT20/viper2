@@ -2,7 +2,7 @@
 
 # 🌟 viper xmd 🚀
 
-[![BLAZE TECH](https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/lucy.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
+[![BLAZE TECH](https://raw.githubusercontent.com/ARNOLDT20/Viper2/main/media/lucky.svg)](https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d)
 
 ---
 
