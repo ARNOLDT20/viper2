@@ -7,7 +7,7 @@ const { verifierEtatJid, modifierEtatJid, recupererActionJid, modifierActionJid 
  */
 
 ezra({
-    nomCom: "antilink",
+    nomCom: "antilink2",
     categorie: "Group",
     reaction: "🚫"
 }, async (dest, zk, commandeOptions) => {
