@@ -1,7 +1,7 @@
-const { zokou } = require('../fredi/ezra'); // Hakikisha path ya ezra ni sahihi
+const { ezra } = require('../fredi/ezra'); // Hakikisha path ya ezra ni sahihi
 const { verifierEtatJid, modifierEtatJid, recupererActionJid, modifierActionJid } = require("../lib/antilien");
 
-zokou({
+ezra({
     nomCom: "antilink",
     categorie: "Group",
     reaction: "🔗"
