@@ -32,27 +32,30 @@ ezra({
     }
 
     if (audioAvailable) {
-      await _0x2d8d4e.sendMessage(_0x12a838, {
-        audio: { url: audioUrl },
-        mimetype: "audio/mpeg",
-        ptt: true,
-        contextInfo: {
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: "120363421014261315@newsletter",
-            newsletterName: "BLAZE TECH",
-            serverMessageId: 0x8f
-          },
-          forwardingScore: 0x3e7,
-          externalAdReply: {
-            title: "viper xmd",
-            body: `⚫ Pong: ${_0x4950ba}ms\n📅 Date: ${_0x4c687e}\n⏰ Time: ${_0xb5466b}`,
-            thumbnailUrl: set.URL || "https://files.catbox.moe/xqhfyv.webp",
-            mediaType: 1,
-            renderSmallThumbnail: true
+      await _0x2d8d4e.sendMessage(
+        _0x12a838,
+        {
+          audio: { url: audioUrl },
+          mimetype: "audio/mpeg",
+          contextInfo: {
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+              newsletterJid: "120363421014261315@newsletter",
+              newsletterName: "BLAZE TECH",
+              serverMessageId: 0x8f
+            },
+            forwardingScore: 0x3e7,
+            externalAdReply: {
+              title: "viper xmd",
+              body: `⚫ Pong: ${_0x4950ba}ms\n📅 Date: ${_0x4c687e}\n⏰ Time: ${_0xb5466b}`,
+              thumbnailUrl: set.URL || "https://files.catbox.moe/xqhfyv.webp",
+              mediaType: 1,
+              renderSmallThumbnail: true
+            }
           }
-        }
-      }, { quoted: _0x5d2f0c });
+        },
+        { quoted: _0x5d2f0c, ptt: true }
+      );
     } else {
       await _0x2d8d4e.sendMessage(_0x12a838, {
         text: `⚫ Pong: ${_0x4950ba}ms\n📅 Date: ${_0x4c687e}\n⏰ Time: ${_0xb5466b}\n\n⚠️ Audio not available.`,
