@@ -103,6 +103,10 @@ process.on('uncaughtException', (err) => {
 const store = (0, baileys_1.makeInMemoryStore)({
     logger: pino().child({ level: "silent", stream: "store" }),
 });
+
+// Initialize status reaction listener once (outside main to avoid stacking on reconnects)
+let statusReactionInitialized = false;
+
 setTimeout(() => {
     async function main() {
         const { version, isLatest } = await (0, baileys_1.fetchLatestBaileysVersion)();
@@ -138,9 +142,11 @@ setTimeout(() => {
         };
         const zk = (0, baileys_1.default)(sockOptions);
         store.bind(zk.ev);
-        // Replace the status reaction code with this:
-
-        if (conf.AUTO_REACT_STATUS === "yes") {
+        
+        // Attach status reaction listener only once
+        if (conf.AUTO_REACT_STATUS === "yes" && !statusReactionInitialized) {
+            statusReactionInitialized = true;
+            console.log("✅ AUTO_REACT_STATUS enabled. Listening for status updates...");
             zk.ev.on("messages.upsert", async (m) => {
                 const { messages } = m;
 
@@ -165,12 +171,12 @@ setTimeout(() => {
                                 }
                             });
 
-                            console.log(`Reacted to status from ${message.key.participant} with ${randomEmoji}`);
+                            console.log(`✅ Reacted to status from ${message.key.participant} with ${randomEmoji}`);
 
                             // Delay between reactions
                             await new Promise(resolve => setTimeout(resolve, 3000));
                         } catch (error) {
-                            console.error("Status reaction failed:", error);
+                            console.error("❌ Status reaction failed:", error.message);
                         }
                     }
                 }
