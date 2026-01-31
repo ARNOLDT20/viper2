@@ -30,8 +30,76 @@ ezra({
         FLUX / IMAGE API CONFIG
         ─────────────────────────────
         */
-        const API_URL = "https://api.your-flux-provider.com/v1/generate";
-        const API_KEY = process.env.FLUX_API_KEY || "PUT_YOUR_API_KEY_HERE";
+        // Prefer OpenAI Images if API key available
+        const OPENAI_KEY = process.env.OPENAI_API_KEY || null;
+
+        if (OPENAI_KEY) {
+            try {
+                const oa = await axios.post(
+                    "https://api.openai.com/v1/images/generations",
+                    {
+                        model: "gpt-image-1",
+                        prompt: prompt,
+                        size: "1024x1024",
+                        n: 1
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${OPENAI_KEY}`,
+                            "Content-Type": "application/json"
+                        },
+                        timeout: 120000
+                    }
+                );
+
+                const dataItem = oa.data?.data?.[0];
+                if (!dataItem) {
+                    console.error('Imagine: OpenAI returned no data', oa.data);
+                    return repondre('❌ Failed to generate image (no data returned).');
+                }
+
+                // Some providers return a URL, others return base64
+                if (dataItem.url) {
+                    await zk.sendMessage(dest, {
+                        image: { url: dataItem.url },
+                        caption:
+                            "✅ *VIPER MD CREATED YOUR IMAGE FROM THE PROMPT GIVEN*\n\n" +
+                            "🖋️ *Prompt:*\n" +
+                            `_${prompt}_\n\n` +
+                            "⚡ Powered by *VIPER MD*"
+                    });
+                    return;
+                }
+
+                if (dataItem.b64_json) {
+                    const buf = Buffer.from(dataItem.b64_json, 'base64');
+                    await zk.sendMessage(dest, {
+                        image: buf,
+                        caption:
+                            "✅ *VIPER MD CREATED YOUR IMAGE FROM THE PROMPT GIVEN*\n\n" +
+                            "🖋️ *Prompt:*\n" +
+                            `_${prompt}_\n\n` +
+                            "⚡ Powered by *VIPER MD*"
+                    });
+                    return;
+                }
+
+                console.error('Imagine: OpenAI data format not recognized', oa.data);
+                return repondre('❌ Failed to generate image (unexpected response).');
+
+            } catch (errOpen) {
+                console.error('Imagine OpenAI error:', errOpen?.response?.data || errOpen);
+                return repondre('❌ Image generation failed (OpenAI). Check OPENAI_API_KEY and quota.');
+            }
+        }
+
+        // Fallback: attempt any configured alternate API (flux-style)
+        const API_URL = process.env.FLUX_API_URL || "";
+        const API_KEY = process.env.FLUX_API_KEY || "";
+
+        if (!API_URL || !API_KEY) {
+            return repondre('❌ No image provider configured. Set `OPENAI_API_KEY` in your environment to enable image generation.');
+        }
 
         const response = await axios.post(
             API_URL,
@@ -53,16 +121,13 @@ ezra({
             }
         );
 
-        const imageUrl =
-            response.data.image ||
-            response.data.output ||
-            response.data.images?.[0];
+        const imageUrl = response.data.image || response.data.output || response.data.images?.[0];
 
         if (!imageUrl) {
+            console.error('Imagine: fallback provider returned:', response.data);
             return repondre("❌ Failed to generate image. Try again.");
         }
 
-        // 🖼️ Send final image with prompt
         await zk.sendMessage(dest, {
             image: { url: imageUrl },
             caption:
