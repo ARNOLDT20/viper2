@@ -100,21 +100,25 @@ ezra({
 ╰══════════════════════════════╯`;
 
         // SEND
-        // read saved menu image (if any)
+        // read saved menu image (if any) and support separate thumbnail
         const menuDataPath = path.join(__dirname, '..', 'data', 'menu.json');
-        let thumbnailUrl = s.URL || "https://files.catbox.moe/m6aoje.jpg";
+        let menuImage = s.URL || "https://files.catbox.moe/m6aoje.jpg";
+        let thumbnailUrl = menuImage;
         try {
             if (fs.existsSync(menuDataPath)) {
                 const raw = fs.readFileSync(menuDataPath, 'utf8');
                 const obj = JSON.parse(raw || '{}');
-                if (obj.menuImage) thumbnailUrl = obj.menuImage;
+                if (obj.menuImage) menuImage = obj.menuImage;
+                if (obj.menuThumb) thumbnailUrl = obj.menuThumb;
             }
         } catch (e) {
             console.error('Error reading menu image file:', e);
         }
 
+        // send as an image message (shows both image and link preview thumbnail)
         await zk.sendMessage(jid, {
-            text,
+            image: { url: menuImage },
+            caption: text,
             contextInfo: {
                 forwardingScore: 999,
                 isForwarded: true,
@@ -122,7 +126,7 @@ ezra({
                     title: "⚡ VIPER MD MENU ⚡",
                     body: "Clean • Fast • Professional",
                     thumbnailUrl: thumbnailUrl,
-                    sourceUrl: "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
+                    sourceUrl: menuImage || "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
                     mediaType: 1,
                     renderLargerThumbnail: true
                 }

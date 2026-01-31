@@ -29,17 +29,26 @@ ezra({ nomCom: "botimage", categorie: "Main", reaction: "🖼️", nomFichier: _
         return repondre('❌ Failed to upload the replied media.');
       }
 
-    // Or accept a direct URL argument
+    // Or accept a direct URL argument (optionally a second URL for thumbnail)
     } else if (arg && arg[0] && (arg[0].startsWith('http://') || arg[0].startsWith('https://'))) {
       imageUrl = arg[0];
+      // optional thumb provided as second argument
+      var thumbUrl = null;
+      if (arg[1] && (arg[1].startsWith('http://') || arg[1].startsWith('https://'))) thumbUrl = arg[1];
     } else {
       return repondre(`Please reply to an image (or sticker) or provide an image URL.\nUsage: ${set.PREFIXE}botimage <image_url>`);
     }
 
-    // Save the URL to data/menu.json
+    // Save the URL(s) to data/menu.json
     try {
       fs.ensureDirSync(path.dirname(dataPath));
-      fs.writeFileSync(dataPath, JSON.stringify({ menuImage: imageUrl }, null, 2));
+      // load existing to preserve thumb if not provided
+      let cur = {};
+      try { cur = fs.readJsonSync(dataPath); } catch (e) { cur = {}; }
+      const toSave = Object.assign({}, cur, { menuImage: imageUrl });
+      if (typeof thumbUrl !== 'undefined' && thumbUrl) toSave.menuThumb = thumbUrl;
+      if (!toSave.menuThumb) toSave.menuThumb = toSave.menuImage;
+      fs.writeFileSync(dataPath, JSON.stringify(toSave, null, 2));
       await repondre('✅ Menu image updated successfully.');
       // Optionally send a preview
       await zk.sendMessage(dest, { image: { url: imageUrl }, caption: 'Menu image set' }, { quoted: ms });
