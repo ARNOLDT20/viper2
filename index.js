@@ -741,16 +741,17 @@ setTimeout(() => {
             }
             else if (connection == "close") {
                 let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
+                console.log('Disconnect reason code:', raisonDeconnexion, 'raw error:', lastDisconnect?.error || 'none');
                 if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
                     console.log('Session id error, rescan again...');
                 }
                 else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionClosed) {
-                    console.log('!!! connection closed, reconnection in progress...');
-                    main();
+                    console.log('!!! connection closed, reconnection scheduled...');
+                    setTimeout(() => main(), 5000);
                 }
                 else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionLost) {
-                    console.log('connection error 😞,,, trying to reconnect... ');
-                    main();
+                    console.log('connection lost 😞 — scheduling reconnect...');
+                    setTimeout(() => main(), 5000);
                 }
                 else if (raisonDeconnexion === baileys_1.DisconnectReason?.connectionReplaced) {
                     console.log('connection replaced ,,, a session is already open please close it !!!');
@@ -759,20 +760,16 @@ setTimeout(() => {
                     console.log('you are disconnected,,, please rescan the qr code please');
                 }
                 else if (raisonDeconnexion === baileys_1.DisconnectReason.restartRequired) {
-                    console.log('reboot in progress ▶️');
-                    main();
+                    console.log('reboot required ▶️ — scheduling restart...');
+                    setTimeout(() => main(), 5000);
                 } else {
 
-                    console.log('redemarrage sur le coup de l\'erreur  ', raisonDeconnexion);
-                    //repondre("* Redémarrage du bot en cour ...*");
-
+                    console.log('Unhandled disconnect reason:', raisonDeconnexion);
                     const { exec } = require("child_process");
-
                     exec("pm2 restart all");
                 }
-                // sleep(50000)
+                // avoid immediate double-reconnect; let scheduled reconnects handle it
                 console.log("hum " + connection);
-                main(); //console.log(session)
             }
         });
         //fin événement connexion
