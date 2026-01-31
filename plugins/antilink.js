@@ -40,11 +40,11 @@ ezra({
     // Hii sehemu inafanya kazi kila ujumbe unapoandikwa
     try {
         const isAntilinkOn = await verifierEtatJid(dest);
-        
+
         if (verifGroupe && isAntilinkOn && texte) {
             // RegEx ya kasi kukamata link aina zote
             const linkPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/gi;
-            
+
             if (linkPattern.test(texte)) {
                 // Kama ni Admin au Owner, bot isifanye kitu
                 if (superUser || verifAdmin) return;
@@ -53,22 +53,22 @@ ezra({
                 if (!verifEzraAdmin) return;
 
                 // HATUA YA KWANZA: Futa link haraka (Maximum Speed)
-                await zk.sendMessage(dest, { 
-                    delete: { 
-                        remoteJid: dest, 
-                        fromMe: false, 
-                        id: ms.key.id, 
-                        participant: auteurMessage 
-                    } 
+                await zk.sendMessage(dest, {
+                    delete: {
+                        remoteJid: dest,
+                        fromMe: false,
+                        id: ms.key.id,
+                        participant: auteurMessage
+                    }
                 });
 
                 const action = await recupererActionJid(dest);
 
                 if (action === 'remove') {
                     await zk.groupParticipantsUpdate(dest, [auteurMessage], "remove");
-                    await zk.sendMessage(dest, { 
-                        text: `*『 VIPER-XMD ANTILINK 』*\n\nLink detected! @${auteurMessage.split("@")[0]} has been kicked.`, 
-                        mentions: [auteurMessage] 
+                    await zk.sendMessage(dest, {
+                        text: `*『 VIPER-XMD ANTILINK 』*\n\nLink detected! @${auteurMessage.split("@")[0]} has been kicked.`,
+                        mentions: [auteurMessage]
                     });
                 } else if (action === 'warn') {
                     const { getWarnCountByJID, ajouterUtilisateurAvecWarnCount } = require('./lib/warn');
@@ -77,9 +77,9 @@ ezra({
                     repondre(`@${auteurMessage.split("@")[0]} warning issued! Link is not allowed.`);
                 } else {
                     // Default action: Delete only
-                    await zk.sendMessage(dest, { 
-                        text: `*『 VIPER-XMD ANTILINK 』*\n\nNo links allowed! @${auteurMessage.split("@")[0]} message deleted.`, 
-                        mentions: [auteurMessage] 
+                    await zk.sendMessage(dest, {
+                        text: `*『 VIPER-XMD ANTILINK 』*\n\nNo links allowed! @${auteurMessage.split("@")[0]} message deleted.`,
+                        mentions: [auteurMessage]
                     });
                 }
             }

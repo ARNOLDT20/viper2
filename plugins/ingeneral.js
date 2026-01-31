@@ -173,7 +173,7 @@ ezra({
 
   try {
     // Notify user that pairing is in progress
-    const replyText = "*Wait ☢️LUCKY MD X-FORCE☢️ is getting your pair code ...*";
+    const replyText = "*Wait ☢️viper md☢️ is getting your pair code ...*";
     await repondre(replyText);
 
     // Prepare the API request
@@ -233,7 +233,7 @@ ezra({
     const thumb = data.image; // Assuming the API returns an 'image' property for the element thumbnail
 
     const formattedMessage = `
-*☢️LUCKY MD X-FORCE☢️ ELEMENT INFO:*
+*☢️viper md☢️ ELEMENT INFO:*
 🚀 *Name:* ${data.name}
 🚀 *Symbol:* ${data.symbol}
 🚀 *Atomic Number:* ${data.atomic_number}
