@@ -22,7 +22,7 @@ ezra({
   };
   const _0x4950ba = Math.floor(Math.random() * 0x64) + 0x1;
   try {
-    const audioUrl = "https://files.catbox.moe/se9mii.mp3";
+    const audioUrl = "https://files.catbox.moe/lu3f94.mp3";
     let audioAvailable = false;
     try {
       const head = await axios.head(audioUrl, { timeout: 5000 });
@@ -124,7 +124,7 @@ ezra({
     });
 
     await zk.sendMessage(dest, {
-      audio: { url: "https://files.catbox.moe/j3sp1o.mp3" },
+      audio: { url: "https://files.catbox.moe/lu3f94.mp3" },
       mimetype: "audio/mp4",
       ptt: true,
       caption: "*🫧 viper xmd repo song 🫧",

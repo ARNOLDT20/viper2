@@ -91,6 +91,13 @@
         }
     }
     authentification();
+    // Log unhandled rejections and uncaught exceptions to avoid silent crashes
+    process.on('unhandledRejection', (reason, p) => {
+        console.error('Unhandled Rejection at:', p, 'reason:', reason);
+    });
+    process.on('uncaughtException', (err) => {
+        console.error('Uncaught Exception thrown:', err);
+    });
     const store = (0, baileys_1.makeInMemoryStore)({
         logger: pino().child({ level: "silent", stream: "store" }),
     });
@@ -107,9 +114,9 @@
                 shouldSyncHistoryMessage: true,
                 downloadHistory: true,
                 syncFullHistory: true,
-                generateHighQualityLinkPreview: true,
-                markOnlineOnConnect: false,
-                keepAliveIntervalMs: 30_000,
+                    generateHighQualityLinkPreview: true,
+                    markOnlineOnConnect: true,
+                    keepAliveIntervalMs: 60_000,
             /* auth: state*/ auth: {
                     creds: state.creds,
                     /** caching makes the store faster to send/recv messages */
@@ -402,11 +409,18 @@
 
                 try {
                     const yes = await verifierEtatJid(origineMessage)
-                    if (
-                        texte.match(/https?:\/\/|www\.|\.com|\.net|\.org|\.xyz|\.link|\.me|\.online|\.app|\.store|\.tech|\.site|\.live/i) && verifGroupe && yes) {
+                    if (verifGroupe && yes && texte) {
+                        // more reliable link detection
+                        const linkPattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/i;
+                        if (!linkPattern.test(texte)) {
+                            // also catch bare domains like example.com or www.example
+                            const domainPattern = /(?:www\.)?[a-zA-Z0-9-]+\.(?:com|net|org|xyz|link|me|online|app|store|tech|site|live)\b/i;
+                            if (!domainPattern.test(texte)) return;
+                        }
                         console.log("lien detecté")
                         var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
-                        if (superUser || verifAdmin || !verifZokAdmin) { console.log('je fais rien'); return };
+                        // allow bypass for superUser or group admins; otherwise require antilien enabled
+                        if (superUser || verifAdmin || !verifEzraAdmin) { console.log('je fais rien'); return };
 
                         const key = {
                             remoteJid: origineMessage,
@@ -549,12 +563,17 @@
                     const cd = evt.cm.find((zokou) => zokou.nomCom === (com));
                     if (cd) {
                         try {
-                            if ((conf.MODE).toLocaleLowerCase() != 'yes' && !superUser) {
-                                return;
-                            }
+                            const MODE_PUBLIC = (conf.MODE || '').toLowerCase() === 'yes';
+                            const PM_ALLOWED = (conf.PM_PERMIT || '').toLowerCase() === 'yes';
+                            const isPrivateChat = !verifGroupe;
 
-                            if (!superUser && origineMessage === auteurMessage && conf.PM_PERMIT === "yes") {
-                                repondre("You don't have acces to commands here"); return
+                            // Public mode: everyone can use commands.
+                            // Private mode: only superUser (owner/sudo) can use commands,
+                            // except when PMs are allowed via `PM_PERMIT`.
+                            if (!MODE_PUBLIC && !superUser) {
+                                if (!(isPrivateChat && PM_ALLOWED)) {
+                                    return repondre('⚠️ Bot is currently restricted to owner-only.');
+                                }
                             }
 
                             if (!superUser && verifGroupe) {
