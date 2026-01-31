@@ -1,5 +1,5 @@
-const { fredi } = require('../fredi/ezra');
-const { verifierEtatJid, modifierEtatJid, recupererActionJid, modifierActionJid } = require("../lib/antilien");
+const { ezra } = require('../fredi/ezra');
+const { verifierEtatJid, ajouterOuMettreAJourJid, recupererActionJid, mettreAJourAction } = require("../lib/antilien");
 
 /**
  * VIPER XMD - STANDALONE ANTILINK SYSTEM
@@ -21,15 +21,15 @@ ezra({
         const mode = arg[0].toLowerCase();
 
         if (mode === "on") {
-            await modifierEtatJid(dest, "oui");
+            await ajouterOuMettreAJourJid(dest, "oui");
             return repondre("✅ VIPER-XMD Antilink is now ENABLED.");
         } else if (mode === "off") {
-            await modifierEtatJid(dest, "non");
+            await ajouterOuMettreAJourJid(dest, "non");
             return repondre("❌ VIPER-XMD Antilink is now DISABLED.");
         } else if (mode === "action") {
             const action = arg[1] ? arg[1].toLowerCase() : "";
             if (["remove", "delete", "warn"].includes(action)) {
-                await modifierActionJid(dest, action);
+                await mettreAJourAction(dest, action);
                 return repondre(`✅ Action updated to: *${action}*`);
             }
             return repondre("Usage: .antilink action delete/remove/warn");
@@ -71,7 +71,7 @@ ezra({
                         mentions: [auteurMessage]
                     });
                 } else if (action === 'warn') {
-                    const { getWarnCountByJID, ajouterUtilisateurAvecWarnCount } = require('./lib/warn');
+                    const { getWarnCountByJID, ajouterUtilisateurAvecWarnCount } = require('../lib/warn');
                     await ajouterUtilisateurAvecWarnCount(auteurMessage);
                     let warn = await getWarnCountByJID(auteurMessage);
                     repondre(`@${auteurMessage.split("@")[0]} warning issued! Link is not allowed.`);
