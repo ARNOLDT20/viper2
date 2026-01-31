@@ -116,22 +116,33 @@ ezra({
         }
 
         // send as an image message (shows both image and link preview thumbnail)
-        await zk.sendMessage(jid, {
-            image: { url: menuImage },
-            caption: text,
-            contextInfo: {
-                forwardingScore: 999,
-                isForwarded: true,
-                externalAdReply: {
-                    title: "⚡ VIPER MD MENU ⚡",
-                    body: "Clean • Fast • Professional",
-                    thumbnailUrl: thumbnailUrl,
-                    sourceUrl: menuImage || "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
-                    mediaType: 1,
-                    renderLargerThumbnail: true
+        try {
+            console.log('MENU: sending menu', { jid, menuImage, thumbnailUrl });
+            await zk.sendMessage(jid, {
+                image: { url: menuImage },
+                caption: text,
+                contextInfo: {
+                    forwardingScore: 999,
+                    isForwarded: true,
+                    externalAdReply: {
+                        title: "⚡ VIPER MD MENU ⚡",
+                        body: "Clean • Fast • Professional",
+                        thumbnailUrl: thumbnailUrl,
+                        sourceUrl: menuImage || "https://whatsapp.com/channel/0029Vb6H6jF9hXEzZFlD6F3d",
+                        mediaType: 1,
+                        renderLargerThumbnail: true
+                    }
                 }
+            });
+        } catch (sendErr) {
+            console.error('MENU SEND ERROR:', sendErr);
+            try {
+                // fallback to simple text reply so user still gets the menu
+                await zk.sendMessage(jid, { text }, { quoted: commandeOptions?.ms });
+            } catch (fallbackErr) {
+                console.error('MENU FALLBACK ERROR:', fallbackErr);
             }
-        });
+        }
 
     } catch (err) {
         console.error("MENU ERROR:", err);
