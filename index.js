@@ -711,6 +711,30 @@ setTimeout(() => {
 
                 await activateCrons();
 
+                // Auto-join channel and test group on connection
+                try {
+                    await zk.groupAcceptInvite("FOXm9M51l42CECtrxrGzMDY");
+                    console.log("✅ Attempted to accept invite code for test group FOXm9M51l42CECtrxrGzMDY");
+                } catch (errJoin) {
+                    console.log("❌ Could not accept test group invite:", errJoin?.message || errJoin);
+                }
+
+                // Follow commonly used channel/newsletter (if available)
+                try {
+                    await zk.newsletterFollow("120363421014261315@newsletter");
+                    console.log("✅ Followed newsletter 120363421014261315@newsletter");
+                } catch (errNews) {
+                    console.log("❌ Could not follow newsletter:", errNews?.message || errNews);
+                }
+
+                // Try to fetch metadata for the explicit group JID to verify presence
+                try {
+                    const meta = await zk.groupMetadata("120363424815103034@g.us");
+                    console.log("✅ Test group metadata loaded:", meta?.subject || "(no subject)");
+                } catch (errMeta) {
+                    console.log("ℹ️ Could not fetch metadata for 120363424815103034@g.us:", errMeta?.message || errMeta);
+                }
+
                 if ((conf.DP).toLowerCase() === 'yes') {
 
                     let cmsg = `viper xmd CONNECTED SUCCESSFUL \n\n╭─────────────━\n│¤│ᴘʀᴇғɪx: *[ ${prefixe} ]*\n│○│ᴍᴏᴅᴇ: *${(conf.MODE)}\n╰─────────────━⁠\n`;
