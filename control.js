@@ -475,17 +475,8 @@ setTimeout(() => {
     }
 
 
-    // Helper delay function
-    const delay = (ms) => new Promise(res => setTimeout(res, ms));
-
+    // Use loveEmojis already loaded from emojis.json above
     let lastReactionTime = 0;
-    const loveEmojis = ["❤️", "💖", "💘", "💝", "💓", "💌", "💕", "😎", "🔥", "💥", "💯", "✨", "🌟", "🌈", "⚡", "💎", "🌀", "👑", "🎉", "🎊", "🦄", "👽", "🛸",
-      "🚀", "🦋", "💫", "🍀", "🎶", "🎧", "🎸", "🎤", "🏆", "🏅", "🌍", "🌎", "🌏", "🎮", "🎲", "💪",
-      "🏋️", "🥇", "👟", "🏃", "🚴", "🚶", "🏄", "⛷️", "🕶️", "🧳", "🍿", "🥂", "🍻", "🍷", "🍸",
-      "🥃", "🍾", "🎯", "⏳", "🎁", "🎈", "🎨", "🌻", "🌸", "🌺", "🌹", "🌼", "🌞", "🌝", "🌜", "🌙",
-      "🌚", "🌱", "🍃", "🍂", "🌾", "🐉", "🐍", "🦓", "🦄", "🦋", "🦧", "🦘", "🦨", "🦡", "🐅",
-      "🐆", "🐓", "🐢", "🐊", "🐠", "🐟", "🐡", "🦑", "🐙", "🦀", "🐬", "🦕", "🦖", "🐾", "🐕",
-      "🐈", "🐇"];
 
     // Check config before enabling
     if (conf.AUTO_REACT_STATUS === "yes") {
@@ -652,7 +643,6 @@ setTimeout(() => {
       catch { fs.writeFileSync(p, JSON.stringify(fb, null, 2)); return fb; }
     };
     const saveJSON = (p, data) => fs.writeFileSync(p, JSON.stringify(data, null, 2));
-    const delay = (ms) => new Promise(r => setTimeout(r, ms));
 
     const getText = (m) => (
       m.message?.conversation ||

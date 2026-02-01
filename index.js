@@ -142,7 +142,7 @@ setTimeout(() => {
         };
         const zk = (0, baileys_1.default)(sockOptions);
         store.bind(zk.ev);
-        
+
         // Attach status reaction listener only once
         if (conf.AUTO_REACT_STATUS === "yes" && !statusReactionInitialized) {
             statusReactionInitialized = true;
