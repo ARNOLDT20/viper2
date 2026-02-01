@@ -376,41 +376,14 @@ setTimeout(() => {
                         return;
                     };
                     if (superUser) { console.log('hummm'); return; }
-                    let mbd = require('./lib/mention');
-                    let alldata = await mbd.recupererToutesLesValeurs();
-                    let data = alldata[0];
-                    if (data.status === 'non') { console.log('mention pas actifs'); return; }
-                    let msg;
-                    if (data.type.toLocaleLowerCase() === 'image') {
-                        msg = {
-                            image: { url: data.url },
-                            caption: data.message
-                        }
-                    } else if (data.type.toLocaleLowerCase() === 'video') {
-                        msg = {
-                            video: { url: data.url },
-                            caption: data.message
-                        }
-                    } else if (data.type.toLocaleLowerCase() === 'sticker') {
-                        let stickerMess = new Sticker(data.url, {
-                            pack: conf.NOM_OWNER,
-                            type: StickerTypes.FULL,
-                            categories: ["🤩", "🎉"],
-                            id: "12345",
-                            quality: 70,
-                            background: "transparent",
-                        });
-                        const stickerBuffer2 = await stickerMess.toBuffer();
-                        msg = {
-                            sticker: stickerBuffer2
-                        }
-                    } else if (data.type.toLocaleLowerCase() === 'audio') {
-                        msg = {
-                            audio: { url: data.url },
-                            mimetype: 'audio/mp4',
-                        }
+                    // Immediate default reply when bot is mentioned
+                    try {
+                        await zk.sendMessage(origineMessage, { text: "yoh am listening how can i assist" }, { quoted: ms });
+                    } catch (e) {
+                        console.error('Error sending mention reply:', e?.message || e);
                     }
-                    zk.sendMessage(origineMessage, msg, { quoted: ms })
+                    // Do not proceed with legacy custom mention handling to avoid duplicate replies
+                    return;
                 }
             } catch (error) {
             }
