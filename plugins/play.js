@@ -62,7 +62,7 @@ ezra({
       try {
         const searchResponse = await axios.get(`https://apiskeith.vercel.app/search/yts?query=${encodeURIComponent(query)}`, { timeout: 15000 });
         const videos = searchResponse.data?.result;
-        
+
         if (!Array.isArray(videos) || videos.length === 0) {
           return repondre(zk, dest, ms, "No videos found for your search query.");
         }
@@ -86,7 +86,7 @@ ezra({
     try {
       const downloadResponse = await axios.get(`https://apiskeith.vercel.app/download/audio?url=${encodeURIComponent(videoUrl)}`, { timeout: 30000 });
       const downloadUrl = downloadResponse.data?.result;
-      
+
       if (!downloadUrl) {
         throw new Error("Failed to get download URL from API.");
       }
@@ -112,7 +112,7 @@ ezra({
           ...contextInfo,
           externalAdReply: {
             ...contextInfo.externalAdReply,
-            body: 'Document version - Powered by Fredi AI'
+            body: 'Document version - Powered by T20-starboy'
           }
         }
       }, { quoted: ms });
@@ -133,7 +133,7 @@ ezra({
 ezra({
   nomCom: "video",
   aliases: ["videodoc", "film", "mp4", "ytmp4", "ytmp4doc", "videodoc", "ytv"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "🎥",
   description: "Download Video from YouTube"
 }, async (dest, zk, commandOptions) => {
@@ -166,7 +166,7 @@ ezra({
       try {
         const searchResponse = await axios.get(`https://apiskeith.vercel.app/search/yts?query=${encodeURIComponent(query)}`, { timeout: 15000 });
         const videos = searchResponse.data?.result;
-        
+
         if (!Array.isArray(videos) || videos.length === 0) {
           return repondre(zk, dest, ms, "No videos found for your search query.");
         }
@@ -190,7 +190,7 @@ ezra({
     try {
       const downloadResponse = await axios.get(`https://apiskeith.vercel.app/download/video?url=${encodeURIComponent(videoUrl)}`, { timeout: 30000 });
       const downloadUrl = downloadResponse.data?.result;
-      
+
       if (!downloadUrl) {
         throw new Error("Failed to get download URL from API.");
       }
@@ -237,7 +237,7 @@ ezra({
 ezra({
   nomCom: "ytsearch",
   aliases: ["youtube", "yt", "yts"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "🔍",
   description: "Search YouTube Videos"
 }, async (dest, zk, commandOptions) => {
@@ -249,7 +249,7 @@ ezra({
     }
 
     const query = arg.join(" ");
-    
+
     await zk.sendMessage(dest, {
       text: "🔍 Searching YouTube...",
       contextInfo: getContextInfo("Searching", userJid)
@@ -258,16 +258,16 @@ ezra({
     try {
       const searchResponse = await axios.get(`https://apiskeith.vercel.app/search/yts?query=${encodeURIComponent(query)}`, { timeout: 15000 });
       const videos = searchResponse.data?.result;
-      
+
       if (!Array.isArray(videos) || videos.length === 0) {
         return repondre(zk, dest, ms, "No videos found for your search query.");
       }
 
       // Display first 5 results
       const topVideos = videos.slice(0, 5);
-      
+
       let resultMessage = `📺 *YouTube Search Results*\n\n`;
-      
+
       topVideos.forEach((video, index) => {
         resultMessage += `${index + 1}. *${video.title}*\n`;
         resultMessage += `   👤 ${video.channel}\n`;
@@ -279,7 +279,7 @@ ezra({
       if (videos.length > 5) {
         resultMessage += `📊 *${videos.length - 5} more results available*\n`;
       }
-      
+
       resultMessage += `\n*Usage:*\n• Use !play <number> to download audio\n• Use !video <number> to download video\n• Or provide the URL directly`;
 
       await zk.sendMessage(dest, {
@@ -302,7 +302,7 @@ ezra({
 ezra({
   nomCom: "ytdl2",
   aliases: ["ytdownload", "download"],
-  categorie: "Fredi-Download",
+  categorie: "viper-Download",
   reaction: "⬇️",
   description: "Download YouTube video by number from search results"
 }, async (dest, zk, commandOptions) => {
@@ -323,17 +323,17 @@ ezra({
     }
 
     const searchText = msgRepondu.message.extendedTextMessage.text;
-    
+
     // Extract URL from the search results
     const urlRegex = /https:\/\/www\.youtube\.com\/watch\?v=[\w-]+|https:\/\/youtu\.be\/[\w-]+/g;
     const urls = searchText.match(urlRegex);
-    
+
     if (!urls || urls.length < videoNumber) {
       return repondre(zk, dest, ms, "Could not find the video URL. Please make sure you're replying to a valid search results message.");
     }
 
     const videoUrl = urls[videoNumber - 1];
-    
+
     // Ask for format
     await zk.sendMessage(dest, {
       text: `🔗 Found video URL\n\n*Select format:*\n1. Audio (MP3)\n2. Video (MP4)\n\nReply with 1 or 2`,
