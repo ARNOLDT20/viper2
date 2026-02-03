@@ -1,135 +1,100 @@
 'use strict';
 
-// menus.js - Beautiful Interactive Menu & Info Commands with Buttons
 const { ezra } = require("../fredi/ezra");
 const conf = require(__dirname + '/../set');
 
-// Common contextInfo configuration
-const getContextInfo = (title = '', userJid = '', thumbnailUrl = '') => ({
-    mentionedJid: [userJid],
-    forwardingScore: 999,
-    isForwarded: true,
-    forwardedNewsletterMessageInfo: {
-        newsletterJid: "120363421014261315@newsletter",
-        newsletlerName: "blaze tech",
-        serverMessageId: Math.floor(100000 + Math.random() * 900000),
-    },
-    externalAdReply: {
-        showAdAttribution: true,
-        title: conf.BOT || 'Viper XMD',
-        body: title || "Menu",
-        thumbnailUrl: thumbnailUrl || conf.URL || '',
-        sourceUrl: conf.GURL || '',
-        mediaType: 1,
-        renderLargerThumbnail: false
-    }
-});
-
-// ═══════════════════════════════════════════════════════════════════════════
-// 📥 DOWNLOAD MENU - Interactive Button Menu
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 📥 DOWNLOAD MENU - Simple Text Menu (No Buttons)
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "dlmenu",
-    aliases: ["downloadmenu", "getmenu", "mediamenu", "dmenu"],
-    categorie: "viper-Menu",
-    reaction: "📥",
-    description: "Interactive Download Menu with Buttons"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
-
-    try {
-        const menuText = `╔════════════════════════════════╗
-║  📥 *VIPER DOWNLOAD MENU* 📥   ║
+  nomCom: "dlmenu",
+  aliases: ["downloadmenu", "getmenu", "mediamenu"],
+  categorie: "viper-Menu",
+  reaction: "📥",
+  description: "Download Menu"
+}, async (dest, zk, { ms }) => {
+  try {
+    const txt = `╔════════════════════════════════╗
+║  📥 VIPER DOWNLOAD MENU 📥     ║
 ╚════════════════════════════════╝
 
-🎵 *AUDIO DOWNLOAD*
-   .play <song/url> - Download song
-   .ytmp3 <url> - YouTube to MP3
-   .getaudio <query> - Alternative
+🎵 AUDIO DOWNLOAD
+   .play <song/url>
+   .ytmp3 <youtube url>
+   .getaudio <query>
 
-🎥 *VIDEO DOWNLOAD*
-   .video <video/url> - Download video
-   .ytmp4 <url> - YouTube to MP4
-   .getvideo <query> - Alternative
+🎥 VIDEO DOWNLOAD  
+   .video <video/url>
+   .ytmp4 <youtube url>
+   .getvideo <query>
 
-🔍 *SEARCH & BROWSE*
-   .ytsearch <query> - Search YouTube
-   .youtube <query> - Quick search
+🔍 SEARCH & BROWSE
+   .ytsearch <search query>
+   .youtube <query>
 
-*Powered by Viper XMD* ✨`;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Powered by Viper XMD ✨`;
 
-        await zk.sendMessage(dest, {
-            text: menuText,
-            contextInfo: getContextInfo("Download Menu", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        console.error('Download menu error:', error);
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("dlmenu error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 👑 OWNER INFO - Contact & Support
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 👑 OWNER INFO
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "owner",
-    aliases: ["ownerinfo", "support", "creator", "creatorinfo"],
-    categorie: "viper-Info",
-    reaction: "👑",
-    description: "Owner Info & Support Contact"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "owner",
+  aliases: ["ownerinfo", "support", "creator"],
+  categorie: "viper-Info",
+  reaction: "👑",
+  description: "Owner Info"
+}, async (dest, zk, { ms }) => {
+  try {
+    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+    const ownerName = conf.OWNER_NAME || "Starboy";
+    const botName = conf.BOT || 'Viper XMD';
 
-    try {
-        const ownerNumber = conf.NUMERO_OWNER || "255627417402";
-        const ownerName = conf.OWNER_NAME || "Starboy";
-        const botName = conf.BOT || 'Viper XMD';
-
-        const ownerText = `╔════════════════════════════════╗
-║      👑 *BOT OWNER INFO* 👑     ║
+    const txt = `╔════════════════════════════════╗
+║      👑 BOT OWNER INFO 👑      ║
 ╚════════════════════════════════╝
 
-🤖 *Bot:* ${botName}
-👤 *Owner:* ${ownerName}
-📱 *WhatsApp:* ${ownerNumber}
-🌐 *GitHub:* ${conf.GITHUB || 'N/A'}
-📢 *Channel:* ${conf.GURL || 'N/A'}
+🤖 Bot: ${botName}
+👤 Owner: ${ownerName}
+📱 WhatsApp: ${ownerNumber}
+🌐 GitHub: ${conf.GITHUB || 'N/A'}
+📢 Channel: ${conf.GURL || 'N/A'}
 
-*Support:*
-💬 Chat owner on WhatsApp
-🔗 Check GitHub for updates
-🐛 Report bugs & request features`;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-        await zk.sendMessage(dest, {
-            text: ownerText,
-            contextInfo: getContextInfo("Owner Info", userJid, conf.URL)
-        }, { quoted: ms });
+📲 Contact Support:
+• WhatsApp: https://wa.me/${ownerNumber}
+• Report bugs & request features
+• Follow for updates`;
 
-    } catch (error) {
-        console.error('Owner info error:', error);
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("owner error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 📋 COPY OWNER NUMBER - Easy to Copy Format
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 📋 COPY OWNER NUMBER
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "ownernum",
-    aliases: ["ownernumber", "copyowner", "contactowner", "myowner"],
-    categorie: "viper-Info",
-    reaction: "📋",
-    description: "Get Owner Number (Copy-Friendly)"
-}, async (dest, zk, commandOptions) => {
-    const { ms } = commandOptions;
+  nomCom: "ownernum",
+  aliases: ["ownernumber", "copyowner", "contactowner"],
+  categorie: "viper-Info",
+  reaction: "📋",
+  description: "Owner Number"
+}, async (dest, zk, { ms }) => {
+  try {
+    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+    const ownerName = conf.OWNER_NAME || "Starboy";
 
-    try {
-        const ownerNumber = conf.NUMERO_OWNER || "255627417402";
-        const ownerName = conf.OWNER_NAME || "Starboy";
-
-        const copyText = `╔════════════════════════════════╗
-║    📋 OWNER CONTACT INFO 📋    ║
+    const txt = `╔════════════════════════════════╗
+║   📋 OWNER CONTACT INFO 📋    ║
 ╚════════════════════════════════╝
 
 Owner Name: ${ownerName}
@@ -137,45 +102,40 @@ Owner Number: ${ownerNumber}
 
 📱 WhatsApp: https://wa.me/${ownerNumber}
 
-👉 Copy the number above to contact!`;
+👉 Copy number above to contact!`;
 
-        await zk.sendMessage(dest, {
-            text: copyText
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("ownernum error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ℹ️ BOT INFO - Features & Details
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// ℹ️ BOT INFO
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "botinfo",
-    aliases: ["info", "about", "botdetails", "viper"],
-    categorie: "viper-Info",
-    reaction: "ℹ️",
-    description: "Bot Information & Features"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "botinfo",
+  aliases: ["info", "about", "botdetails"],
+  categorie: "viper-Info",
+  reaction: "ℹ️",
+  description: "Bot Info"
+}, async (dest, zk, { ms }) => {
+  try {
+    const botName = conf.BOT || 'Viper XMD';
+    const prefix = conf.PREFIXE || '+';
+    const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
 
-    try {
-        const botName = conf.BOT || 'Viper XMD';
-        const prefix = conf.PREFIXE || '+';
-        const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
-
-        const botInfo = `╔════════════════════════════════╗
-║     🤖 *VIPER XMD INFO* 🤖      ║
+    const txt = `╔════════════════════════════════╗
+║     🤖 VIPER XMD INFO 🤖       ║
 ╚════════════════════════════════╝
 
-*Bot Details:*
 📛 Name: ${botName}
 ⚙️ Prefix: ${prefix}
 🎯 Mode: ${mode}
 ✨ Version: 3.0.0+
 
-*Features:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 🎵 YouTube Audio Download
 🎥 YouTube Video Download
 🔍 Search Integration
@@ -183,281 +143,257 @@ ezra({
 🛡️ Security & Anti-spam
 ⚡ Lightning Fast Response
 
-*Developer:* FrediEzra Tech
-*Powered By:* Viper MD Engine`;
+Developer: FrediEzra Tech
+Powered By: Viper MD Engine`;
 
-        await zk.sendMessage(dest, {
-            text: botInfo,
-            contextInfo: getContextInfo("Bot Info", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("botinfo error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ❓ HELP MENU - Commands Guide
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// ❓ HELP MENU
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "helpdownload",
-    aliases: ["dlhelp", "downloadhelp", "howtouse", "guide"],
-    categorie: "viper-Help",
-    reaction: "❓",
-    description: "Download Commands Help Guide"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "helpdownload",
+  aliases: ["dlhelp", "downloadhelp", "howtouse"],
+  categorie: "viper-Help",
+  reaction: "❓",
+  description: "Help Guide"
+}, async (dest, zk, { ms }) => {
+  try {
     const prefix = conf.PREFIXE || '+';
 
-    try {
-        const helpText = `╔════════════════════════════════╗
-║   ❓ *DOWNLOAD HELP GUIDE* ❓    ║
+    const txt = `╔════════════════════════════════╗
+║   ❓ DOWNLOAD HELP GUIDE ❓     ║
 ╚════════════════════════════════╝
 
-*🎵 AUDIO COMMANDS:*
+AUDIO COMMANDS:
 ${prefix}play <song name/url>
 ${prefix}ytmp3 <youtube url>
 ${prefix}audio <query>
 ${prefix}getaudio <song>
 
-*🎥 VIDEO COMMANDS:*
+VIDEO COMMANDS:
 ${prefix}video <video name/url>
 ${prefix}ytmp4 <youtube url>
 ${prefix}film <query>
 ${prefix}getvideo <video>
 
-*🔍 SEARCH COMMANDS:*
+SEARCH COMMANDS:
 ${prefix}ytsearch <search>
 ${prefix}youtube <query>
 ${prefix}yt <query>
 
-*📌 TIPS:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TIPS:
 ✓ Provide song/video title or URL
-✓ Downloads may take 30 seconds
-✓ Supports YouTube & more coming
+✓ Downloads take 30 seconds
+✓ Supports YouTube
 ✓ Use document option for files
 
-*Need help? Type:*
 ${prefix}owner - Contact support`;
 
-        await zk.sendMessage(dest, {
-            text: helpText,
-            contextInfo: getContextInfo("Help Guide", userJid)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("helpdownload error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 🔗 LINKS MENU - GitHub, Channel, Website
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 🔗 LINKS MENU
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "links",
-    aliases: ["getlinks", "ourlinks", "socials", "websites"],
-    categorie: "viper-Links",
-    reaction: "🔗",
-    description: "Important Links & Resources"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
-
-    try {
-        const linksText = `╔════════════════════════════════╗
-║        🔗 *OUR LINKS* 🔗         ║
+  nomCom: "links",
+  aliases: ["getlinks", "ourlinks", "socials"],
+  categorie: "viper-Links",
+  reaction: "🔗",
+  description: "Links"
+}, async (dest, zk, { ms }) => {
+  try {
+    const txt = `╔════════════════════════════════╗
+║        🔗 OUR LINKS 🔗          ║
 ╚════════════════════════════════╝
 
-*📦 GitHub Repository*
+GitHub Repository:
 ${conf.GITHUB || 'Coming soon...'}
 
-*📢 WhatsApp Channel*
+WhatsApp Channel:
 ${conf.GURL || 'Coming soon...'}
 
-*🌐 Website*
-${conf.WEBSITE || conf.GURL || 'Coming soon...'}
+Website:
+${conf.WEBSITE || 'Coming soon...'}
 
-*📱 Owner Contact*
+Owner Contact:
 https://wa.me/${conf.NUMERO_OWNER || '255627417402'}
 
-*👥 Join our community:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Join our community:
 ✓ Follow GitHub for updates
 ✓ Subscribe to channel
 ✓ Contact support anytime`;
 
-        await zk.sendMessage(dest, {
-            text: linksText,
-            contextInfo: getContextInfo("Links & Resources", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("links error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 🎯 ALL COMMANDS MENU - Complete Command List
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 🎯 ALL COMMANDS MENU
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "allcmds",
-    aliases: ["cmdlist", "allcommands", "commands", "cmds"],
-    categorie: "viper-Menu",
-    reaction: "🎯",
-    description: "All Available Commands"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "allcmds",
+  aliases: ["cmdlist", "allcommands", "commands"],
+  categorie: "viper-Menu",
+  reaction: "🎯",
+  description: "All Commands"
+}, async (dest, zk, { ms }) => {
+  try {
     const prefix = conf.PREFIXE || '+';
 
-    try {
-        const allCmds = `╔════════════════════════════════╗
-║    🎯 *ALL COMMANDS* 🎯         ║
+    const txt = `╔════════════════════════════════╗
+║    🎯 ALL COMMANDS 🎯          ║
 ╚════════════════════════════════╝
 
-*📥 DOWNLOAD:*
-${prefix}play, ${prefix}video, ${prefix}ytsearch
-${prefix}getaudio, ${prefix}getvideo
+DOWNLOAD:
+${prefix}play ${prefix}video ${prefix}ytsearch
+${prefix}getaudio ${prefix}getvideo
 
-*ℹ️ INFO:*
-${prefix}owner, ${prefix}botinfo, ${prefix}ownernum
-${prefix}helpdownload, ${prefix}links
+INFO:
+${prefix}owner ${prefix}botinfo ${prefix}ownernum
+${prefix}helpdownload ${prefix}links
 
-*📋 MENUS:*
-${prefix}dlmenu, ${prefix}allcmds
+MENUS:
+${prefix}dlmenu ${prefix}allcmds ${prefix}settings
 
-*⚡ UTILITIES:*
-${prefix}ping, ${prefix}uptime, ${prefix}mode
-${prefix}help, ${prefix}status
+UTILITIES:
+${prefix}ping ${prefix}uptime ${prefix}mode
+${prefix}help ${prefix}status
 
-*👥 ADMIN:*
-${prefix}ban, ${prefix}kick, ${prefix}promote
-${prefix}demote, ${prefix}mute, ${prefix}unmute
+ADMIN:
+${prefix}ban ${prefix}kick ${prefix}promote
+${prefix}demote ${prefix}mute
 
-*🎮 FUN:*
-${prefix}joke, ${prefix}meme, ${prefix}quote
-${prefix}dice, ${prefix}flip
+FUN:
+${prefix}joke ${prefix}meme ${prefix}quote
 
-*Use ${prefix}help <command> for details*`;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type ${prefix}help <command> for details`;
 
-        await zk.sendMessage(dest, {
-            text: allCmds,
-            contextInfo: getContextInfo("All Commands", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("allcmds error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ⚙️ SETTINGS MENU - Configuration Info
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// ⚙️ SETTINGS MENU
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "settings",
-    aliases: ["mysettings", "config", "configuration"],
-    categorie: "viper-Info",
-    reaction: "⚙️",
-    description: "Bot Settings & Configuration"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "settings",
+  aliases: ["mysettings", "config"],
+  categorie: "viper-Info",
+  reaction: "⚙️",
+  description: "Settings"
+}, async (dest, zk, { ms }) => {
+  try {
     const prefix = conf.PREFIXE || '+';
     const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
     const autoRead = conf.AUTO_READ_MESSAGES === 'yes' ? '✅' : '❌';
     const autoReact = conf.AUTO_REACT === 'yes' ? '✅' : '❌';
 
-    try {
-        const settingsText = `╔════════════════════════════════╗
-║    ⚙️ *BOT SETTINGS* ⚙️         ║
+    const txt = `╔════════════════════════════════╗
+║    ⚙️ BOT SETTINGS ⚙️           ║
 ╚════════════════════════════════╝
 
-*General:*
+GENERAL:
 🎯 Prefix: ${prefix}
 🎭 Mode: ${mode}
 📛 Bot Name: ${conf.BOT || 'Viper XMD'}
 
-*Features:*
+FEATURES:
 👁️ Auto-Read: ${autoRead}
 😊 Auto-React: ${autoReact}
 ⏰ Timezone: ${conf.TIMEZONE || 'Africa/Nairobi'}
 
-*Owner:*
+OWNER:
 👤 Name: ${conf.OWNER_NAME || 'Starboy'}
 📱 Number: ${conf.NUMERO_OWNER || '255627417402'}
 
-*Change Settings:*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CHANGE SETTINGS:
 ${prefix}mode public|private
 ${prefix}prefix <symbol>
+
 Contact owner for more options`;
 
-        await zk.sendMessage(dest, {
-            text: settingsText,
-            contextInfo: getContextInfo("Settings", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("settings error:", e.message);
+  }
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// 🎁 FEATURES SHOWCASE - Bot Capabilities
-// ═══════════════════════════════════════════════════════════════════════════
+// ═════════════════════════════════════════════════════════════════════════════
+// 🎁 FEATURES SHOWCASE
+// ═════════════════════════════════════════════════════════════════════════════
 ezra({
-    nomCom: "features",
-    aliases: ["showcase", "abilities", "capabilities", "whatican"],
-    categorie: "viper-Info",
-    reaction: "🎁",
-    description: "Bot Features & Capabilities Showcase"
-}, async (dest, zk, commandOptions) => {
-    const { ms, userJid } = commandOptions;
+  nomCom: "features",
+  aliases: ["showcase", "abilities", "capabilities"],
+  categorie: "viper-Info",
+  reaction: "🎁",
+  description: "Bot Features"
+}, async (dest, zk, { ms }) => {
+  try {
     const prefix = conf.PREFIXE || '+';
 
-    try {
-        const featuresText = `╔════════════════════════════════╗
-║    🎁 *BOT FEATURES* 🎁         ║
+    const txt = `╔════════════════════════════════╗
+║    🎁 BOT FEATURES 🎁          ║
 ╚════════════════════════════════╝
 
-*Media Download:*
+MEDIA DOWNLOAD:
 🎵 YouTube Audio to MP3
 🎥 YouTube Video to MP4
 📹 High Quality Support
 💾 Fast Processing
 
-*Search & Discovery:*
+SEARCH & DISCOVERY:
 🔍 YouTube Search
 📺 Video Information
 ⏱️ Duration Display
 👁️ View Count
 
-*Group Management:*
+GROUP MANAGEMENT:
 👥 Member Management
 🛡️ Anti-spam/Anti-link
 📢 Auto-announcements
 ⚡ Instant Moderation
 
-*User Experience:*
+USER EXPERIENCE:
 ⚡ Lightning Fast Response
-🎨 Beautiful Formatted Messages
-🔘 Interactive Buttons
+🎨 Beautiful Messages
 🌍 Multi-language Support
 
-*Security:*
+SECURITY:
 🔒 User Bans
 🚫 Link Detection
 ⚠️ Content Filtering
 🛡️ Spam Protection
 
-*Coming Soon:*
+COMING SOON:
 📥 Instagram Download
 🎵 Spotify Integration
 🎬 More platforms...
 
-Type ${prefix}owner to get support!`;
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type ${prefix}owner for support!`;
 
-        await zk.sendMessage(dest, {
-            text: featuresText,
-            contextInfo: getContextInfo("Features", userJid, conf.URL)
-        }, { quoted: ms });
-
-    } catch (error) {
-        await zk.sendMessage(dest, { text: `Error: ${error.message}` }, { quoted: ms });
-    }
+    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+  } catch (e) {
+    console.log("features error:", e.message);
+  }
 });
