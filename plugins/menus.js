@@ -7,14 +7,14 @@ const conf = require(__dirname + '/../set');
 // 📥 DOWNLOAD MENU - Simple Text Menu (No Buttons)
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "dlmenu",
-  aliases: ["downloadmenu", "getmenu", "mediamenu"],
-  categorie: "viper-Menu",
-  reaction: "📥",
-  description: "Download Menu"
+    nomCom: "dlmenu",
+    aliases: ["downloadmenu", "getmenu", "mediamenu"],
+    categorie: "viper-Menu",
+    reaction: "📥",
+    description: "Download Menu"
 }, async (dest, zk, { ms }) => {
-  try {
-    const txt = `╔════════════════════════════════╗
+    try {
+        const txt = `╔════════════════════════════════╗
 ║  📥 VIPER DOWNLOAD MENU 📥     ║
 ╚════════════════════════════════╝
 
@@ -35,28 +35,28 @@ ezra({
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Powered by Viper XMD ✨`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("dlmenu error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("dlmenu error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 👑 OWNER INFO
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "owner",
-  aliases: ["ownerinfo", "support", "creator"],
-  categorie: "viper-Info",
-  reaction: "👑",
-  description: "Owner Info"
+    nomCom: "owner",
+    aliases: ["ownerinfo", "support", "creator"],
+    categorie: "viper-Info",
+    reaction: "👑",
+    description: "Owner Info"
 }, async (dest, zk, { ms }) => {
-  try {
-    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
-    const ownerName = conf.OWNER_NAME || "Starboy";
-    const botName = conf.BOT || 'Viper XMD';
+    try {
+        const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+        const ownerName = conf.OWNER_NAME || "Starboy";
+        const botName = conf.BOT || 'Viper XMD';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║      👑 BOT OWNER INFO 👑      ║
 ╚════════════════════════════════╝
 
@@ -73,27 +73,27 @@ ezra({
 • Report bugs & request features
 • Follow for updates`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("owner error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("owner error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 📋 COPY OWNER NUMBER
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "ownernum",
-  aliases: ["ownernumber", "copyowner", "contactowner"],
-  categorie: "viper-Info",
-  reaction: "📋",
-  description: "Owner Number"
+    nomCom: "ownernum",
+    aliases: ["ownernumber", "copyowner", "contactowner"],
+    categorie: "viper-Info",
+    reaction: "📋",
+    description: "Owner Number"
 }, async (dest, zk, { ms }) => {
-  try {
-    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
-    const ownerName = conf.OWNER_NAME || "Starboy";
+    try {
+        const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+        const ownerName = conf.OWNER_NAME || "Starboy";
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║   📋 OWNER CONTACT INFO 📋    ║
 ╚════════════════════════════════╝
 
@@ -104,28 +104,28 @@ Owner Number: ${ownerNumber}
 
 👉 Copy number above to contact!`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("ownernum error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("ownernum error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // ℹ️ BOT INFO
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "botinfo",
-  aliases: ["info", "about", "botdetails"],
-  categorie: "viper-Info",
-  reaction: "ℹ️",
-  description: "Bot Info"
+    nomCom: "botinfo",
+    aliases: ["info", "about", "botdetails"],
+    categorie: "viper-Info",
+    reaction: "ℹ️",
+    description: "Bot Info"
 }, async (dest, zk, { ms }) => {
-  try {
-    const botName = conf.BOT || 'Viper XMD';
-    const prefix = conf.PREFIXE || '+';
-    const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
+    try {
+        const botName = conf.BOT || 'Viper XMD';
+        const prefix = conf.PREFIXE || '+';
+        const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║     🤖 VIPER XMD INFO 🤖       ║
 ╚════════════════════════════════╝
 
@@ -146,26 +146,26 @@ ezra({
 Developer: T20-CLASSIC
 Powered By: Viper MD Engine`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("botinfo error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("botinfo error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // ❓ HELP MENU
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "helpdownload",
-  aliases: ["dlhelp", "downloadhelp", "howtouse"],
-  categorie: "viper-Help",
-  reaction: "❓",
-  description: "Help Guide"
+    nomCom: "helpdownload",
+    aliases: ["dlhelp", "downloadhelp", "howtouse"],
+    categorie: "viper-Help",
+    reaction: "❓",
+    description: "Help Guide"
 }, async (dest, zk, { ms }) => {
-  try {
-    const prefix = conf.PREFIXE || '+';
+    try {
+        const prefix = conf.PREFIXE || '+';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║   ❓ DOWNLOAD HELP GUIDE ❓     ║
 ╚════════════════════════════════╝
 
@@ -196,24 +196,24 @@ TIPS:
 
 ${prefix}owner - Contact support`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("helpdownload error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("helpdownload error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 🔗 LINKS MENU
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "links",
-  aliases: ["getlinks", "ourlinks", "socials"],
-  categorie: "viper-Links",
-  reaction: "🔗",
-  description: "Links"
+    nomCom: "links",
+    aliases: ["getlinks", "ourlinks", "socials"],
+    categorie: "viper-Links",
+    reaction: "🔗",
+    description: "Links"
 }, async (dest, zk, { ms }) => {
-  try {
-    const txt = `╔════════════════════════════════╗
+    try {
+        const txt = `╔════════════════════════════════╗
 ║        🔗 OUR LINKS 🔗          ║
 ╚════════════════════════════════╝
 
@@ -236,26 +236,26 @@ Join our community:
 ✓ Subscribe to channel
 ✓ Contact support anytime`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("links error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("links error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 🎯 ALL COMMANDS MENU
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "allcmds",
-  aliases: ["cmdlist", "allcommands", "commands"],
-  categorie: "viper-Menu",
-  reaction: "🎯",
-  description: "All Commands"
+    nomCom: "allcmds",
+    aliases: ["cmdlist", "allcommands", "commands"],
+    categorie: "viper-Menu",
+    reaction: "🎯",
+    description: "All Commands"
 }, async (dest, zk, { ms }) => {
-  try {
-    const prefix = conf.PREFIXE || '+';
+    try {
+        const prefix = conf.PREFIXE || '+';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║    🎯 ALL COMMANDS 🎯          ║
 ╚════════════════════════════════╝
 
@@ -284,29 +284,29 @@ ${prefix}joke ${prefix}meme ${prefix}quote
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}help <command> for details`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("allcmds error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("allcmds error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // ⚙️ SETTINGS MENU
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "settings",
-  aliases: ["mysettings", "config"],
-  categorie: "viper-Info",
-  reaction: "⚙️",
-  description: "Settings"
+    nomCom: "settings",
+    aliases: ["mysettings", "config"],
+    categorie: "viper-Info",
+    reaction: "⚙️",
+    description: "Settings"
 }, async (dest, zk, { ms }) => {
-  try {
-    const prefix = conf.PREFIXE || '+';
-    const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
-    const autoRead = conf.AUTO_READ_MESSAGES === 'yes' ? '✅' : '❌';
-    const autoReact = conf.AUTO_REACT === 'yes' ? '✅' : '❌';
+    try {
+        const prefix = conf.PREFIXE || '+';
+        const mode = conf.MODE === 'yes' ? '🟢 PUBLIC' : '🔴 PRIVATE';
+        const autoRead = conf.AUTO_READ_MESSAGES === 'yes' ? '✅' : '❌';
+        const autoReact = conf.AUTO_REACT === 'yes' ? '✅' : '❌';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║    ⚙️ BOT SETTINGS ⚙️           ║
 ╚════════════════════════════════╝
 
@@ -332,26 +332,26 @@ ${prefix}prefix <symbol>
 
 Contact owner for more options`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("settings error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("settings error:", e.message);
+    }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
 // 🎁 FEATURES SHOWCASE
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
-  nomCom: "features",
-  aliases: ["showcase", "abilities", "capabilities"],
-  categorie: "viper-Info",
-  reaction: "🎁",
-  description: "Bot Features"
+    nomCom: "features",
+    aliases: ["showcase", "abilities", "capabilities"],
+    categorie: "viper-Info",
+    reaction: "🎁",
+    description: "Bot Features"
 }, async (dest, zk, { ms }) => {
-  try {
-    const prefix = conf.PREFIXE || '+';
+    try {
+        const prefix = conf.PREFIXE || '+';
 
-    const txt = `╔════════════════════════════════╗
+        const txt = `╔════════════════════════════════╗
 ║    🎁 BOT FEATURES 🎁          ║
 ╚════════════════════════════════╝
 
@@ -392,8 +392,8 @@ COMING SOON:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}owner for support!`;
 
-    await zk.sendMessage(dest, { text: txt }, { quoted: ms });
-  } catch (e) {
-    console.log("features error:", e.message);
-  }
+        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+    } catch (e) {
+        console.log("features error:", e.message);
+    }
 });
