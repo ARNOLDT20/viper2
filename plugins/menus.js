@@ -143,7 +143,7 @@ ezra({
 🛡️ Security & Anti-spam
 ⚡ Lightning Fast Response
 
-Developer: FrediEzra Tech
+Developer: T20-CLASSIC
 Powered By: Viper MD Engine`;
 
     await zk.sendMessage(dest, { text: txt }, { quoted: ms });

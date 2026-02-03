@@ -29,7 +29,7 @@ const getContextInfo = (title = '', userJid = '', thumbnailUrl = '') => ({
 ezra({
   nomCom: "play",
   aliases: ["song", "playdoc", "audio", "mp3", "ytmp3", "ytmp3doc", "audiodoc", "yta"],
-  categorie: "Fredi-Download",
+  categorie: "T20-CLASSIC-Download",
   reaction: "🎵",
   description: "Download Audio from YouTube"
 }, async (dest, zk, commandOptions) => {
@@ -112,7 +112,7 @@ ezra({
           ...contextInfo,
           externalAdReply: {
             ...contextInfo.externalAdReply,
-            body: 'Document version - Powered by T20-starboy'
+            body: 'Document version - Powered by T20-CLASSIC'
           }
         }
       }, { quoted: ms });
@@ -217,7 +217,7 @@ ezra({
           ...contextInfo,
           externalAdReply: {
             ...contextInfo.externalAdReply,
-            body: 'Document version - Powered by Fredi AI'
+            body: 'Document version - Powered by T20-CLASSIC'
           }
         }
       }, { quoted: ms });
@@ -534,7 +534,7 @@ ezra({
 👥 Group Management
 🛡️ Security Features
 
-*Powered By:* FrediEzra Tech
+*Powered By:* T20-CLASSIC
 *Version:* 3.0.0+`;
 
     await zk.sendMessage(dest, {

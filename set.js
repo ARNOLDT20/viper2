@@ -13,7 +13,7 @@ module.exports = {
     GITHUB: process.env.GITHUB || 'https://github.com/ARNOLDT20/Viper2',
     OWNER_NAME: process.env.OWNER_NAME || "starboy",
     NUMERO_OWNER: process.env.NUMERO_OWNER || "255627417402",
-    DEV: process.env.DEV || "starboy Tz",
+    DEV: process.env.DEV || "T20-CLASSIC",
 
     AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "oui",
     AUTO_DOWNLOAD_STATUS: process.env.AUTO_DOWNLOAD_STATUS || 'non',
@@ -42,7 +42,7 @@ module.exports = {
     WEBSITE: process.env.GURL || "https://blazetech-site.vercel.app",
     CAPTION: process.env.CAPTION || "viper xmd",
     BOT: process.env.BOT_NAME || 'viper xmd',
-    MODE: process.env.PUBLIC_MODE || "no",
+    MODE: process.env.PUBLIC_MODE || "yes",
     TIMEZONE: process.env.TIMEZONE || "Africa/Nairobi",
     PM_PERMIT: process.env.PM_PERMIT || 'no',
     HEROKU_APP_NAME: process.env.HEROKU_APP_NAME || null,

@@ -43,7 +43,7 @@ ezra(
       await zk.sendMessage(
         dest,
         {
-          text: `viper xmd\n\n◈━━━━━━━━━━━━━━━━◈\n🔥BOOM, ${nomAuteurMessage}! Got the lyrics for "${query}"! 🎤\nLyrics:\n${formattedLyrics}\n\n> Powered by FredieTech`,
+          text: `viper xmd\n\n◈━━━━━━━━━━━━━━━━◈\n🔥BOOM, ${nomAuteurMessage}! Got the lyrics for "${query}"! 🎤\nLyrics:\n${formattedLyrics}\n\n> Powered by T20-CLASSIC`,
           footer: `Hey ${nomAuteurMessage}! Here is viper xmd lyrics`,
         },
         { quoted: ms }

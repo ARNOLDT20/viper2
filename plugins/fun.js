@@ -57,11 +57,11 @@ ezra({
     for (let result of results) {
       msg += `➣ Title : ${result.title}\n`;
       msg += `➣ Description : ${result.snippet}\n`;
-      msg += `➣ Link : ${result.link}\n\n> regards frediezra\n\n`;
+      msg += `➣ Link : ${result.link}\n\n> regards T20-CLASSIC\n\n`;
     }
 
     // const trdmsg = await traduire(msg,{to : 'fr'})
-    repondre(msg.replace(/regards frediezra/gi, 'regards starboy'));
+    repondre(msg.replace(/regards frediezra/gi, 'regards T20-CLASSIC'));
   } catch (error) {
     repondre("An error occurred during Google search.");
   }

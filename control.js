@@ -1,4 +1,4 @@
-// FredieTech tz 🇹🇿 team
+// T20-CLASSIC tz 🇹🇿 team
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -166,10 +166,10 @@ setTimeout(() => {
       "👀 Watching you like console logs 👨‍💻",
       "📌 Daily desk goals: Build, Break, Fix, Repeat.",
       "🎭 This bot has more personalities than your ex.",
-      "👑 Bot: viper xmd | AI: Fredi AI",
+      "👑 Bot: viper xmd | AI: T20-CLASSIC",
       "✨ Today is yours. Make it *legendary*.",
       "📊 Performance: 100% Efficiency (maybe 💀)",
-      "⚙️ Built with ❤️ by FredieTech",
+      "⚙️ Built with ❤️ by T20-CLASSIC",
       "🎮 Skills unlocked: AI | Code | Meme | Hustle"
     ];
 
@@ -1360,7 +1360,7 @@ setTimeout(() => {
       if (texte && texte.startsWith('>')) {
         // If the sender is not the owner
         if (!superUser) {
-          const menuText = `This command is only for the owner or FrediEzra to execute 🚫`;
+          const menuText = `This command is only for the owner or T20-CLASSIC to execute 🚫`;
 
           await zk.sendMessage(origineMessage, {
             text: menuText,
@@ -1572,7 +1572,7 @@ setTimeout(() => {
           // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
           const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
           var sticker = new Sticker(gifLink, {
-            pack: 'FrediEzra',
+            pack: 'T20-CLASSIC',
             author: conf.OWNER_NAME,
             type: StickerTypes.FULL,
             categories: ['🤩', '🎉'],
@@ -1671,7 +1671,7 @@ setTimeout(() => {
           // txt += `message supprimé \n @${auteurMessage.split("@")[0]} rétiré du groupe.`;
           const gifLink = "https://raw.githubusercontent.com/mr-X-force/LUCKY-MD-XFORCE/main/media/remover.gif";
           var sticker = new Sticker(gifLink, {
-            pack: 'FredieTech',
+            pack: 'T20-CLASSIC',
             author: conf.OWNER_NAME,
             type: StickerTypes.FULL,
             categories: ['🤩', '🎉'],
