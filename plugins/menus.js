@@ -35,7 +35,27 @@ ezra({
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Powered by Viper XMD ✨`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '📥 Download Menu',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("dlmenu error:", e.message);
     }
@@ -73,7 +93,27 @@ ezra({
 • Report bugs & request features
 • Follow for updates`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '👑 Owner Info',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("owner error:", e.message);
     }
@@ -104,7 +144,27 @@ Owner Number: ${ownerNumber}
 
 👉 Copy number above to contact!`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '📋 Owner Number',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("ownernum error:", e.message);
     }
@@ -146,7 +206,27 @@ ezra({
 Developer: T20-CLASSIC
 Powered By: Viper MD Engine`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: 'ℹ️ Bot Info',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("botinfo error:", e.message);
     }
@@ -196,7 +276,27 @@ TIPS:
 
 ${prefix}owner - Contact support`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '❓ Help Guide',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("helpdownload error:", e.message);
     }
@@ -236,7 +336,27 @@ Join our community:
 ✓ Subscribe to channel
 ✓ Contact support anytime`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '🔗 Links',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("links error:", e.message);
     }
@@ -284,7 +404,27 @@ ${prefix}joke ${prefix}meme ${prefix}quote
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}help <command> for details`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '🎯 All Commands',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("allcmds error:", e.message);
     }
@@ -332,7 +472,27 @@ ${prefix}prefix <symbol>
 
 Contact owner for more options`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '⚙️ Settings',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("settings error:", e.message);
     }
@@ -392,7 +552,27 @@ COMING SOON:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}owner for support!`;
 
-        await zk.sendMessage(dest, { text: txt }, { quoted: ms });
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: '🎁 Features',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
     } catch (e) {
         console.log("features error:", e.message);
     }
