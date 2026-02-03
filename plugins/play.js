@@ -349,3 +349,434 @@ ezra({
     repondre(zk, dest, ms, `Error: ${error.message}`);
   }
 });
+
+// ═════════════════════════════════════════════════════════════════════════════
+// 🎨 ENHANCED MENU COMMANDS WITH INTERACTIVE BUTTONS
+// ═════════════════════════════════════════════════════════════════════════════
+
+// Main Download Menu with Buttons
+ezra({
+  nomCom: "dlmenu",
+  aliases: ["downloadmenu", "getmenu", "mediamenu"],
+  categorie: "viper-Download",
+  reaction: "📥",
+  description: "Interactive Download Menu with Buttons"
+}, async (dest, zk, commandOptions) => {
+  const { ms, userJid } = commandOptions;
+
+  try {
+    const menuText = `╔════════════════════════════════╗
+║  📥 *VIPER DOWNLOAD MENU* 📥   ║
+╚════════════════════════════════╝
+
+Choose an option below to download media:
+
+🎵 *Audio Download*
+   • .play <song/url> - Download song as audio
+   • .ytmp3 <url> - YouTube to MP3
+
+🎥 *Video Download*
+   • .video <video/url> - Download as video
+   • .ytmp4 <url> - YouTube to MP4
+
+🔍 *Search & Browse*
+   • .ytsearch <query> - Search YouTube
+   • .youtube <query> - Alias for search
+
+🎯 *Quick Download*
+   • .download <url> - Auto-detect format
+
+*Powered by Viper XMD* ✨`;
+
+    await zk.sendMessage(dest, {
+      text: menuText,
+      contextInfo: getContextInfo("Download Menu", userJid, conf.URL),
+      buttons: [
+        {
+          buttonId: ".play",
+          buttonText: { displayText: "🎵 Download Audio" },
+          type: 1
+        },
+        {
+          buttonId: ".video",
+          buttonText: { displayText: "🎥 Download Video" },
+          type: 1
+        },
+        {
+          buttonId: ".ytsearch",
+          buttonText: { displayText: "🔍 Search YouTube" },
+          type: 1
+        }
+      ],
+      headerType: 1
+    }, { quoted: ms });
+
+  } catch (error) {
+    console.error('Download menu error:', error);
+    repondre(zk, dest, ms, `Menu error: ${error.message}`);
+  }
+});
+
+// Owner Info & Support Button
+ezra({
+  nomCom: "owner",
+  aliases: ["ownerinfo", "support", "helpinfo", "creatorinfo"],
+  categorie: "viper-Info",
+  reaction: "👑",
+  description: "Owner Info & Support Contact"
+}, async (dest, zk, commandOptions) => {
+  const { ms, userJid } = commandOptions;
+
+  try {
+    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+    const ownerName = conf.OWNER_NAME || "Starboy";
+
+    const ownerText = `╔════════════════════════════════╗
+║      👑 *BOT OWNER INFO* 👑     ║
+╚════════════════════════════════╝
+
+🤖 *Bot Name:* ${conf.BOT || 'Viper XMD'}
+👤 *Owner:* ${ownerName}
+📱 *WhatsApp:* wa.me/${ownerNumber}
+🌐 *GitHub:* ${conf.GITHUB || 'N/A'}
+🔗 *Channel:* ${conf.GURL || 'N/A'}
+
+*Need Help?*
+• Contact owner on WhatsApp
+• Check GitHub for updates
+• Report bugs & request features`;
+
+    await zk.sendMessage(dest, {
+      text: ownerText,
+      contextInfo: {
+        ...getContextInfo("Owner Info", userJid),
+        quotedMessage: ms.message
+      },
+      buttons: [
+        {
+          buttonId: `https://wa.me/${ownerNumber}`,
+          buttonText: { displayText: "📱 Chat Owner" },
+          type: 2
+        },
+        {
+          buttonId: conf.GITHUB || "https://github.com",
+          buttonText: { displayText: "🔗 GitHub" },
+          type: 2
+        },
+        {
+          buttonId: conf.GURL || "https://whatsapp.com",
+          buttonText: { displayText: "📢 Join Channel" },
+          type: 2
+        }
+      ],
+      headerType: 1
+    }, { quoted: ms });
+
+  } catch (error) {
+    console.error('Owner info error:', error);
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
+
+// Copy-Friendly Owner Number
+ezra({
+  nomCom: "ownernum",
+  aliases: ["ownernumber", "copyowner", "contactowner"],
+  categorie: "viper-Info",
+  reaction: "📋",
+  description: "Get Owner Number (Copy-Friendly)"
+}, async (dest, zk, commandOptions) => {
+  const { ms } = commandOptions;
+
+  try {
+    const ownerNumber = conf.NUMERO_OWNER || "255627417402";
+    const ownerName = conf.OWNER_NAME || "Starboy";
+
+    const copyText = `Owner Number: ${ownerNumber}
+Owner Name: ${ownerName}
+
+WhatsApp Link: https://wa.me/${ownerNumber}`;
+
+    await zk.sendMessage(dest, {
+      text: copyText
+    }, { quoted: ms });
+
+  } catch (error) {
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
+
+// Bot Info with Button Links
+ezra({
+  nomCom: "botinfo",
+  aliases: ["info", "about", "botdetails"],
+  categorie: "viper-Info",
+  reaction: "ℹ️",
+  description: "Bot Information & Features"
+}, async (dest, zk, commandOptions) => {
+  const { ms, userJid } = commandOptions;
+
+  try {
+    const botInfo = `╔════════════════════════════════╗
+║     🤖 *VIPER XMD INFO* 🤖      ║
+╚════════════════════════════════╝
+
+*Bot Name:* ${conf.BOT || 'Viper XMD'}
+*Prefix:* ${conf.PREFIXE || '+'}
+*Mode:* ${conf.MODE === 'yes' ? '🟢 Public' : '🔴 Private'}
+*Status:* ${conf.ETAT === '1' ? '✅ Available' : '⏸️ Composing'}
+
+*Features:*
+✨ YouTube Download (Audio/Video)
+🎵 Music Streaming Support
+🎥 Media Processing
+🔍 Search Integration
+👥 Group Management
+🛡️ Security Features
+
+*Powered By:* FrediEzra Tech
+*Version:* 3.0.0+`;
+
+    await zk.sendMessage(dest, {
+      text: botInfo,
+      contextInfo: getContextInfo("Bot Info", userJid, conf.URL),
+      buttons: [
+        {
+          buttonId: conf.GITHUB || "https://github.com",
+          buttonText: { displayText: "📦 GitHub" },
+          type: 2
+        },
+        {
+          buttonId: conf.GURL || "https://whatsapp.com",
+          buttonText: { displayText: "📢 Updates" },
+          type: 2
+        }
+      ],
+      headerType: 1
+    }, { quoted: ms });
+
+  } catch (error) {
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
+
+// Help Menu with Button Navigation
+ezra({
+  nomCom: "helpdownload",
+  aliases: ["dlhelp", "downloadhelp", "howtouse"],
+  categorie: "viper-Help",
+  reaction: "❓",
+  description: "Download Commands Help Guide"
+}, async (dest, zk, commandOptions) => {
+  const { ms, userJid } = commandOptions;
+
+  try {
+    const helpText = `╔════════════════════════════════╗
+║   ❓ *DOWNLOAD HELP GUIDE* ❓    ║
+╚════════════════════════════════╝
+
+*🎵 AUDIO COMMANDS:*
+${conf.PREFIXE}play <song name/url>
+${conf.PREFIXE}ytmp3 <youtube url>
+${conf.PREFIXE}audio <query>
+
+*🎥 VIDEO COMMANDS:*
+${conf.PREFIXE}video <video name/url>
+${conf.PREFIXE}ytmp4 <youtube url>
+${conf.PREFIXE}film <query>
+
+*🔍 SEARCH COMMANDS:*
+${conf.PREFIXE}ytsearch <search query>
+${conf.PREFIXE}youtube <query>
+${conf.PREFIXE}yt <query>
+
+*💡 TIPS:*
+• Provide song/video title or URL
+• Downloads may take 30 seconds
+• Supports YouTube only (currently)
+• Use document option for files`;
+
+    await zk.sendMessage(dest, {
+      text: helpText,
+      contextInfo: getContextInfo("Help Guide", userJid),
+      buttons: [
+        {
+          buttonId: ".dlmenu",
+          buttonText: { displayText: "📥 Download Menu" },
+          type: 1
+        },
+        {
+          buttonId: ".ytsearch",
+          buttonText: { displayText: "🔍 Search Now" },
+          type: 1
+        }
+      ],
+      headerType: 1
+    }, { quoted: ms });
+
+  } catch (error) {
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
+
+// Quick Download with Alias (different name to avoid conflict)
+ezra({
+  nomCom: "getaudio",
+  aliases: ["getsong", "fetchaudio", "grabsong", "musica"],
+  categorie: "viper-Download",
+  reaction: "🎵",
+  description: "Alternative Audio Download Command"
+}, async (dest, zk, commandOptions) => {
+  const { arg, ms, userJid } = commandOptions;
+
+  try {
+    if (!arg[0]) {
+      return repondre(zk, dest, ms, "Usage: .getaudio <song name or YouTube URL>");
+    }
+
+    const query = arg.join(" ");
+    let videoUrl, videoTitle, videoThumbnail;
+
+    if (query.match(/(youtube\.com|youtu\.be)/i)) {
+      videoUrl = query;
+      const videoId = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i)?.[1];
+      if (!videoId) {
+        return repondre(zk, dest, ms, "Invalid YouTube URL.");
+      }
+      videoTitle = "Audio";
+      videoThumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    } else {
+      await zk.sendMessage(dest, {
+        text: "🔍 Searching for audio...",
+        contextInfo: getContextInfo("Searching", userJid)
+      }, { quoted: ms });
+
+      try {
+        const searchResponse = await axios.get(`https://apiskeith.vercel.app/search/yts?query=${encodeURIComponent(query)}`, { timeout: 15000 });
+        const videos = searchResponse.data?.result;
+
+        if (!Array.isArray(videos) || videos.length === 0) {
+          return repondre(zk, dest, ms, "No results found.");
+        }
+
+        const firstVideo = videos[0];
+        videoUrl = firstVideo.url;
+        videoTitle = firstVideo.title;
+        videoThumbnail = firstVideo.thumbnail;
+      } catch (searchError) {
+        return repondre(zk, dest, ms, "Search failed. Try again.");
+      }
+    }
+
+    await zk.sendMessage(dest, {
+      text: "⬇️ Downloading...",
+      contextInfo: getContextInfo("Downloading", userJid, videoThumbnail)
+    }, { quoted: ms });
+
+    try {
+      const downloadResponse = await axios.get(`https://apiskeith.vercel.app/download/audio?url=${encodeURIComponent(videoUrl)}`, { timeout: 30000 });
+      const downloadUrl = downloadResponse.data?.result;
+
+      if (!downloadUrl) {
+        throw new Error("Failed to get download URL.");
+      }
+
+      const fileName = `${videoTitle}.mp3`.replace(/[^\w\s.-]/gi, '');
+      const contextInfo = getContextInfo(videoTitle, userJid, videoThumbnail);
+
+      await zk.sendMessage(dest, {
+        audio: { url: downloadUrl },
+        mimetype: "audio/mpeg",
+        fileName: fileName,
+        contextInfo: contextInfo
+      }, { quoted: ms });
+
+    } catch (downloadError) {
+      repondre(zk, dest, ms, `Download failed: ${downloadError.message}`);
+    }
+
+  } catch (error) {
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
+
+// Quick Video Download with Alias
+ezra({
+  nomCom: "getvideo",
+  aliases: ["getfilm", "fetchvideo", "grabvideo", "pelicul"],
+  categorie: "viper-Download",
+  reaction: "🎥",
+  description: "Alternative Video Download Command"
+}, async (dest, zk, commandOptions) => {
+  const { arg, ms, userJid } = commandOptions;
+
+  try {
+    if (!arg[0]) {
+      return repondre(zk, dest, ms, "Usage: .getvideo <video name or YouTube URL>");
+    }
+
+    const query = arg.join(" ");
+    let videoUrl, videoTitle, videoThumbnail;
+
+    if (query.match(/(youtube\.com|youtu\.be)/i)) {
+      videoUrl = query;
+      const videoId = videoUrl.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i)?.[1];
+      if (!videoId) {
+        return repondre(zk, dest, ms, "Invalid YouTube URL.");
+      }
+      videoTitle = "Video";
+      videoThumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    } else {
+      await zk.sendMessage(dest, {
+        text: "🔍 Searching for video...",
+        contextInfo: getContextInfo("Searching", userJid)
+      }, { quoted: ms });
+
+      try {
+        const searchResponse = await axios.get(`https://apiskeith.vercel.app/search/yts?query=${encodeURIComponent(query)}`, { timeout: 15000 });
+        const videos = searchResponse.data?.result;
+
+        if (!Array.isArray(videos) || videos.length === 0) {
+          return repondre(zk, dest, ms, "No results found.");
+        }
+
+        const firstVideo = videos[0];
+        videoUrl = firstVideo.url;
+        videoTitle = firstVideo.title;
+        videoThumbnail = firstVideo.thumbnail;
+      } catch (searchError) {
+        return repondre(zk, dest, ms, "Search failed. Try again.");
+      }
+    }
+
+    await zk.sendMessage(dest, {
+      text: "⬇️ Downloading...",
+      contextInfo: getContextInfo("Downloading", userJid, videoThumbnail)
+    }, { quoted: ms });
+
+    try {
+      const downloadResponse = await axios.get(`https://apiskeith.vercel.app/download/video?url=${encodeURIComponent(videoUrl)}`, { timeout: 30000 });
+      const downloadUrl = downloadResponse.data?.result;
+
+      if (!downloadUrl) {
+        throw new Error("Failed to get download URL.");
+      }
+
+      const fileName = `${videoTitle}.mp4`.replace(/[^\w\s.-]/gi, '');
+      const contextInfo = getContextInfo(videoTitle, userJid, videoThumbnail);
+
+      await zk.sendMessage(dest, {
+        video: { url: downloadUrl },
+        mimetype: "video/mp4",
+        caption: `🎥 *${videoTitle}*`,
+        contextInfo: contextInfo
+      }, { quoted: ms });
+
+    } catch (downloadError) {
+      repondre(zk, dest, ms, `Download failed: ${downloadError.message}`);
+    }
+
+  } catch (error) {
+    repondre(zk, dest, ms, `Error: ${error.message}`);
+  }
+});
