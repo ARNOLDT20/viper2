@@ -35,6 +35,12 @@ ezra({
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Powered by Viper XMD ✨`;
 
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `🤖 *${conf.BOT || 'Viper XMD'}*`
+        }, { quoted: ms });
+
         await zk.sendMessage(dest, {
             text: txt,
             contextInfo: {
@@ -79,6 +85,12 @@ ${conf.GURL || 'https://chat.whatsapp.com/'}
 
 Click the link above to view the channel.`;
 
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `📺 *${conf.BOT || 'Viper XMD'}* - Channel`
+        }, { quoted: ms });
+
         await zk.sendMessage(dest, {
             text: txt,
             contextInfo: {
@@ -114,11 +126,13 @@ ezra({
     categorie: "viper-Info",
     reaction: "👑",
     description: "Owner Info"
-}, async (dest, zk, { ms, repondre }) => {
+}, async (dest, zk, { ms }) => {
     try {
-        const ownerNumber = conf.NUMERO_OWNER || "255627417402";
-        const ownerName = conf.OWNER_NAME || "Starboy";
-        const botName = conf.BOT || 'Viper XMD';
+        // Read conf dynamically to get updated bot name
+        const dynamicConf = require(__dirname + '/../set');
+        const ownerNumber = dynamicConf.NUMERO_OWNER || "255627417402";
+        const ownerName = dynamicConf.OWNER_NAME || "Starboy";
+        const botName = dynamicConf.BOT || 'Viper XMD';
 
         const txt = `╔════════════════════════════════╗
 ║      👑 BOT OWNER INFO 👑      ║
@@ -127,8 +141,8 @@ ezra({
 🤖 Bot: ${botName}
 👤 Owner: ${ownerName}
 📱 WhatsApp: ${ownerNumber}
-🌐 GitHub: ${conf.GITHUB || 'N/A'}
-📢 Channel: ${conf.GURL || 'N/A'}
+🌐 GitHub: ${dynamicConf.GITHUB || 'N/A'}
+📢 Channel: ${dynamicConf.GURL || 'N/A'}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -138,6 +152,16 @@ ezra({
 • Follow for updates`;
 
         const quotedOpt = ms ? { quoted: ms } : {};
+
+        // Send image with bot name
+        try {
+            await zk.sendMessage(dest, {
+                image: { url: dynamicConf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+                caption: `👑 *${botName}* - Owner Info`
+            }, quotedOpt);
+        } catch (imgErr) {
+            console.log("owner image send error:", imgErr.message);
+        }
 
         await zk.sendMessage(dest, {
             text: txt,
@@ -151,10 +175,10 @@ ezra({
                 },
                 externalAdReply: {
                     showAdAttribution: true,
-                    title: conf.BOT || 'Viper XMD',
+                    title: botName,
                     body: '👑 Owner Info',
-                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
-                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    thumbnailUrl: dynamicConf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: dynamicConf.GURL || 'https://whatsapp.com',
                     mediaType: 1,
                     renderLargerThumbnail: false
                 }
@@ -162,6 +186,9 @@ ezra({
         }, quotedOpt);
     } catch (e) {
         console.log("owner error:", e.message);
+        try {
+            await zk.sendMessage(dest, { text: `Error: ${e.message}` }, { quoted: ms });
+        } catch (_) { }
     }
 });
 
@@ -189,6 +216,12 @@ Owner Number: ${ownerNumber}
 📱 WhatsApp: https://wa.me/${ownerNumber}
 
 👉 Copy number above to contact!`;
+
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `📋 *${conf.BOT || 'Viper XMD'}* - Owner Contact`
+        }, { quoted: ms });
 
         await zk.sendMessage(dest, {
             text: txt,
@@ -251,6 +284,12 @@ ezra({
 
 Developer: T20-CLASSIC
 Powered By: Viper MD Engine`;
+
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `ℹ️ *${conf.BOT || 'Viper XMD'}* - Bot Info`
+        }, { quoted: ms });
 
         await zk.sendMessage(dest, {
             text: txt,
@@ -322,6 +361,12 @@ TIPS:
 
 ${prefix}owner - Contact support`;
 
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `❓ *${conf.BOT || 'Viper XMD'}* - Help Guide`
+        }, { quoted: ms });
+
         await zk.sendMessage(dest, {
             text: txt,
             contextInfo: {
@@ -381,6 +426,12 @@ Join our community:
 ✓ Follow GitHub for updates
 ✓ Subscribe to channel
 ✓ Contact support anytime`;
+
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `🔗 *${conf.BOT || 'Viper XMD'}* - Links`
+        }, { quoted: ms });
 
         await zk.sendMessage(dest, {
             text: txt,
@@ -450,6 +501,12 @@ ${prefix}joke ${prefix}meme ${prefix}quote
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}help <command> for details`;
 
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `🎯 *${conf.BOT || 'Viper XMD'}* - All Commands`
+        }, { quoted: ms });
+
         await zk.sendMessage(dest, {
             text: txt,
             contextInfo: {
@@ -517,6 +574,12 @@ ${prefix}mode public|private
 ${prefix}prefix <symbol>
 
 Contact owner for more options`;
+
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `⚙️ *${conf.BOT || 'Viper XMD'}* - Settings`
+        }, { quoted: ms });
 
         await zk.sendMessage(dest, {
             text: txt,
@@ -597,6 +660,12 @@ COMING SOON:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Type ${prefix}owner for support!`;
+
+        // Send image with bot name
+        await zk.sendMessage(dest, {
+            image: { url: conf.URL || 'https://files.catbox.moe/xqhfyv.webp' },
+            caption: `🎁 *${conf.BOT || 'Viper XMD'}* - Features`
+        }, { quoted: ms });
 
         await zk.sendMessage(dest, {
             text: txt,
