@@ -33,11 +33,13 @@ ezra({
   reaction: "🎵",
   description: "Download Audio from YouTube"
 }, async (dest, zk, commandOptions) => {
-  const { arg, ms, userJid } = commandOptions;
+  const { arg, ms, auteurMessage, repondre: localRepondre } = commandOptions;
+  const reply = localRepondre || repondre;
+  const userJid = auteurMessage || (ms?.key?.participant) || ms?.key?.remoteJid;
 
   try {
-    if (!arg[0]) {
-      return repondre(zk, dest, ms, "Please provide a song name or YouTube URL.");
+    if (!arg || !arg[0]) {
+      return await reply(zk, dest, ms, "Please provide a song name or YouTube URL.");
     }
 
     const query = arg.join(" ");
@@ -64,7 +66,7 @@ ezra({
         const videos = searchResponse.data?.result;
 
         if (!Array.isArray(videos) || videos.length === 0) {
-          return repondre(zk, dest, ms, "No videos found for your search query.");
+          return await reply(zk, dest, ms, "No videos found for your search query.");
         }
 
         const firstVideo = videos[0];
@@ -73,7 +75,7 @@ ezra({
         videoThumbnail = firstVideo.thumbnail;
       } catch (searchError) {
         console.error('YouTube search error:', searchError);
-        return repondre(zk, dest, ms, "Failed to search YouTube. Please try again.");
+        return await reply(zk, dest, ms, "Failed to search YouTube. Please try again.");
       }
     }
 
@@ -120,12 +122,12 @@ ezra({
     } catch (downloadError) {
       console.error('Download error:', downloadError);
       // Fallback to other APIs if Keith API fails
-      return repondre(zk, dest, ms, `Download failed: ${downloadError.message}. Trying alternative method...`);
+      return await reply(zk, dest, ms, `Download failed: ${downloadError.message}. Trying alternative method...`);
     }
 
   } catch (error) {
     console.error('Audio download error:', error);
-    repondre(zk, dest, ms, `Download failed: ${error.message}`);
+    await reply(zk, dest, ms, `Download failed: ${error.message}`);
   }
 });
 
@@ -137,11 +139,13 @@ ezra({
   reaction: "🎥",
   description: "Download Video from YouTube"
 }, async (dest, zk, commandOptions) => {
-  const { arg, ms, userJid } = commandOptions;
+  const { arg, ms, auteurMessage, repondre: localRepondre } = commandOptions;
+  const reply = localRepondre || repondre;
+  const userJid = auteurMessage || (ms?.key?.participant) || ms?.key?.remoteJid;
 
   try {
-    if (!arg[0]) {
-      return repondre(zk, dest, ms, "Please provide a video name or YouTube URL.");
+    if (!arg || !arg[0]) {
+      return await reply(zk, dest, ms, "Please provide a video name or YouTube URL.");
     }
 
     const query = arg.join(" ");
@@ -177,7 +181,7 @@ ezra({
         videoThumbnail = firstVideo.thumbnail;
       } catch (searchError) {
         console.error('YouTube search error:', searchError);
-        return repondre(zk, dest, ms, "Failed to search YouTube. Please try again.");
+        return await reply(zk, dest, ms, "Failed to search YouTube. Please try again.");
       }
     }
 
@@ -224,12 +228,12 @@ ezra({
 
     } catch (downloadError) {
       console.error('Download error:', downloadError);
-      return repondre(zk, dest, ms, `Download failed: ${downloadError.message}`);
+      return await reply(zk, dest, ms, `Download failed: ${downloadError.message}`);
     }
 
   } catch (error) {
     console.error('Video download error:', error);
-    repondre(zk, dest, ms, `Download failed: ${error.message}`);
+    await reply(zk, dest, ms, `Download failed: ${error.message}`);
   }
 });
 
@@ -241,11 +245,13 @@ ezra({
   reaction: "🔍",
   description: "Search YouTube Videos"
 }, async (dest, zk, commandOptions) => {
-  const { arg, ms, userJid } = commandOptions;
+  const { arg, ms, auteurMessage, repondre: localRepondre } = commandOptions;
+  const reply = localRepondre || repondre;
+  const userJid = auteurMessage || (ms?.key?.participant) || ms?.key?.remoteJid;
 
   try {
-    if (!arg[0]) {
-      return repondre(zk, dest, ms, "Please provide a search query.");
+    if (!arg || !arg[0]) {
+      return await reply(zk, dest, ms, "Please provide a search query.");
     }
 
     const query = arg.join(" ");
