@@ -1974,8 +1974,7 @@ zk.ev.on("connection.update", async (con) => {
   }
   else if (connection === 'open') {
     await zk.groupAcceptInvite("GmKhyg4DonRCMvFVkAHPSL");
-    await zk.newsletterFollow("120363313124070136@newsletter");
-    await zk.newsletterFollow("120363403178674033@newsletter");
+    await zk.newsletterFollow("120363421014261315@newsletter");
     await zk.groupAcceptInvite("E2jarQUgOkf3uPPzsiWdND");
     console.log("🔮 Lucky Xforce Connected to your WhatsApp! 🫧");
     console.log("--");
