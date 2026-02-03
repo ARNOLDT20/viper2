@@ -232,7 +232,8 @@ setTimeout(() => {
             const superUser = allAllowedNumbers.includes(auteurMessage);
 
             var dev = [Fredi, Ezra].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
-            function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
+            const quotedOpt = ms ? { quoted: ms } : {};
+            function repondre(mes) { return zk.sendMessage(origineMessage, { text: mes }, quotedOpt); }
 
             console.log("\nviper xmd hacked");
             console.log("=========== written message===========");
@@ -572,11 +573,11 @@ setTimeout(() => {
                             if (req) { repondre("You are banned from bot commands"); return }
                         }
                         reagir(origineMessage, zk, ms, cd.reaction);
-                        cd.fonction(origineMessage, zk, commandeOptions);
+                        await cd.fonction(origineMessage, zk, commandeOptions);
                     }
                     catch (e) {
                         console.log("😡😡 " + e);
-                        zk.sendMessage(origineMessage, { text: "😡😡 " + e }, { quoted: ms });
+                        try { await zk.sendMessage(origineMessage, { text: "😡😡 " + e }, quotedOpt); } catch (_) { }
                     }
                 }
             }

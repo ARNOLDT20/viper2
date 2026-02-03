@@ -62,6 +62,50 @@ Powered by Viper XMD ✨`;
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
+// 📺 VIEW CHANNEL
+// ═════════════════════════════════════════════════════════════════════════════
+ezra({
+    nomCom: "viewchannel",
+    aliases: ["channel", "vc", "viewch"],
+    categorie: "viper-Links",
+    reaction: "📺",
+    description: "View Channel"
+}, async (dest, zk, { ms }) => {
+    try {
+        const txt = `🔔 T20-CLASSIC Channel 🔔
+
+Follow for updates, downloads, and announcements:
+${conf.GURL || 'https://chat.whatsapp.com/'}
+
+Click the link above to view the channel.`;
+
+        await zk.sendMessage(dest, {
+            text: txt,
+            contextInfo: {
+                isForwarded: true,
+                forwardingScore: 999,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: "120363421014261315@newsletter",
+                    newsletterName: "T20-CLASSIC Channel",
+                    serverMessageId: Math.floor(100000 + Math.random() * 900000)
+                },
+                externalAdReply: {
+                    showAdAttribution: true,
+                    title: conf.BOT || 'Viper XMD',
+                    body: 'View Channel',
+                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
+                    sourceUrl: conf.GURL || 'https://whatsapp.com',
+                    mediaType: 1,
+                    renderLargerThumbnail: false
+                }
+            }
+        }, { quoted: ms });
+    } catch (e) {
+        console.log("viewchannel error:", e.message);
+    }
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
 // 👑 OWNER INFO
 // ═════════════════════════════════════════════════════════════════════════════
 ezra({
@@ -70,7 +114,7 @@ ezra({
     categorie: "viper-Info",
     reaction: "👑",
     description: "Owner Info"
-}, async (dest, zk, { ms }) => {
+}, async (dest, zk, { ms, repondre }) => {
     try {
         const ownerNumber = conf.NUMERO_OWNER || "255627417402";
         const ownerName = conf.OWNER_NAME || "Starboy";
@@ -93,6 +137,8 @@ ezra({
 • Report bugs & request features
 • Follow for updates`;
 
+        const quotedOpt = ms ? { quoted: ms } : {};
+
         await zk.sendMessage(dest, {
             text: txt,
             contextInfo: {
@@ -113,7 +159,7 @@ ezra({
                     renderLargerThumbnail: false
                 }
             }
-        }, { quoted: ms });
+        }, quotedOpt);
     } catch (e) {
         console.log("owner error:", e.message);
     }
