@@ -167,7 +167,7 @@ ezra({
   const { repondre, arg, ms } = commandeOptions;
 
   if (!arg || arg.length === 0) {
-    const replyText = "Example Usage: .code 255627xxxxxx.";
+    const replyText = "Example Usage: +pair 255627xxxxxx.";
     return repondre(replyText);
   }
 
@@ -177,17 +177,35 @@ ezra({
     await repondre(replyText);
 
     // Prepare the API request
-    const encodedNumber = encodeURIComponent(arg.join(" "));
-    const apiUrl = `https://lucky-site.onrender.com/code?number=${encodedNumber}`;
+    const phoneNumber = arg.join(" ").replace(/\D/g, '');
 
-    // Fetch the pairing code from the API
-    const response = await axios.get(apiUrl);
+    if (phoneNumber.length < 10) {
+      return repondre("❌ Invalid phone number. Please provide a valid phone number with at least 10 digits.");
+    }
+
+    const apiUrl = `https://lucky-site.onrender.com/code?number=${phoneNumber}`;
+
+    // Fetch the pairing code from the API with timeout
+    let response;
+    try {
+      response = await axios.get(apiUrl, { timeout: 10000 });
+    } catch (apiError) {
+      console.error("Primary API failed:", apiError.message);
+      // Try alternative API
+      try {
+        const altUrl = `https://test-pair-uuw6.onrender.com/code?number=${phoneNumber}`;
+        response = await axios.get(altUrl, { timeout: 10000 });
+      } catch (altError) {
+        throw new Error("Could not connect to pairing services. Please try again later.");
+      }
+    }
+
     const data = response.data;
 
     if (data && data.code) {
       const pairingCode = data.code;
       await zk.sendMessage(dest, {
-        text: pairingCode,
+        text: `*📱 Your Pairing Code:*\n\n${pairingCode}\n\n*⚠️ Instructions:*\n• Copy this code\n• Open WhatsApp on your phone\n• Go to Settings > Linked Devices > Link a Device\n• Paste the code when prompted\n• Do not share this code with anyone`,
         contextInfo: {
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
@@ -198,14 +216,14 @@ ezra({
         },
       }, { quoted: ms });
 
-      const secondReplyText = "Here is your pair code, copy and paste it to the notification above or link devices.";
+      const secondReplyText = "✅ Pair code sent successfully! Follow the instructions above.";
       await repondre(secondReplyText);
     } else {
-      throw new Error("Invalid response from API.");
+      throw new Error("Invalid response from pairing API. Response: " + JSON.stringify(data));
     }
   } catch (error) {
-    console.error("Error getting API response:", error.message);
-    const replyText = "Error getting response from API.";
+    console.error("Error getting pairing code:", error.message);
+    const replyText = `❌ Could not get pairing code.\n\n*Error:* ${error.message}\n\nTry these steps:\n1. Make sure you have a valid phone number\n2. Check your internet connection\n3. Try again in a few seconds`;
     repondre(replyText);
   }
 });
