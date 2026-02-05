@@ -358,10 +358,6 @@ setTimeout(() => {
                     }, { quoted: ms });
                 }
             }
-            if (!dev && origineMessage == "120363158701337904@g.us") {
-                return;
-            }
-
             if (texte && auteurMessage.endsWith("s.whatsapp.net")) {
                 const { ajouterOuMettreAJourUserData } = require("./lib/level");
                 try {
