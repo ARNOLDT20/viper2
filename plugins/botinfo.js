@@ -31,103 +31,32 @@ ezra({
 ├─ 🎯 Name: *${botName}*
 ├─ ⚙️ Prefix: *${prefix}*
 ├─ 📊 Mode: *${mode}*
-├─ 🔌 Plugins Loaded: *${pluginCount}*
+├─ 🔌 Plugins: *${pluginCount}*
 ├─ ⏱️ Uptime: *${uptimeHours}h ${uptimeMinutes}m*
 └─ 📱 Version: *3.0.0+ (Viper XMD)*
 
 *✨ Features:*
-├─ 📥 Media Download (YT, TikTok, etc)
-├─ 🎵 Music & Audio Processing
-├─ 🖼️ Image & Sticker Creation
-├─ 🔍 Search & Browse
-├─ 👥 Group Management Tools
-├─ 🛡️ Anti-Spam & Security
-├─ 📝 Text Tools & Utilities
-├─ 🎮 Fun & Games
-├─ 🔗 Link Shortening
-└─ 💬 Chat Bot Integration
+📥 Download  🎵 Music  🖼️ Stickers  🔍 Search  👥 Groups  🛡️ Security
 
-*👨‍💻 Developer Info:*
-├─ Developer: *T20-CLASSIC*
-├─ Owner: *${conf.OWNER_NAME || 'Starboy'}*
-├─ Phone: *${conf.NUMERO_OWNER || '+255627417402'}*
-└─ Engine: *Baileys (WhatsApp Web)*
+*👨‍💻 Developer:*
+T20-CLASSIC | ${conf.OWNER_NAME || 'Starboy'} | ${conf.NUMERO_OWNER}
 
-*📚 Quick Commands:*
-├─ ${prefix}help - View all commands
-├─ ${prefix}menu - Main menu
-├─ ${prefix}owner - Contact owner
-└─ ${prefix}pair - Get pairing code
+*📚 Commands:*
+${prefix}help | ${prefix}menu | ${prefix}owner | ${prefix}pair
 
-╔═══════════════════════════════════════╗
-║  💫 Made with ❤️ by T20-CLASSIC 💫   ║
-║     🌟 Stay Connected, Stay Blessed    ║
-╚═══════════════════════════════════════╝
+*Links:*
+🔗 GitHub: ${conf.GITHUB || 'https://github.com/ARNOLDT20'}
+📢 Updates: ${conf.GURL || 'https://whatsapp.com'}
 
-*GitHub:* ${conf.GITHUB || 'https://github.com/ARNOLDT20'}
-*Updates:* ${conf.GURL || 'https://whatsapp.com/channel'}`;
+═══════════════════════════════════════
+💫 Made with ❤️ by T20-CLASSIC
+🌟 Stay Connected, Stay Blessed 🌟`;
 
-        // Send video with bot info
+        // Send ONLY video with botinfo as caption
         await zk.sendMessage(dest, {
             video: { url: 'https://files.catbox.moe/qmh4d8.mp4' },
-            caption: `🤖 *${botName}* - Complete Bot Information\n\n${prefix}botinfo to view details`,
+            caption: botInfoText,
             gifPlayback: false
-        }, { quoted: ms });
-
-        // Send detailed info
-        await zk.sendMessage(dest, {
-            text: botInfoText,
-            contextInfo: {
-                isForwarded: true,
-                forwardingScore: 999,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363421014261315@newsletter",
-                    newsletterName: "BLAZE TECH Official",
-                    serverMessageId: Math.floor(Math.random() * 1000000)
-                },
-                externalAdReply: {
-                    showAdAttribution: true,
-                    title: `${botName} - Full Information`,
-                    body: '✨ Powered By Viper XMD Engine',
-                    thumbnailUrl: conf.URL || 'https://files.catbox.moe/xqhfyv.webp',
-                    sourceUrl: conf.GURL || 'https://whatsapp.com',
-                    mediaType: 1,
-                    renderLargerThumbnail: false
-                }
-            }
-        }, { quoted: ms });
-
-        // Send owner contact card
-        const ownerText = `╔═══════════════════════════════════════╗
-║         📞 *OWNER CONTACT* 📞          ║
-╚═══════════════════════════════════════╝
-
-*Owner:* ${conf.OWNER_NAME || 'T20-CLASSIC'}
-*Phone:* ${conf.NUMERO_OWNER || '+255627417402'}
-*Status:* 🟢 Available 24/7
-
-*Connect On:*
-📱 WhatsApp: ${conf.NUMERO_OWNER || '+255627417402'}
-🔗 GitHub: ${conf.GITHUB || 'https://github.com'}
-📢 WhatsApp Channel: ${conf.GURL || 'https://whatsapp.com'}
-🌐 Website: ${conf.WEBSITE || 'https://blazetech-site.vercel.app'}
-
-*For Issues & Support:*
-💬 Message owner directly
-📧 Report bugs on GitHub
-🆘 Ask for help in group`;
-
-        await zk.sendMessage(dest, {
-            text: ownerText,
-            contextInfo: {
-                isForwarded: true,
-                forwardingScore: 999,
-                forwardedNewsletterMessageInfo: {
-                    newsletterJid: "120363421014261315@newsletter",
-                    newsletterName: "BLAZE TECH Official",
-                    serverMessageId: Math.floor(Math.random() * 1000000)
-                }
-            }
         }, { quoted: ms });
 
     } catch (error) {
