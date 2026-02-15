@@ -738,126 +738,132 @@ setTimeout(() => {
                     console.log("ℹ️ Could not fetch metadata for 120363424815103034@g.us:", errMeta?.message || errMeta);
                 }
 
-                if ((conf.DP).toLowerCase() === 'yes') {
+                zk.ev.on("connection.update", async (update) => {
+                    const { connection, lastDisconnect } = update;
 
-                    let cmsg = `viper xmd CONNECTED SUCCESSFUL \n\n╭─────────────━\n│¤│ᴘʀᴇғɪx: *[ ${prefixe} ]*\n│○│ᴍᴏᴅᴇ: *${(conf.MODE)}\n╰─────────────━⁠\n`;
+                    if ((conf.DP).toLowerCase() === 'yes' && connection === "open") {
 
-                    await zk.sendMessage(zk.user.id, { text: cmsg });
-                }
-            }
-            else if (connection == "close") {
-                let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
-                console.log('Disconnect reason code:', raisonDeconnexion, 'raw error:', lastDisconnect?.error || 'none');
-                if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
-                    console.log('Session id error, rescan again...');
-                }
-                else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionClosed) {
-                    console.log('!!! connection closed, reconnection scheduled...');
-                    setTimeout(() => main(), 5000);
-                }
-                else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionLost) {
-                    console.log('connection lost 😞 — scheduling reconnect...');
-                    setTimeout(() => main(), 5000);
-                }
-                else if (raisonDeconnexion === baileys_1.DisconnectReason?.connectionReplaced) {
-                    console.log('connection replaced ,,, a session is already open please close it !!!');
-                }
-                else if (raisonDeconnexion === baileys_1.DisconnectReason.loggedOut) {
-                    console.log('you are disconnected,,, please rescan the qr code please');
-                }
-                else if (raisonDeconnexion === baileys_1.DisconnectReason.restartRequired) {
-                    console.log('reboot required ▶️ — scheduling restart...');
-                    setTimeout(() => main(), 5000);
-                } else {
+                        let cmsg = `viper xmd CONNECTED SUCCESSFUL \n\n╭─────────────━\n│¤│ᴘʀᴇғɪx: *[ ${prefixe} ]*\n│○│ᴍᴏᴅᴇ: *${conf.MODE}*\n╰─────────────━⁠\n`;
 
-                    console.log('Unhandled disconnect reason:', raisonDeconnexion);
-                    const { exec } = require("child_process");
-                    exec("pm2 restart all");
-                }
-                // avoid immediate double-reconnect; let scheduled reconnects handle it
-                console.log("hum " + connection);
-            }
-        });
-        //fin événement connexion
-        //événement authentification 
-        zk.ev.on("creds.update", saveCreds);
-        //fin événement authentification 
-        //
-        /** ************* */
-        //fonctions utiles
-        zk.downloadAndSaveMediaMessage = async (message, filename = '', attachExtension = true) => {
-            let quoted = message.msg ? message.msg : message;
-            let mime = (message.msg || message).mimetype || '';
-            let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0];
-            const stream = await (0, baileys_1.downloadContentFromMessage)(quoted, messageType);
-            let buffer = Buffer.from([]);
-            for await (const chunk of stream) {
-                buffer = Buffer.concat([buffer, chunk]);
-            }
-            let type = await FileType.fromBuffer(buffer);
-            let trueFileName = './' + filename + '.' + type.ext;
-            // save to file
-            await fs.writeFileSync(trueFileName, buffer);
-            return trueFileName;
-        };
+                        await zk.sendMessage(zk.user.id, { text: cmsg });
+
+                        // =========================
+                        // AUTO CHANNEL QUESTIONS START
+                        // =========================
+                        const { startAutoQuestions } = require("./autoquestions"); // adjust path if needed
+                        startAutoQuestions(zk); // zk = your Baileys client
+                        // =========================
+                    }
+
+                    else if (connection == "close") {
+                        let raisonDeconnexion = new boom_1.Boom(lastDisconnect?.error)?.output.statusCode;
+                        console.log('Disconnect reason code:', raisonDeconnexion, 'raw error:', lastDisconnect?.error || 'none');
+
+                        if (raisonDeconnexion === baileys_1.DisconnectReason.badSession) {
+                            console.log('Session id error, rescan again...');
+                        } else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionClosed) {
+                            console.log('!!! connection closed, reconnection scheduled...');
+                            setTimeout(() => main(), 5000);
+                        } else if (raisonDeconnexion === baileys_1.DisconnectReason.connectionLost) {
+                            console.log('connection lost 😞 — scheduling reconnect...');
+                            setTimeout(() => main(), 5000);
+                        } else if (raisonDeconnexion === baileys_1.DisconnectReason?.connectionReplaced) {
+                            console.log('connection replaced, session already open, please close it!');
+                        } else if (raisonDeconnexion === baileys_1.DisconnectReason.loggedOut) {
+                            console.log('you are disconnected, please rescan QR code');
+                        } else if (raisonDeconnexion === baileys_1.DisconnectReason.restartRequired) {
+                            console.log('reboot required ▶️ — scheduling restart...');
+                            setTimeout(() => main(), 5000);
+                        } else {
+                            console.log('Unhandled disconnect reason:', raisonDeconnexion);
+                            const { exec } = require("child_process");
+                            exec("pm2 restart all");
+                        }
+
+                        console.log("hum " + connection);
+                    }
+                });
+
+                //fin événement connexion
+                //événement authentification 
+                zk.ev.on("creds.update", saveCreds);
+                //fin événement authentification 
+                //
+                /** ************* */
+                //fonctions utiles
+                zk.downloadAndSaveMediaMessage = async (message, filename = '', attachExtension = true) => {
+                    let quoted = message.msg ? message.msg : message;
+                    let mime = (message.msg || message).mimetype || '';
+                    let messageType = message.mtype ? message.mtype.replace(/Message/gi, '') : mime.split('/')[0];
+                    const stream = await (0, baileys_1.downloadContentFromMessage)(quoted, messageType);
+                    let buffer = Buffer.from([]);
+                    for await (const chunk of stream) {
+                        buffer = Buffer.concat([buffer, chunk]);
+                    }
+                    let type = await FileType.fromBuffer(buffer);
+                    let trueFileName = './' + filename + '.' + type.ext;
+                    // save to file
+                    await fs.writeFileSync(trueFileName, buffer);
+                    return trueFileName;
+                };
 
 
-        zk.awaitForMessage = async (options = {}) => {
-            return new Promise((resolve, reject) => {
-                if (typeof options !== 'object') reject(new Error('Options must be an object'));
-                if (typeof options.sender !== 'string') reject(new Error('Sender must be a string'));
-                if (typeof options.chatJid !== 'string') reject(new Error('ChatJid must be a string'));
-                if (options.timeout && typeof options.timeout !== 'number') reject(new Error('Timeout must be a number'));
-                if (options.filter && typeof options.filter !== 'function') reject(new Error('Filter must be a function'));
+                zk.awaitForMessage = async (options = {}) => {
+                    return new Promise((resolve, reject) => {
+                        if (typeof options !== 'object') reject(new Error('Options must be an object'));
+                        if (typeof options.sender !== 'string') reject(new Error('Sender must be a string'));
+                        if (typeof options.chatJid !== 'string') reject(new Error('ChatJid must be a string'));
+                        if (options.timeout && typeof options.timeout !== 'number') reject(new Error('Timeout must be a number'));
+                        if (options.filter && typeof options.filter !== 'function') reject(new Error('Filter must be a function'));
 
-                const timeout = options?.timeout || undefined;
-                const filter = options?.filter || (() => true);
-                let interval = undefined
+                        const timeout = options?.timeout || undefined;
+                        const filter = options?.filter || (() => true);
+                        let interval = undefined
 
-                /**
-                 * 
-                 * @param {{messages: Baileys.proto.IWebMessageInfo[], type: Baileys.MessageUpsertType}} data 
-                 */
-                let listener = (data) => {
-                    let { type, messages } = data;
-                    if (type == "notify") {
-                        for (let message of messages) {
-                            const fromMe = message.key.fromMe;
-                            const chatId = message.key.remoteJid;
-                            const isGroup = chatId.endsWith('@g.us');
-                            const isStatus = chatId == 'status@broadcast';
+                        /**
+                         * 
+                         * @param {{messages: Baileys.proto.IWebMessageInfo[], type: Baileys.MessageUpsertType}} data 
+                         */
+                        let listener = (data) => {
+                            let { type, messages } = data;
+                            if (type == "notify") {
+                                for (let message of messages) {
+                                    const fromMe = message.key.fromMe;
+                                    const chatId = message.key.remoteJid;
+                                    const isGroup = chatId.endsWith('@g.us');
+                                    const isStatus = chatId == 'status@broadcast';
 
-                            const sender = fromMe ? zk.user.id.replace(/:.*@/g, '@') : (isGroup || isStatus) ? message.key.participant.replace(/:.*@/g, '@') : chatId;
-                            if (sender == options.sender && chatId == options.chatJid && filter(message)) {
-                                zk.ev.off('messages.upsert', listener);
-                                clearTimeout(interval);
-                                resolve(message);
+                                    const sender = fromMe ? zk.user.id.replace(/:.*@/g, '@') : (isGroup || isStatus) ? message.key.participant.replace(/:.*@/g, '@') : chatId;
+                                    if (sender == options.sender && chatId == options.chatJid && filter(message)) {
+                                        zk.ev.off('messages.upsert', listener);
+                                        clearTimeout(interval);
+                                        resolve(message);
+                                    }
+                                }
                             }
                         }
-                    }
+                        zk.ev.on('messages.upsert', listener);
+                        if (timeout) {
+                            interval = setTimeout(() => {
+                                zk.ev.off('messages.upsert', listener);
+                                reject(new Error('Timeout'));
+                            }, timeout);
+                        }
+                    });
                 }
-                zk.ev.on('messages.upsert', listener);
-                if (timeout) {
-                    interval = setTimeout(() => {
-                        zk.ev.off('messages.upsert', listener);
-                        reject(new Error('Timeout'));
-                    }, timeout);
-                }
+
+
+
+                // fin fonctions utiles
+                /** ************* */
+                return zk;
+            }
+            let fichier = require.resolve(__filename);
+            fs.watchFile(fichier, () => {
+                fs.unwatchFile(fichier);
+                console.log(`mise à jour ${__filename}`);
+                delete require.cache[fichier];
+                require(fichier);
             });
-        }
-
-
-
-        // fin fonctions utiles
-        /** ************* */
-        return zk;
-    }
-    let fichier = require.resolve(__filename);
-    fs.watchFile(fichier, () => {
-        fs.unwatchFile(fichier);
-        console.log(`mise à jour ${__filename}`);
-        delete require.cache[fichier];
-        require(fichier);
-    });
-    main();
-}, 5000);
+            main();
+        }, 5000);
