@@ -1,9 +1,6 @@
 const { ezra } = require("../fredi/ezra");
+const { generateWAMessageFromContent, proto } = require("@whiskeysockets/baileys");
 const { downloadMediaMessage } = require("@whiskeysockets/baileys");
-
-// ===============================
-// GROUP STATUS COMMAND
-// ===============================
 
 ezra({
     nomCom: 'groupstatus',
@@ -14,34 +11,25 @@ ezra({
 
     const { repondre, superUser, verifGroupe, msgRepondu, arg } = context;
 
-    // Group only
-    if (!verifGroupe) {
-        return repondre("This command works in groups only.");
-    }
-
-    // SuperUser only
-    if (!superUser) {
-        return repondre("You are too weak to use this command.");
-    }
+    if (!verifGroupe) return repondre("Group only command.");
+    if (!superUser) return repondre("SuperUser only.");
 
     const caption = arg.join(" ");
 
-    // Must reply to media OR provide text
     if (!msgRepondu && !caption) {
-        return repondre("Reply to image/video/audio OR type text after command.");
+        return repondre("Reply to media or provide text.");
     }
 
     try {
 
-        const defaultCaption = "📢 Group Status Posted Successfully";
+        let content = {};
 
-        // ========================
-        // IF REPLYING TO MEDIA
-        // ========================
+        // ==========================
+        // MEDIA GROUP STORY
+        // ==========================
         if (msgRepondu) {
 
             const mime = msgRepondu.mimetype || msgRepondu.msg?.mimetype || "";
-
             const buffer = await downloadMediaMessage(
                 msgRepondu,
                 "buffer",
@@ -52,41 +40,57 @@ ezra({
                 }
             );
 
-            // IMAGE
             if (/image/.test(mime)) {
-                await client.sendMessage(chatId, {
+                content = {
                     groupStatusMessage: {
-                        image: buffer,
-                        caption: caption || defaultCaption
+                        imageMessage: proto.Message.ImageMessage.create({
+                            jpegThumbnail: buffer,
+                            caption: caption || ""
+                        })
                     }
-                });
-                return repondre("✅ Image group status posted.");
+                };
             }
 
-            // VIDEO
-            if (/video/.test(mime)) {
-                await client.sendMessage(chatId, {
+            else if (/video/.test(mime)) {
+                content = {
                     groupStatusMessage: {
-                        video: buffer,
-                        caption: caption || defaultCaption
+                        videoMessage: proto.Message.VideoMessage.create({
+                            caption: caption || ""
+                        })
                     }
-                });
-                return repondre("✅ Video group status posted.");
+                };
             }
 
-            // AUDIO
-            if (/audio/.test(mime)) {
-                await client.sendMessage(chatId, {
+            else if (/audio/.test(mime)) {
+                content = {
                     groupStatusMessage: {
-                        audio: buffer,
-                        mimetype: "audio/mp4"
+                        audioMessage: proto.Message.AudioMessage.create({
+                            mimetype: "audio/mp4"
+                        })
                     }
-                });
-                return repondre("✅ Audio group status posted.");
+                };
             }
 
-            return repondre("Unsupported media type.");
+        } else {
+            // TEXT STORY
+            content = {
+                groupStatusMessage: {
+                    conversation: caption
+                }
+            };
         }
 
-// ========================
-// TEXT ONLY
+        const message = generateWAMessageFromContent(chatId, content, {});
+
+        await client.relayMessage(chatId, message.message, {
+            messageId: message.key.id
+        });
+
+        return repondre("✅ Group Story posted successfully.");
+
+    } catch (err) {
+        console.log(err);
+        return repondre("Failed to post Group Story. Your Baileys may not support it.");
+    }
+
+});
