@@ -10,7 +10,7 @@
 
 Deploy viper xmd to Heroku with one click:
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/T20/viper-22)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ARNOLDT20/viper2)
 
 ---
 
