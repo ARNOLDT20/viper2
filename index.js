@@ -54,6 +54,12 @@ const pino = require("pino");
 const boom_1 = require("@hapi/boom");
 const conf = require("./set");
 const axios = require("axios");
+// lightweight HTTP ping endpoint so uptime monitors (UptimeRobot, etc.) can keep the process alive
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 8000;
+app.get('/', (req, res) => res.send('viper xmd IS ALIVE 🫧'));
+app.listen(PORT, () => console.log(`Ping server running on port ${PORT}`));
 let fs = require("fs-extra");
 let path = require("path");
 const FileType = require('file-type');
