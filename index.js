@@ -62,6 +62,23 @@ app.get('/', (req, res) => res.send('viper xmd IS ALIVE 🫧'));
 app.listen(PORT, () => console.log(`Ping server running on port ${PORT}`));
 let fs = require("fs-extra");
 let path = require("path");
+
+// Restore session from base64 zip in env var (useful for platforms like Heroku)
+const SESSION_ZIP_BASE64 = process.env.SESSION_ZIP_BASE64 || process.env.SESSION_TAR_BASE64 || process.env.SESSION_BASE64;
+if (SESSION_ZIP_BASE64) {
+    try {
+        const zipPath = path.join(__dirname, 'auth.zip');
+        fs.writeFileSync(zipPath, Buffer.from(SESSION_ZIP_BASE64, 'base64'));
+        const AdmZip = require('adm-zip');
+        const zip = new AdmZip(zipPath);
+        zip.extractAllTo(path.join(__dirname, 'auth'), true);
+        fs.unlinkSync(zipPath);
+        console.log('✅ Restored auth folder from SESSION_ZIP_BASE64');
+    }
+    catch (e) {
+        console.error('❌ Failed to restore session from env var:', e?.message || e);
+    }
+}
 const FileType = require('file-type');
 const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
 //import chalk from 'chalk'
