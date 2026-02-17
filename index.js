@@ -129,6 +129,8 @@ const store = (0, baileys_1.makeInMemoryStore)({
 
 // Initialize status reaction listener once (outside main to avoid stacking on reconnects)
 let statusReactionInitialized = false;
+// Ensure plugins are only loaded once per process
+let pluginsInitialized = false;
 
 setTimeout(() => {
     async function main() {
@@ -166,8 +168,8 @@ setTimeout(() => {
         const zk = (0, baileys_1.default)(sockOptions);
         store.bind(zk.ev);
 
-        // Attach status reaction listener
-        if (conf.AUTO_REACT_STATUS === "yes") {
+        // Attach status reaction listener (only once)
+        if (conf.AUTO_REACT_STATUS === "yes" && !statusReactionInitialized) {
             console.log("✅ AUTO_REACT_STATUS enabled. Listening for status updates...");
 
             // Function to handle status reactions
@@ -179,27 +181,17 @@ setTimeout(() => {
                         // Check if message is from status broadcast
                         if (message.key && message.key.remoteJid === "status@broadcast" && !message.key.fromMe) {
                             try {
-                                // Array of possible reaction emojis
                                 const reactionEmojis = ["❤️", "🔥", "👍", "😂", "😮", "😢", "🤔", "👏", "🎉", "🤩"];
                                 const randomEmoji = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
-
-                                // Mark as read
                                 await zk.readMessages([message.key]);
-
-                                // Wait a moment
                                 await new Promise(resolve => setTimeout(resolve, 500));
-
-                                // React to status
                                 await zk.sendMessage(message.key.remoteJid, {
                                     react: {
                                         text: randomEmoji,
                                         key: message.key
                                     }
                                 });
-
                                 console.log(`✅ Reacted to status from ${message.key.participant || 'unknown'} with ${randomEmoji}`);
-
-                                // Delay between reactions
                                 await new Promise(resolve => setTimeout(resolve, 1000));
                             } catch (error) {
                                 console.error("❌ Status reaction failed:", error.message);
@@ -211,8 +203,9 @@ setTimeout(() => {
                 }
             };
 
-            // Attach the handler
+            // Attach the handler once
             zk.ev.on("messages.upsert", handleStatusReaction);
+            statusReactionInitialized = true;
         }
 
 
@@ -709,20 +702,23 @@ setTimeout(() => {
                 console.log("------------------/-----");
                 console.log("👀 viper xmd is Online 🕸\n\n");
                 //chargement des vipercmd 
-                console.log("🛒 Initializing viper xmd Plugins...\n");
-                fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
-                    if (path.extname(fichier).toLowerCase() == (".js")) {
-                        try {
-                            require(__dirname + "/plugins/" + fichier);
-                            console.log(fichier + "🛒🔑 viper xmd plugins Installed Successfully✔️");
+                if (!pluginsInitialized) {
+                    console.log("🛒 Initializing viper xmd Plugins...\n");
+                    fs.readdirSync(__dirname + "/plugins").forEach((fichier) => {
+                        if (path.extname(fichier).toLowerCase() == (".js")) {
+                            try {
+                                require(__dirname + "/plugins/" + fichier);
+                                console.log(fichier + "🛒🔑 viper xmd plugins Installed Successfully✔️");
+                            }
+                            catch (e) {
+                                console.log(`${fichier} could not be installed due to : ${e}`);
+                            }
+                            (0, baileys_1.delay)(300);
                         }
-                        catch (e) {
-                            console.log(`${fichier} could not be installed due to : ${e}`);
-                        }
-                        (0, baileys_1.delay)(300);
-                    }
-                });
-                (0, baileys_1.delay)(700);
+                    });
+                    (0, baileys_1.delay)(700);
+                    pluginsInitialized = true;
+                }
                 var md;
                 if ((conf.MODE).toLocaleLowerCase() === "yes") {
                     md = "public";
