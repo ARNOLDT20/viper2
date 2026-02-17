@@ -29,7 +29,9 @@ function registerCommand(commandObject, functionHandler) {
 // Create a command registry
 var commandRegistry = {
   cmd: registerCommand,
-  AddCommand: registerCommand
+  AddCommand: registerCommand,
+  // expose the commands array for plugins that inspect registered commands
+  commands: commands
 };
 
 // Export the registry to be used in other parts of the application
