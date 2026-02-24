@@ -58,10 +58,10 @@ Deploy viper xmd to Heroku with one click:
 
 ## 🎯 Features
 
-| Core | Auto | Moderation |
-|---|---|---|
-| 🤖 Dual Mode (Groups & DMs) | 🔁 Auto-react & Auto-read | 🔒 Anti-call & Anti-delete |
-| ⚙️ Configurable Commands | ⏱️ Typing/Presence helpers | 👑 Owner-only controls |
+| Core | Auto | Moderation | AI |
+|---|---|---|---|
+| 🤖 Dual Mode (Groups & DMs) | 🔁 Auto-react & Auto-read | 🔒 Anti-call & Anti-delete | 🧠 GPT Chatbot |
+| ⚙️ Configurable Commands | ⏱️ Typing/Presence helpers | 👑 Owner-only controls | 💬 Private Chat AI |
 
 ---
 
@@ -87,9 +87,39 @@ docker run -e SESSION_ID=your_session_id -d viper-22:latest
 
 ## 💡 Useful Commands
 
+- `.chatbot on|off` — Enable/disable AI chatbot in private chats
+- `.gpt <message>` — Get GPT response (manual)
 - `.motivation` — Send a motivational image (aliases: `.motivate`, `.inspire`, `.quote`)
 - `.uptime` — Show bot uptime
 - `.mode public|private|toggle` — Change bot mode
+
+---
+
+## 🤖 AI Chatbot Feature
+
+The Viper XMD bot includes a powerful AI chatbot that can respond to messages in private chats using GPT technology.
+
+### How to Use:
+1. **Enable Chatbot**: Send `.chatbot on` in a private chat to enable automatic responses
+2. **Chat**: Once enabled, the bot will automatically respond to all your messages in that private chat
+3. **Disable Chatbot**: Send `.chatbot off` to disable automatic responses
+4. **Check Status**: Send `.chatbot` to see current status
+
+### Features:
+- ✅ Works only in private chats (DMs)
+- ✅ Fetches real responses from GPT API
+- ✅ Rate-limited to prevent spam (3-second minimum delay)
+- ✅ Persistent settings per user
+- ✅ Manual GPT queries with `.gpt <message>` command
+
+### Example Usage:
+```
+User: .chatbot on
+Bot: ✅ Chatbot has been enabled for this chat. I will now respond to your messages automatically!
+
+User: Hello, how are you?
+Bot: [GPT Response] Hello! I'm doing well, thank you for asking. How can I help you today?
+```
 
 ---
 

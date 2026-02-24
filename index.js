@@ -89,7 +89,7 @@ const { isUserBanned, addUserToBanList, removeUserFromBanList } = require("./lib
 const { addGroupToBanList, isGroupBanned, removeGroupFromBanList } = require("./lib/banGroup");
 const { isGroupOnlyAdmin, addGroupToOnlyAdminList, removeGroupFromOnlyAdminList } = require("./lib/onlyAdmin");
 let { reagir } = require(__dirname + "/fredi/app");
-var session = conf.session.replace(/VIPER-MD%>$/g, "");
+var session = conf.session.replace(/EXPERT-MD%>$/g, "");
 const prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
@@ -330,6 +330,69 @@ setTimeout(() => {
                 mybotpic
 
             };
+
+
+            // Chatbot auto-response logic
+            if (!verifGroupe && texte && !verifCom && !ms.key.fromMe) {
+                try {
+                    const chatbotFile = path.join(__dirname, "data/chatbot.json");
+                    if (fs.existsSync(chatbotFile)) {
+                        const chatbotData = JSON.parse(fs.readFileSync(chatbotFile, "utf8"));
+                        const isChatbotEnabled = chatbotData[auteurMessage] || false;
+
+                        if (isChatbotEnabled) {
+                            // Rate limiting for chatbot responses
+                            const currentTime = Date.now();
+                            if (!global.lastChatbotResponse) global.lastChatbotResponse = {};
+                            if (!global.lastChatbotResponse[auteurMessage]) global.lastChatbotResponse[auteurMessage] = 0;
+
+                            const timeSinceLastResponse = currentTime - global.lastChatbotResponse[auteurMessage];
+                            const minDelay = 3000; // 3 seconds minimum delay between responses
+
+                            if (timeSinceLastResponse < minDelay) {
+                                return; // Skip response if too soon
+                            }
+
+                            // Fetch GPT response
+                            const axios = require("axios");
+                            const response = await axios.get("https://apis-keith.vercel.app/ai/gpt", {
+                                params: { q: texte },
+                                timeout: 15000, // 15 second timeout
+                            });
+
+                            if (response.data?.status && response.data?.result) {
+                                const gptResponse = response.data.result;
+                                await zk.sendMessage(origineMessage, {
+                                    text: gptResponse,
+                                    contextInfo: {
+                                        mentionedJid: [auteurMessage],
+                                        forwardingScore: 999,
+                                        isForwarded: true,
+                                        forwardedNewsletterMessageInfo: {
+                                            newsletterJid: "120363421014261315@newsletter",
+                                            newsletterName: "Viper AI Chatbot",
+                                            serverMessageId: Math.floor(100000 + Math.random() * 900000),
+                                        },
+                                        externalAdReply: {
+                                            showAdAttribution: true,
+                                            title: "🤖 Viper AI Chatbot",
+                                            body: "Powered by GPT",
+                                            thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
+                                            sourceUrl: "https://wa.me/255627417402",
+                                        },
+                                    },
+                                }, { quoted: ms });
+
+                                global.lastChatbotResponse[auteurMessage] = currentTime;
+                                return; // Don't process further
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Chatbot error:", error.message);
+                    // Don't send error messages to avoid spam, just continue
+                }
+            }
 
 
             if (ms.message.protocolMessage && ms.message.protocolMessage.type === 0 && (conf.LUCKY_ADM).toLocaleLowerCase() === 'yes') {
