@@ -1,5 +1,7 @@
 const { ezra } = require('../fredi/ezra');
 const s = require('../set');
+const fs = require('fs');
+const path = require('path');
 
 ezra(
   {
@@ -28,8 +30,30 @@ ezra(
         return repondre(`viper xmd says STOP WASTING MY TIME! Provide a valid KEY=VALUE pair!🙂‍↔️`);
       }
 
+      // If user is trying to set local Heroku credentials, save them to set.env
+      if (key === 'HEROKU_API_KEY' || key === 'HEROKU_APP_NAME') {
+        try {
+          const envPath = path.join(__dirname, '..', 'set.env');
+          let content = '';
+          if (fs.existsSync(envPath)) content = fs.readFileSync(envPath, 'utf8');
+          const re = new RegExp(`^${key}=.*$`, 'm');
+          if (re.test(content)) {
+            content = content.replace(re, `${key}=${value}`);
+          } else {
+            if (content && !content.endsWith('\n')) content += '\n';
+            content += `${key}=${value}\n`;
+          }
+          fs.writeFileSync(envPath, content, 'utf8');
+          return repondre(`Saved ${key} to local set.env. Restart the bot for changes to apply.`);
+        } catch (err) {
+          console.error('Error writing set.env:', err);
+          return repondre(`Failed to write ${key} to set.env: ${err.message}`);
+        }
+      }
+
+      // For other vars we need Heroku remote credentials
       if (!s.HEROKU_API_KEY || !s.HEROKU_APP_NAME) {
-        return repondre(`viper xmd says CONFIG ERROR! HEROKU_API_KEY or HEROKU_APP_NAME missing in set.js! Fix it now!`);
+        return repondre(`Heroku not configured. To use this command remotely, set HEROKU_API_KEY and HEROKU_APP_NAME in your environment or use .setvar HEROKU_API_KEY=... and .setvar HEROKU_APP_NAME=... to save locally.`);
       }
 
       const Heroku = require("heroku-client");
