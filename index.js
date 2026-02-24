@@ -357,31 +357,12 @@ setTimeout(() => {
                             const axios = require("axios");
                             const response = await axios.get("https://apis-keith.vercel.app/ai/gpt", {
                                 params: { q: texte },
-                                timeout: 15000, // 15 second timeout
+                                timeout: 10000, // 10 second timeout
                             });
 
                             if (response.data?.status && response.data?.result) {
                                 const gptResponse = response.data.result;
-                                await zk.sendMessage(origineMessage, {
-                                    text: gptResponse,
-                                    contextInfo: {
-                                        mentionedJid: [auteurMessage],
-                                        forwardingScore: 999,
-                                        isForwarded: true,
-                                        forwardedNewsletterMessageInfo: {
-                                            newsletterJid: "120363421014261315@newsletter",
-                                            newsletterName: "Viper AI Chatbot",
-                                            serverMessageId: Math.floor(100000 + Math.random() * 900000),
-                                        },
-                                        externalAdReply: {
-                                            showAdAttribution: true,
-                                            title: "🤖 Viper AI Chatbot",
-                                            body: "Powered by GPT",
-                                            thumbnailUrl: "https://files.catbox.moe/o4o7w2.png",
-                                            sourceUrl: "https://wa.me/255627417402",
-                                        },
-                                    },
-                                }, { quoted: ms });
+                                await zk.sendMessage(origineMessage, { text: gptResponse }, { quoted: ms });
 
                                 global.lastChatbotResponse[auteurMessage] = currentTime;
                                 return; // Don't process further
