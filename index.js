@@ -404,9 +404,10 @@ setTimeout(() => {
                                         background: '#000000'
                                     });
 
-                                    await sticker.toFile(path.join(__dirname, "st_voicenote.webp"));
-                                    await zk.sendMessage(origineMessage, { sticker: fs.readFileSync(path.join(__dirname, "st_voicenote.webp")) });
-                                    await fs.unlink(path.join(__dirname, "st_voicenote.webp"), () => { });
+                                    const stickPath = path.join(__dirname, "st_voicenote.webp");
+                                    await sticker.toFile(stickPath);
+                                    await zk.sendMessage(origineMessage, { sticker: fs.readFileSync(stickPath) });
+                                    fs.unlink(stickPath, () => { });
                                 } catch (err) {
                                     // Fallback: just send the image as sticker
                                     await zk.sendMessage(origineMessage, { image: { url: stickerPath } });

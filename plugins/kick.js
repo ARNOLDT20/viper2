@@ -5,7 +5,7 @@ const { Sticker, StickerTypes } = require('wa-sticker-formatter');
 const conf = require(__dirname + '/../set');
 
 ezra({
-    nomCom: "remove",
+    nomCom: "remove  ",
     aliases: ["remove", "bon"],
     categorie: "Group-Moderation",
     reaction: "👢"
@@ -77,9 +77,10 @@ ezra({
                     background: '#000000'
                 });
 
-                await sticker.toFile(path.join(__dirname, "../st_kick.webp"));
-                await zk.sendMessage(dest, { sticker: fs.readFileSync(path.join(__dirname, "../st_kick.webp")) });
-                await fs.unlink(path.join(__dirname, "../st_kick.webp"), () => { });
+                const stickPath = path.join(__dirname, "../st_kick.webp");
+                await sticker.toFile(stickPath);
+                await zk.sendMessage(dest, { sticker: fs.readFileSync(stickPath) });
+                fs.unlink(stickPath, () => { });
             }
         } catch (stickerErr) {
             console.error("Sticker error:", stickerErr.message);
