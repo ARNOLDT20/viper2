@@ -387,11 +387,11 @@ setTimeout(() => {
                             // Get random sticker from media folder
                             const mediaDir = path.join(__dirname, "media");
                             const stickerFiles = fs.readdirSync(mediaDir).filter(f => f.endsWith('.gif') || f.endsWith('.webp') || f.endsWith('.png'));
-                            
+
                             if (stickerFiles.length > 0) {
                                 const randomSticker = stickerFiles[Math.floor(Math.random() * stickerFiles.length)];
                                 const stickerPath = path.join(mediaDir, randomSticker);
-                                
+
                                 try {
                                     const { Sticker, StickerTypes } = require('wa-sticker-formatter');
                                     const sticker = new Sticker(stickerPath, {
@@ -403,10 +403,10 @@ setTimeout(() => {
                                         quality: 50,
                                         background: '#000000'
                                     });
-                                    
+
                                     await sticker.toFile(path.join(__dirname, "st_voicenote.webp"));
                                     await zk.sendMessage(origineMessage, { sticker: fs.readFileSync(path.join(__dirname, "st_voicenote.webp")) });
-                                    await fs.unlink(path.join(__dirname, "st_voicenote.webp"), () => {});
+                                    await fs.unlink(path.join(__dirname, "st_voicenote.webp"), () => { });
                                 } catch (err) {
                                     // Fallback: just send the image as sticker
                                     await zk.sendMessage(origineMessage, { image: { url: stickerPath } });

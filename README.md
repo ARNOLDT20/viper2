@@ -157,7 +157,39 @@ Bot: ✅ Voice note auto-reply has been disabled.
 
 ---
 
-## 🛠️ Deployment
+## � Kick Command
+
+Remove members from the group with style! The bot sends the remover.gif sticker before removing the user.
+
+### How to Use:
+1. **Reply Method**: Reply to a user's message and send `.kick`
+2. **Mention Method**: Use `.kick @username`
+3. **Direct Method**: Use `.kick 1234567890@s.whatsapp.net`
+
+### Requirements:
+- ✅ Command must be used in a group
+- ✅ Bot must be a group admin
+- ✅ User must be a group admin to use the command
+- ✅ Cannot kick the bot owner or the bot itself
+
+### Features:
+- ✅ Sends remover.gif sticker before removal
+- ✅ Removes user instantly from group
+- ✅ Sends confirmation message
+- ✅ Multiple usage methods (reply, mention, or ID)
+- ✅ Admin-only protection
+
+### Example Usage:
+```
+[Message from User]
+Admin: .kick
+Bot: [Sends remover.gif sticker]
+Bot: 👢 @User has been removed from the group!
+```
+
+---
+
+## �🛠️ Deployment
 
 See `README_DEPLOY_KATABUMP.md` for Docker / Kubernetes / platform steps. Set required env vars like `SESSION_ID` before starting the bot.
 
