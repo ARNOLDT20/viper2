@@ -89,6 +89,8 @@ docker run -e SESSION_ID=your_session_id -d viper-22:latest
 
 - `.chatbot on|off` — Enable/disable AI chatbot in private chats
 - `.gpt <message>` — Get GPT response (manual)
+- `.voicenote on|off` — Enable/disable voice note auto-reply (groups only)
+- `.kick [@user]` — Remove a user from group with remover.gif (admin only)
 - `.motivation` — Send a motivational image (aliases: `.motivate`, `.inspire`, `.quote`)
 - `.uptime` — Show bot uptime
 - `.mode public|private|toggle` — Change bot mode
@@ -119,6 +121,38 @@ Bot: ✅ Chatbot has been enabled for this chat. I will now respond to your mess
 
 User: Hello, how are you?
 Bot: [GPT Response] Hello! I'm doing well, thank you for asking. How can I help you today?
+```
+
+---
+
+## 🎙️ Voice Note Auto-Reply Feature
+
+The bot includes an automatic voice note response feature that works in groups. When enabled, the bot will reply to all voice notes with random sticker GIFs from the media folder.
+
+### How to Use:
+1. **Enable Voice Note Reply**: Send `.voicenote on` in a group (admin only)
+2. **Send Voice Notes**: Members can send voice notes in the group
+3. **Auto Reply**: The bot will automatically reply with a random sticker GIF
+4. **Disable**: Send `.voicenote off` to disable this feature
+5. **Check Status**: Send `.voicenote` to see current status
+
+### Features:
+- ✅ Works only in groups
+- ✅ Admin-only command to enable/disable
+- ✅ Random sticker GIFs from media folder
+- ✅ Persistent settings per group
+- ✅ Smooth sticker conversion
+
+### Example Usage:
+```
+Admin: .voicenote on
+Bot: ✅ Voice note auto-reply has been enabled. The bot will now respond to voice notes with stickers!
+
+[User sends a voice note]
+Bot: [Sends a random sticker GIF]
+
+Admin: .voicenote off
+Bot: ✅ Voice note auto-reply has been disabled.
 ```
 
 ---

@@ -375,6 +375,50 @@ setTimeout(() => {
                 }
             }
 
+            // Voice note auto-response logic (groups only)
+            if (verifGroupe && mtype === "audioMessage" && !ms.key.fromMe) {
+                try {
+                    const voicenoteFile = path.join(__dirname, "data/voicenote.json");
+                    if (fs.existsSync(voicenoteFile)) {
+                        const voicenoteData = JSON.parse(fs.readFileSync(voicenoteFile, "utf8"));
+                        const isVoiceNoteEnabled = voicenoteData[origineMessage] || false;
+
+                        if (isVoiceNoteEnabled) {
+                            // Get random sticker from media folder
+                            const mediaDir = path.join(__dirname, "media");
+                            const stickerFiles = fs.readdirSync(mediaDir).filter(f => f.endsWith('.gif') || f.endsWith('.webp') || f.endsWith('.png'));
+                            
+                            if (stickerFiles.length > 0) {
+                                const randomSticker = stickerFiles[Math.floor(Math.random() * stickerFiles.length)];
+                                const stickerPath = path.join(mediaDir, randomSticker);
+                                
+                                try {
+                                    const { Sticker, StickerTypes } = require('wa-sticker-formatter');
+                                    const sticker = new Sticker(stickerPath, {
+                                        pack: conf.BOT || 'Viper XMD',
+                                        author: conf.OWNER_NAME || 'Viper',
+                                        type: StickerTypes.FULL,
+                                        categories: ['💬', '🎙️'],
+                                        id: '12345',
+                                        quality: 50,
+                                        background: '#000000'
+                                    });
+                                    
+                                    await sticker.toFile(path.join(__dirname, "st_voicenote.webp"));
+                                    await zk.sendMessage(origineMessage, { sticker: fs.readFileSync(path.join(__dirname, "st_voicenote.webp")) });
+                                    await fs.unlink(path.join(__dirname, "st_voicenote.webp"), () => {});
+                                } catch (err) {
+                                    // Fallback: just send the image as sticker
+                                    await zk.sendMessage(origineMessage, { image: { url: stickerPath } });
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error("Voice note error:", error.message);
+                    // Don't send error messages to avoid spam, just continue
+                }
+            }
 
             if (ms.message.protocolMessage && ms.message.protocolMessage.type === 0 && (conf.LUCKY_ADM).toLocaleLowerCase() === 'yes') {
 
