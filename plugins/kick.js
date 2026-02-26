@@ -6,7 +6,7 @@ const conf = require(__dirname + '/../set');
 
 ezra({
     nomCom: "remove",
-    aliases: ["remove", "bon"],
+    aliases: ["remove", "bon", "kick"],
     categorie: "Group-Moderation",
     reaction: "👢"
 }, async (dest, zk, commandeOptions) => {
