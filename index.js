@@ -297,8 +297,7 @@ setTimeout(() => {
             var verifEzraAdmin = verifGroupe ? admins.includes(idBot) : false;
 
             const arg = texte ? texte.trim().split(/ +/).slice(1) : null;
-            // command prefix check (use configured prefix or allow '.' for compatibility)
-            const verifCom = texte ? (texte.startsWith(prefixe) || texte.startsWith('.')) : false;
+            const verifCom = texte ? texte.startsWith(prefixe) : false;
             const com = verifCom ? texte.slice(1).trim().split(/ +/).shift().toLowerCase() : false;
 
             const lien = conf.URL.split(',')
@@ -650,11 +649,7 @@ setTimeout(() => {
             }
 
             if (verifCom) {
-                const cd = evt.cm.find((zokou) => {
-                    if (zokou.nomCom === com) return true;
-                    if (zokou.aliases && Array.isArray(zokou.aliases) && zokou.aliases.includes(com)) return true;
-                    return false;
-                });
+                const cd = evt.cm.find((zokou) => zokou.nomCom === (com));
                 if (cd) {
                     try {
                         const MODE_PUBLIC = (conf.MODE || '').toLowerCase() === 'yes';
