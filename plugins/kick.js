@@ -5,7 +5,7 @@ const { Sticker, StickerTypes } = require('wa-sticker-formatter');
 const conf = require(__dirname + '/../set');
 
 ezra({
-    nomCom: "remove  ",
+    nomCom: "remove",
     aliases: ["remove", "bon"],
     categorie: "Group-Moderation",
     reaction: "👢"
