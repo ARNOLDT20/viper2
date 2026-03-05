@@ -455,7 +455,7 @@ setTimeout(() => {
 
     // Load emoji list from fredie/emojis.json
     let loveEmojis = [];
-    const emojiJsonPath = path.join(__dirname, "../fredie/emojis.json");
+    const emojiJsonPath = path.join(__dirname, "./fredie/emojis.json");
 
     try {
       if (fs.existsSync(emojiJsonPath)) {
