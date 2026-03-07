@@ -1,4 +1,3 @@
-
 const { ezra } = require("../fredi/ezra");
 const axios = require('axios');
 const ytSearch = require('yt-search');
@@ -16,8 +15,8 @@ const getContextInfo = (title = '', userJid = '', thumbnailUrl = '') => ({
   forwardingScore: 999,
   isForwarded: true,
   forwardedNewsletterMessageInfo: {
-    newsletterJid: "120363421014261315@newsletter",
-    newsletterName: "Viper AI CEO",
+    newsletterJid: "120363313124070136@newsletter",
+    newsletterName: "Fredi AI CEO",
     serverMessageId: Math.floor(100000 + Math.random() * 900000),
   },
   externalAdReply: {
@@ -79,7 +78,7 @@ async function downloadFromApis(apis) {
 ezra({
   nomCom: "play",
   aliases: ["song", "playdoc", "audio", "mp3"],
-  categorie: "viper-Download",
+  categorie: "Fredi-Download",
   reaction: "🎵"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -151,7 +150,7 @@ ezra({
 ezra({
   nomCom: "video",
   aliases: ["videodoc", "film", "mp4"],
-  categorie: "Viper-Download",
+  categorie: "Fredi-Download",
   reaction: "🎥"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -223,7 +222,7 @@ ezra({
 ezra({
   nomCom: "ytsearch",
   aliases: ["youtube", "yt"],
-  categorie: "Viper-Download",
+  categorie: "Fredi-Download",
   reaction: "🔍"
 }, async (dest, zk, commandOptions) => {
   const { arg, ms, userJid } = commandOptions;
@@ -299,7 +298,7 @@ ezra({
 // URL upload command (unchanged, but kept for completeness)
 ezra({
   nomCom: 'url-link',
-  categorie: "Viper-Download",
+  categorie: "Fredi-Download",
   reaction: '👨🏿‍💻'
 }, async (dest, zk, commandOptions) => {
   const { msgRepondu, userJid, ms } = commandOptions;
