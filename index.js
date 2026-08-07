@@ -62,6 +62,7 @@ app.get('/', (req, res) => res.send('viper xmd IS ALIVE 🫧'));
 app.listen(PORT, () => console.log(`Ping server running on port ${PORT}`));
 let fs = require("fs-extra");
 let path = require("path");
+const { repairSessionJson } = require("./lib/sessionAuth");
 
 // Restore session from base64 zip in env var (useful for platforms like Heroku)
 const SESSION_ZIP_BASE64 = process.env.SESSION_ZIP_BASE64 || process.env.SESSION_TAR_BASE64 || process.env.SESSION_BASE64;
@@ -97,21 +98,29 @@ const readmore = more.repeat(4001)
 
 async function authentification() {
     try {
-
-        //console.log("le data "+data)
-        if (!fs.existsSync(__dirname + "/auth/creds.json")) {
-            console.log("connexion en cour ...");
-            const decoded = Buffer.from(session, 'base64').toString('utf8');
-            await fs.writeFileSync(__dirname + "/auth/creds.json", decoded, "utf8");
-            //console.log(session)
+        if (!session || session.trim() === "") {
+            console.log("No SESSION_ID provided. Using local auth state / QR authentication if needed.");
+            return;
         }
-        else if (fs.existsSync(__dirname + "/auth/creds.json") && session != "zokk") {
-            const decoded = Buffer.from(session, 'base64').toString('utf8');
-            await fs.writeFileSync(__dirname + "/auth/creds.json", decoded, "utf8");
+
+        const content = repairSessionJson(session);
+        if (!content) {
+            console.log("SESSION_ID could not be repaired or parsed as valid auth JSON. Skipping auth write.");
+            return;
+        }
+
+        const credsPath = path.join(__dirname, "auth/creds.json");
+        if (!fs.existsSync(credsPath)) {
+            console.log("Writing provided SESSION_ID to auth/creds.json...");
+            await fs.writeFileSync(credsPath, content, "utf8");
+        }
+        else if (session !== "zokk") {
+            console.log("Overwriting auth/creds.json with SESSION_ID content...");
+            await fs.writeFileSync(credsPath, content, "utf8");
         }
     }
     catch (e) {
-        console.log("Session Invalid " + e);
+        console.log("Session Invalid: " + (e?.message || e));
         return;
     }
 }

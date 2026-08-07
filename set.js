@@ -8,7 +8,9 @@ const DATABASE_URL = process.env.DATABASE_URL === undefined
     ? databasePath
     : process.env.DATABASE_URL;
 module.exports = {
-    session: process.env.SESSION_ID || 'ezra',
+    session: process.env.SESSION_ID
+        ? process.env.SESSION_ID.trim().replace(/^.*VIPER-MD%>/, '').replace(/%SESSION_ID%>.*$/, '')
+        : '',
     PREFIXE: process.env.PREFIX || "+",
     GITHUB: process.env.GITHUB || 'https://github.com/ARNOLDT20/Viper2',
     OWNER_NAME: process.env.OWNER_NAME || "starboy",
